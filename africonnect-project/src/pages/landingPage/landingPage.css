@@ -5,7 +5,7 @@
   --text-dark: #000000;
 }
 
-/* Global Reset for End-to-End Layout */
+/* Global Reset */
 body, html {
   margin: 0;
   padding: 0;
@@ -21,19 +21,21 @@ body, html {
   margin: 0 auto;
 }
 
-/* 1. Navbar with Icon + Text Logo */
+/* 1. Navbar - Desktop Base */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
   border-bottom: 2px solid #000;
+  width: 100%;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0; /* Prevents logo from squishing */
 }
 
 .logo-icon-img {
@@ -59,6 +61,7 @@ body, html {
   text-decoration: none;
   color: var(--text-dark);
   font-weight: 600;
+  white-space: nowrap; /* Prevents text from breaking into two lines */
 }
 
 .nav-search-btn {
@@ -69,6 +72,7 @@ body, html {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 /* 2. Hero Section */
@@ -159,7 +163,7 @@ body, html {
   color: white;
 }
 
-/* 4. Sourcing Huddle (Alternating Mosaic) */
+/* 4. Sourcing Huddle (Mosaic) */
 .sourcing-huddle {
   padding: 100px 0;
   display: grid;
@@ -286,7 +290,7 @@ body, html {
   font-size: 1.5rem;
 }
 
-/* 8. Footer (End-to-End) with Icon + Text Logo */
+/* 8. Footer */
 .footer {
   background-color: #ffffff;
   padding-top: 80px;
@@ -309,126 +313,72 @@ body, html {
   gap: 40px;
 }
 
-.footer-brand {
-  flex: 1;
-  min-width: 280px;
-}
+/* Footer continued same as before... */
+.footer-brand { flex: 1; min-width: 280px; }
+.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+.logo-icon-img-small { width: 28px; height: 28px; object-fit: contain; }
+.footer-logo h2 { color: var(--brand-green); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; }
+.footer-brand p { color: #666; font-size: 0.95rem; max-width: 320px; }
+.footer-links-container { display: flex; gap: 80px; flex-wrap: wrap; }
+.footer-column h4 { color: var(--brand-green); margin-bottom: 25px; font-size: 1.1rem; }
+.footer-column ul { list-style: none; padding: 0; }
+.footer-column ul li { margin-bottom: 15px; }
+.footer-column ul li a { text-decoration: none; color: #444; font-size: 0.9rem; }
+.footer-bottom { background-color: var(--brand-green); color: #ffffff; text-align: center; padding: 30px 0; width: 100%; }
+.footer-tagline { font-style: italic; opacity: 0.9; font-size: 0.85rem; margin-top: 8px; }
 
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.logo-icon-img-small {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-.footer-logo h2 {
-  color: var(--brand-green);
-  font-size: 1.4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-.footer-brand p {
-  color: #666;
-  font-size: 0.95rem;
-  max-width: 320px;
-}
-
-.footer-links-container {
-  display: flex;
-  gap: 80px;
-  flex-wrap: wrap;
-}
-
-.footer-column h4 {
-  color: var(--brand-green);
-  margin-bottom: 25px;
-  font-size: 1.1rem;
-}
-
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-column ul li {
-  margin-bottom: 15px;
-}
-
-.footer-column ul li a {
-  text-decoration: none;
-  color: #444;
-  font-size: 0.9rem;
-}
-
-.footer-bottom {
-  background-color: var(--brand-green);
-  color: #ffffff;
-  text-align: center;
-  padding: 30px 0;
-  width: 100%;
-}
-
-.footer-tagline {
-  font-style: italic;
-  opacity: 0.9;
-  font-size: 0.85rem;
-  margin-top: 8px;
-}
-
-/* ========================= */
-/* MOBILE RESPONSIVE STYLES */
-/* ========================= */
+/* ========================================= */
+/* MOBILE RESPONSIVE STYLES (THE BIG FIX)   */
+/* ========================================= */
 
 @media (max-width: 768px) {
-  /* Navbar */
-  .logo-icon-img { width: 28px; height: 28px; }
-  .logo h1 { font-size: 1.5rem; }
-  
-  .hero-title { font-size: 2.2rem; }
-  .hero-btns { flex-direction: column; width: 100%; }
-  .btn-primary { width: 100%; }
+  /* 1. Tighten the Navbar Container */
+  .landing-container {
+    padding: 0 3%; /* Less side padding to give more room */
+  }
+
+  .navbar {
+    padding: 10px 0;
+    gap: 5px; /* Tiny gap between Logo and Links */
+  }
+
+  /* 2. Shrink Logo significantly */
+  .logo {
+    gap: 5px;
+  }
+  .logo-icon-img { 
+    width: 20px; 
+    height: 20px; 
+  }
+  .logo h1 { 
+    font-size: 1rem; /* Smaller text */
+  }
+
+  /* 3. Fit all Links + Button on one line */
+  .nav-links {
+    gap: 8px; /* Very small space between Home, Product, Buy, Login */
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem; /* Small font for text links */
+    font-weight: 500;
+  }
+
+  .nav-search-btn {
+    padding: 5px 10px; /* Smallest possible button */
+    font-size: 0.75rem;
+    border-radius: 4px;
+  }
+
+  /* Other Mobile Fixes */
+  .hero-title { font-size: 1.8rem; }
+  .hero-subtitle { font-size: 0.9rem; }
   .stats-grid { grid-template-columns: 1fr; }
-
-  /* Huddle Mosaic Reset */
-  .sourcing-huddle { grid-template-columns: 1fr; padding: 60px 0; }
-  .huddle-text h3 { text-align: center; max-width: 100%; margin-bottom: 30px; }
-  .huddle-grid {
-    grid-column: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 0;
-    grid-template-rows: auto;
-  }
-  .huddle-img, .huddle-img:nth-child(n) {
-    width: 100%;
-    height: 220px;
-    transform: none !important;
-    margin: 0 !important;
-    grid-column: auto !important;
-    grid-row: auto !important;
-  }
-
-  /* Popular Materials */
-  .material-item, .material-item:nth-child(even) {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .material-thumb { width: 100%; height: 250px; }
-  .material-name { width: 100%; font-size: 1.6rem; }
-
-  /* Footer Mobile */
-  .footer-top { flex-direction: column; text-align: center; }
-  .footer-logo { justify-content: center; }
-  .footer-brand p { margin: 0 auto 20px auto; }
-  .footer-links-container { justify-content: center; gap: 30px; }
+  .sourcing-huddle { grid-template-columns: 1fr; }
+  .huddle-grid { grid-template-columns: 1fr 1fr; margin-top: 20px; }
+  .huddle-img { height: 150px; }
+  .material-thumb { height: 200px; }
+  .material-name { font-size: 1.2rem; }
 }
