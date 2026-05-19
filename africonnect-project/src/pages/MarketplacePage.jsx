@@ -1,8 +1,6 @@
-import MarketplaceGrid from './components/MarketplaceGrid'
-import "./components/MarketplaceGrid.css";
+import MarketplaceGrid from '../../components/MarketplaceGrid'
 
-
-function AppBuyer(){
+function MarketplacePage(){
     return(
         <div>
             {/*HERO SECTION */}
@@ -24,5 +22,4 @@ function AppBuyer(){
     )
 }
 
-export default AppBuyer;
-
+export default MarketplacePage

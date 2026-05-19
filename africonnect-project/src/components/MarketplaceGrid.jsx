@@ -46,14 +46,14 @@ export default function MarketplaceGrid() {
 
 
 import { dummyProducts as products} from '../data/dummyProducts';
-import './MarketplaceGrid.css';
+import "./MarketplaceGrid.css";
 
 export default function MarketplaceGrid() {
   return (
     <div className="marketplace-container">
       <h1 className="marketplace-title">Marketplace</h1>
       
-      <div className="product-grid">
+      <div className="marketplace-grid">
         {products.map((product) => (
           <div key={product.id} className="product-card">
             <h2 className="product-name">{product.name}</h2>

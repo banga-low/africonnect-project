@@ -1,8 +1,8 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // Routes imports
+import MarketplacePage from './pages/MarketplacePage';
 import LandingPage from './pages/landingPage/landingPage';
 import Login from './pages/SupplierLogin';
 import SupplierSignup from './pages/SupplierSignup';
@@ -24,6 +24,7 @@ function App() {
           <Route path="/supplierdashboard" element={<SupplierDashboard/>} />
           <Route path="/supplier-set-profile" element={<SupplierProfile/>} />
           <Route path="/product-listing" element={<ProductListing />} />
+          <Route path="/marketplace" element={<MarketplacePage/>} /> 
         </Routes>
       </div>
     </Router>
