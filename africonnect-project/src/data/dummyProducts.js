@@ -6,7 +6,7 @@ export const dummyProducts = [
     origin: "Abuja, Nigeria", 
     price: 1200, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cocoa-beans.jpg", 
     status: "Verified" 
   },
   { 
@@ -16,7 +16,7 @@ export const dummyProducts = [
     origin: "Lagos, Nigeria", 
     price: 600, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cashew.jpg", 
     status: "Verified Supplier" 
   },
   { 
@@ -26,7 +26,7 @@ export const dummyProducts = [
     origin: "Lagos, Nigeria", 
     price: 1200, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cocoa-beans.jpg", 
     status: "Out of stock" 
   },
   { 
@@ -36,7 +36,7 @@ export const dummyProducts = [
     origin: "Kumasi, Ghana", 
     price: 950, 
     moq: 5, 
-    image: "", 
+    image: "assets2/cotton.png", 
     status: "Verified Supplier" 
   },
   { 
@@ -46,7 +46,7 @@ export const dummyProducts = [
     origin: "Lagos, Nigeria", 
     price: 800, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cotton.png", 
     status: "Verified Supplier" 
   },
   { 
@@ -56,7 +56,7 @@ export const dummyProducts = [
     origin: "Zambia", 
     price: 1100, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cotton.png", 
     status: "Verified Supplier" 
   },
   { 
@@ -66,7 +66,7 @@ export const dummyProducts = [
     origin: "Kumasi, Ghana", 
     price: 1250, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cocoa-beans.jpg", 
     status: "Verified Supplier" 
   },
   { 
@@ -76,7 +76,7 @@ export const dummyProducts = [
     origin: "Abuja, Nigeria", 
     price: 700, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cashew.jpg", 
     status: "Out of stock" 
   },
   { 
@@ -86,7 +86,7 @@ export const dummyProducts = [
     origin: "Abuja, Nigeria", 
     price: 1000, 
     moq: 10, 
-    image: "", 
+    image: "assets2/cocoa-beans.jpg", 
     status: "Verified Supplier" 
   }
 ];

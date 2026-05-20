@@ -1,3 +1,5 @@
+import{dummyProducts} from './data/dummyProducts';
+
 import MarketplaceGrid from './components/MarketplaceGrid'
 import "./components/MarketplaceGrid.css";
 
@@ -9,6 +11,26 @@ function AppBuyer(){
     <div className="hero">
   <img src="/assets2/hero-cocoa.jpg" alt="Empowering African Industry" />
 </div>
+<section className="featured-products">
+  <h2 className="section-title">Featured Products</h2>
+  <div className="product-grid">
+    {dummyProducts.map((product) => (
+      <div className="product-card" key={product.id}>
+        <img src={product.image} alt={product.name} />
+        <h3>{product.name}</h3>
+        <p className="location">ORIGIN: {product.origin}</p>
+        <div className="price-row">
+          <span className="price">PRICE: ${product.price}/kg</span>
+          <span className="moq">Min.order: {product.moq} tons</span>
+        </div>
+        <div className="card-buttons">
+          <button className="btn-primary">Submit Inquiry</button>
+          <button className="btn-secondary">Chat</button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
 <div className="product-grid">
   {/* your 3 product cards here using /assets2/cashew.jpg etc */}
