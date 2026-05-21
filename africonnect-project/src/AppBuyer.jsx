@@ -1,5 +1,6 @@
 import{dummyProducts} from './data/dummyProducts';
-
+import Login from './pages/Login.jsx';
+import'./pages/Login.css';
 import MarketplaceGrid from './components/MarketplaceGrid'
 import "./components/MarketplaceGrid.css";
 
@@ -82,10 +83,14 @@ function AppBuyer(){
     </div>
   </div>
 </div>
-            </div>
+</div>
 
-    )
-}
+)
+  }
+
+
+
 
 export default AppBuyer;
+
 
