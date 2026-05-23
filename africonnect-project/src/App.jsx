@@ -1,14 +1,16 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // Routes imports
+import MarketplacePage from './pages/MarketplacePage';
 import LandingPage from './pages/landingPage/landingPage';
 import Login from './pages/SupplierLogin';
 import SupplierSignup from './pages/SupplierSignup';
 import SupplierDashboard from './pages/SupplierDashboard/SupplierDashboard.jsx';
 import SupplierProfile from './pages/SupplierProfile/SupplierProfile.jsx';
 import ProductListing from './components/ProductListing/ProductListing.jsx';
+import BuyerLogin from './pages/BuyerLogin';
+import RFQPage from './pages/RFQPage';
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
           <Route path="/supplierdashboard" element={<SupplierDashboard/>} />
           <Route path="/supplier-set-profile" element={<SupplierProfile/>} />
           <Route path="/product-listing" element={<ProductListing />} />
+          <Route path="/marketplace" element={<MarketplacePage/>} /> 
+          <Route path="/buyer-login" element={<BuyerLogin/>} />
+          <Route path="/rfq" element={<RFQPage />}/>
         </Routes>
       </div>
     </Router>
