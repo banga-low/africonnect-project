@@ -18,7 +18,7 @@ import cocoa from '../../assets/LandingPage/cocoa.png';
 import logoImg from '../../assets/LandingPage/logo.png';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hooks up your path router switcher
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = (term) => {
@@ -41,7 +41,7 @@ const LandingPage = () => {
           onSearch={handleSearch}
         />
 
-        {/* 1. Navbar with Image + Text Logo */}
+        {/* 1. Navbar with Functional Navigation Links */}
         <nav className="navbar">
           <div className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
             <img src={logoImg} alt="" className="logo-icon-img" />
@@ -49,9 +49,13 @@ const LandingPage = () => {
           </div>
 
           <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#product">Product</a>
-            <a href="#buy">Buy</a>
+            <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</span>
+            
+            {/* ✅ FIXED: "Product" and "Buy" now route seamlessly to /marketplace */}
+            <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Product</span>
+            <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
+            
+            {/* ✅ FIXED: "Login" routes exactly to lowercase /login */}
             <button className="nav-search-btn" onClick={() => navigate('/login')}>
               Login
             </button>
@@ -65,7 +69,11 @@ const LandingPage = () => {
             <p className="hero-subtitle">Connect with trusted suppliers, compare prices, and source raw materials across the continent.</p>
             <div className="hero-btns">
               <button className="btn-primary" onClick={() => setIsModalOpen(true)}>Search Materials</button>
-              <button className="btn-primary btn-spacer" onClick={() => navigate('/signup')}>Become a supplier</button>
+              
+              {/* ✅ FIXED: Routes to your exact lowercase /signup path */}
+              <button className="btn-primary btn-spacer" onClick={() => navigate('/signup')}>
+                Become a supplier
+              </button>
             </div>
           </div>
         </header>
@@ -96,7 +104,8 @@ const LandingPage = () => {
           <h3 className="section-title">Popular materials on Africonnect</h3>
           <div className="material-list">
             {popularMaterials.map((item) => (
-              <div key={item.name} className="material-item">
+              /* ✅ FIXED: Card clicks take users directly to your marketplace page */
+              <div key={item.name} className="material-item" onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>
                 <img src={item.img} alt={item.name} className="material-thumb" />
                 <span className="material-name">{item.name.toUpperCase()}</span>
               </div>
@@ -121,7 +130,7 @@ const LandingPage = () => {
         </section>
       </div>
 
-      {/* 8. Footer with Image + Text Logo */}
+      {/* 8. Footer */}
       <footer className="footer">
         <div className="footer-top">
           <div className="footer-brand">
@@ -136,9 +145,9 @@ const LandingPage = () => {
             <div className="footer-column">
               <h4>Product</h4>
               <ul>
-                <li><a href="#search">Search & Buy</a></li>
-                <li><a href="#suppliers">Find Suppliers</a></li>
-                <li><a href="#list">List Your Products</a></li>
+                <li><span onClick={() => setIsModalOpen(true)} style={{ cursor: 'pointer' }}>Search & Buy</span></li>
+                <li><span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Find Suppliers</span></li>
+                <li><span onClick={() => navigate('/signup')} style={{ cursor: 'pointer' }}>List Your Products</span></li>
               </ul>
             </div>
             <div className="footer-column">
@@ -159,7 +168,7 @@ const LandingPage = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>© AFRICONNECT 2024. All rights reserved.</p>
+          <p>© AFRICONNECT 2026. All rights reserved.</p>
           <p className="footer-tagline">“Build the West African tech”</p>
         </div>
       </footer>

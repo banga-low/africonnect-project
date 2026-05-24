@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // 1. Added useNavigate
 
 export default function SupplierSignup() {
