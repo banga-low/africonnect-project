@@ -6,6 +6,8 @@ import './pages/Login.css';
 import './components/MarketplaceGrid.css';
 import RFQPage from './pages/RFQPage.jsx';
 import './pages/RFQPage.css';
+import LandingPage from './pages/landingPage/landingPage';
+
 
 function HomePage() {
   const navigate = useNavigate();
@@ -51,9 +53,11 @@ export default function AppBuyer() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/" marketplace={<MarketplacePage />} />
         <Route path="/buyer-login" element={<Login />} />
         <Route path="/rfq" element={<RFQPage/>} />
+
       </Routes>
     </div>
   );

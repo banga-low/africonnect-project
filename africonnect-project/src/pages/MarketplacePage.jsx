@@ -1,4 +1,4 @@
-import MarketplaceGrid from '../../components/MarketplaceGrid'
+import MarketplaceGrid from '../components/MarketplaceGrid'
 
 function MarketplacePage(){
     return(
