@@ -77,6 +77,25 @@
 
 /* Hero Section */
 
+
+.marketplace-hero {
+  position: relative;
+}
+.marketplace-hero .hero-topnav {
+  position: absolute;
+  top: 24px;
+  right: 40px;
+  display: flex;
+  gap: 24px;
+  z-index: 10;
+}
+.marketplace-hero .hero-topnav a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
 .hero {
   background-color: #f0f7f4; /* light green background */
   border-radius: 16px;

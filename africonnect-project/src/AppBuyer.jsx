@@ -12,7 +12,11 @@ function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <div className="hero">
+      <div className="marketplace-hero">
+        <nav className="hero-topnav">
+          <a href="/">Home</a>
+          <a href="login">Login</a>
+        </nav>
         <img src="/assets2/hero-cocoa.jpg" alt="Empowering African Industry" />
       </div>
 
@@ -44,17 +48,16 @@ function HomePage() {
 export default function AppBuyer() {
   return (
     <div>
-      {/* Test nav - delete this later */}
-      <nav style={{ padding: '10px 20px', background: '#f5f5f5', display: 'flex', gap: '15px' }}>
-        <Link to="/">Home</Link>
-        <Link to="/buyer-login">Login</Link>
-      </nav>
 
+
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/buyer-login" element={<Login />} />
         <Route path="/rfq" element={<RFQPage/>} />
       </Routes>
     </div>
-  );
+
+    
+);
 }
