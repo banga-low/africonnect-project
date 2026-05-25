@@ -13,7 +13,7 @@ export default function RFQPage() {
     price: '',
     specs: ''
   });
-
+  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -21,7 +21,8 @@ export default function RFQPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('RFQ submitted:', form);
-    alert('RFQ sent to suppliers!');
+    const matches = form.category ? 2 : 0;
+    alert(`RFQ sent to ${matches} suppliers!`);
   };
 
   return (

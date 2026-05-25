@@ -9,8 +9,10 @@ import SupplierSignup from './pages/SupplierSignup';
 import SupplierDashboard from './pages/SupplierDashboard/SupplierDashboard.jsx';
 import SupplierProfile from './pages/SupplierProfile/SupplierProfile.jsx';
 import ProductListing from './components/ProductListing/ProductListing.jsx';
-import MarketplacePage from './pages/MarketplacePage.jsx'; 
+import MarketplacePage from './pages/MarketplacePage.jsx';
 import RFQPage from './pages/RFQPage.jsx'; 
+import AppBuyer from './AppBuyer';
+import BuyerLogin from './pages/BuyerLogin';
 
 function App() {
   return (
@@ -23,11 +25,13 @@ function App() {
           {/* Navigation Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SupplierSignup />} />
-          <Route path="/marketplace" element={<MarketplacePage />} />
+          <Route path="/marketplace" element={<AppBuyer />} />
           <Route path="/rfq" element={<RFQPage />} />
           <Route path="/supplierdashboard" element={<SupplierDashboard />} />
           <Route path="/supplier-set-profile" element={<SupplierProfile />} />
           <Route path="/product-listing" element={<ProductListing />} />
+          <Route path="/buyer-login" element={<BuyerLogin />} />
+
         </Routes>
       </div>
     </Router>
