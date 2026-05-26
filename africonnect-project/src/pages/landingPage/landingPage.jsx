@@ -38,7 +38,7 @@ const LandingPage = () => {
         <SearchModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onSearch={handleSearch}
+          onSearchResults={handleSearch}
         />
 
         {/* 1. Navbar with Functional Navigation Links */}
