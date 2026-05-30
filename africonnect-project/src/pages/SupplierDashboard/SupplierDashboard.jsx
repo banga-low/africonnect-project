@@ -1,95 +1,150 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { User, Box, Upload, CheckCircle, List, Bell, Search } from 'lucide-react';
+import { 
+  LayoutDashboard, 
+  Box, 
+  FileText, 
+  MessageSquare, 
+  User, 
+  LogOut, 
+  Search, 
+  Bell, 
+  Settings 
+} from 'lucide-react';
 import './SupplierDashboard.css';
-import supplieravator from '../../assets/supplieravator.png';
-import '../../components/ProductListing/ProductListing'
+
+// Logo Graphic Import 
+import logoImg from '../../assets/LandingPage/logo.png';
+import supplierAvatar from '../../assets/supplieravator.png';
+
+// ✅ Dynamic Tab Sub-Components Imports
+import OverviewTab from '../../components/SupplierDashboard/OverviewTab';
+import MyProductsTab from '../../components/SupplierDashboard/MyProductsTab';
+import RfqsTab from '../../components/SupplierDashboard/RfqsTab';
+import MessagesTab from '../../components/SupplierDashboard/MessagesTab';
+import ProfileTab from '../../components/SupplierDashboard/ProfileTab';
 
 const SupplierDashboard = () => {
   const navigate = useNavigate(); 
+  const [activeTab, setActiveTab] = useState('overview');
+
+  // ✅ Swapped out div placeholders to return your real feature components seamlessly
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return <OverviewTab />;
+      case 'products':
+        return <MyProductsTab />;
+      case 'rfqu':
+        return <RfqsTab />;
+      case 'messages':
+        return <MessagesTab />;
+      case 'profile':
+        return <ProfileTab />;
+      default:
+        return <OverviewTab />;
+    }
+  };
 
   return (
-    <div className="dashboard-container">
-      {/* --- Navbar --- */}
-      <nav className="dash-navbar">
-        <div className="dash-logo">
-          <div className="logo-circle"></div>
-          <h1>Africonnect</h1>
+    <div className="dashboard-app-frame">
+      
+      {/* 1. LEFT PERSISTENT SIDEBAR */}
+      <aside className="dashboard-sidebar">
+        {/* Brand identity lockup */}
+        <div className="sidebar-logo-block" onClick={() => navigate('/')}>
+          <img src={logoImg} alt="Africonnect Logo" className="sidebar-logo-img" />
+          <h2 className="logo-text">
+            <span className="text-green">FRI</span>
+            <span className="text-black">CONNECT</span>
+          </h2>
         </div>
-        
-        <div className="search-bar">
-          <input type="text" placeholder="" />
-          <Search className="search-icon" size={20} />
-        </div>
+        <span className="sidebar-subtitle">Supplier Dashboard</span>
 
-        <div className="nav-profile">
-          <Bell className="notif-icon" />
-          <div className="profile-avatar">
-            <img src={supplieravator} alt="Profile" />
-          </div>
-          <button className="logout-btn">
-            Logout
+        {/* Navigation Item Tree */}
+        <nav className="sidebar-nav-tree">
+          <button 
+            className={`nav-item-link ${activeTab === 'overview' ? 'active' : ''}`}
+            onClick={() => setActiveTab('overview')}
+          >
+            <LayoutDashboard size={18} />
+            <span>Overview</span>
+          </button>
+
+          <button 
+            className={`nav-item-link ${activeTab === 'products' ? 'active' : ''}`}
+            onClick={() => setActiveTab('products')}
+          >
+            <Box size={18} />
+            <span>My Products</span>
+          </button>
+
+          <button 
+            className={`nav-item-link ${activeTab === 'rfqu' ? 'active' : ''}`}
+            onClick={() => setActiveTab('rfqu')}
+          >
+            <FileText size={18} />
+            <span>RFQs</span>
+          </button>
+
+          <button 
+            className={`nav-item-link ${activeTab === 'messages' ? 'active' : ''}`}
+            onClick={() => setActiveTab('messages')}
+          >
+            <MessageSquare size={18} />
+            <span>Messages</span>
+          </button>
+
+          <button 
+            className={`nav-item-link ${activeTab === 'profile' ? 'active' : ''}`}
+            onClick={() => setActiveTab('profile')}
+          >
+            <User size={18} />
+            <span>Profile</span>
+          </button>
+        </nav>
+
+        {/* Logout anchoring footer action */}
+        <div className="sidebar-footer-block">
+          <button className="sidebar-logout-btn" onClick={() => navigate('/login')}>
+            <LogOut size={18} />
+            <span>Log out</span>
           </button>
         </div>
-      </nav>
+      </aside>
 
-      {/* --- Main Content --- */}
-      <main className="dash-content">
-        <div className="welcome-header">
-          <h2>Hi, Daniels</h2>
-          <div className="verification-status">
-            <span>Complete verification</span>
-            <div className="progress-bg">
-              <div className="progress-fill" style={{ width: '66%' }}></div>
-            </div>
-            <span className="progress-text">1/3</span>
-          </div>
-        </div>
-
-        <section className="features-section">
-          <h1 className="section-heading">Features</h1>
-          
-          <div className="feature-grid top-grid">
-            {/* Added onClick to trigger navigation to your new route */}
-            <div 
-              className="feature-card clickable" 
-              onClick={() => navigate('/supplier-set-profile')}
-              style={{ cursor: 'pointer' }}
-            >
-              <User size={40} strokeWidth={1.5} />
-              <p>Set Profile</p>
-            </div>
-
-            <div
-             className="feature-card"
-             onClick={() => navigate('/product-listing')}
-             style={{ cursor: 'pointer' }}
-             >
-              <Box size={40} strokeWidth={1.5} />
-              <p>Product listing</p>
-            </div>
-            <div className="feature-card">
-              <Upload size={40} strokeWidth={1.5} />
-              <p>Upload document</p>
-            </div>
+      {/* 2. RIGHT-SIDE VIEW PORT DATA CONTAINER CONTAINER */}
+      <div className="dashboard-viewport-right">
+        
+        {/* Top Navbar Control Strip */}
+        <header className="viewport-top-header">
+          <div className="header-search-wrapper">
+            <Search className="search-box-icon" size={18} />
+            <input type="text" placeholder="Search Category" className="header-search-input" />
           </div>
 
-          <div className="divider">
-            <span className="star-icon">★</span>
+          <div className="header-actions-wrapper">
+            <button className="icon-badge-btn">
+              <Bell size={20} />
+              <span className="badge-dot"></span>
+            </button>
+            <button className="icon-badge-btn">
+              <Settings size={20} />
+            </button>
+            
+            <div className="header-profile-pill">
+              <img src={supplierAvatar} alt="Supplier Profile Avatar" className="user-pill-avatar" />
+              <span className="user-pill-name">Ghana Ecofarm Ltd.</span>
+            </div>
           </div>
+        </header>
 
-          <div className="feature-grid bottom-grid">
-            <div className="feature-card">
-              <CheckCircle size={40} strokeWidth={1.5} />
-              <p>Verify Email</p>
-            </div>
-            <div className="feature-card">
-              <List size={40} strokeWidth={1.5} />
-              <p>Product Category</p>
-            </div>
-          </div>
-        </section>
-      </main>
+        {/* Dynamic Nested Screen Content Port Injector */}
+        <main className="viewport-main-content">
+          {renderTabContent()}
+        </main>
+      </div>
+
     </div>
   );
 };

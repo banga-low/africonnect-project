@@ -34,7 +34,7 @@ body, html {
 .logo {
   display: flex;
   align-items: center;
-  gap: 2px; /* ✅ REMOVED PADDING: Tightened gap drastically so text sits right next to the logo graphic */
+  gap: 0px; /* ✅ REMOVED PADDING: Tightened gap drastically so text sits right next to the logo graphic */
   flex-shrink: 0;
 }
 
@@ -336,7 +336,7 @@ body, html {
 .footer-logo { 
   display: flex; 
   align-items: center; 
-  gap: 4px; /* ✅ Tightened footer logo gap too */
+  gap: 0px; /* ✅ Tightened footer logo gap too */
   margin-bottom: 15px; 
 }
 
