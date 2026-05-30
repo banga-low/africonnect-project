@@ -1,5 +1,5 @@
 :root {
-  --brand-green: #27ae60;
+  --brand-green: #036942; 
   --brand-blue: #1a33e6;
   --bg-gray: #f2f2f2;
   --text-dark: #000000;
@@ -26,53 +26,72 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 2px solid #000;
+  padding: 24px 0; 
+  border-bottom: 2px solid #eaeaea; 
   width: 100%;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0; /* Prevents logo from squishing */
+  gap: 2px; /* ✅ REMOVED PADDING: Tightened gap drastically so text sits right next to the logo graphic */
+  flex-shrink: 0;
 }
 
 .logo-icon-img {
-  width: 32px;
-  height: 32px;
+  width: auto;
+  height: 60px; /* Restored to your preferred size that works on screen */
   object-fit: contain;
 }
 
-.logo h1 {
-  font-size: 1.8rem;
-  font-weight: 800;
+.logo-text {
+  font-size: 1.9rem;
+  font-weight: 900; 
   margin: 0;
+  padding: 0; /* ✅ Explicitly cleared any native heading padding */
+  display: flex;
+  letter-spacing: -0.5px; 
+}
+
+.text-green {
+  color: var(--brand-green);
+}
+
+.text-black {
   color: var(--text-dark);
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 36px; 
   align-items: center;
 }
 
-.nav-links a {
+.nav-links span {
   text-decoration: none;
   color: var(--text-dark);
-  font-weight: 600;
-  white-space: nowrap; /* Prevents text from breaking into two lines */
+  font-weight: 600; 
+  font-size: 1.05rem;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
+/* Updated Button to Match Figma's Styled Green Signup Pill */
 .nav-search-btn {
-  background-color: var(--brand-green);
+  background-color: #4ed396; 
   color: white;
   border: none;
-  padding: 8px 25px;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 12px 32px;
+  border-radius: 18px; 
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.nav-search-btn:hover {
+  opacity: 0.9;
 }
 
 /* 2. Hero Section */
@@ -109,10 +128,6 @@ body, html {
   line-height: 1.1;
   font-weight: 900;
   margin-bottom: 20px;
-}
-
-.text-green {
-  color: var(--brand-green);
 }
 
 .hero-subtitle {
@@ -313,66 +328,122 @@ body, html {
   gap: 40px;
 }
 
-/* Footer continued same as before... */
-.footer-brand { flex: 1; min-width: 280px; }
-.footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-.logo-icon-img-small { width: 28px; height: 28px; object-fit: contain; }
-.footer-logo h2 { color: var(--brand-green); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; }
-.footer-brand p { color: #666; font-size: 0.95rem; max-width: 320px; }
-.footer-links-container { display: flex; gap: 80px; flex-wrap: wrap; }
-.footer-column h4 { color: var(--brand-green); margin-bottom: 25px; font-size: 1.1rem; }
-.footer-column ul { list-style: none; padding: 0; }
-.footer-column ul li { margin-bottom: 15px; }
-.footer-column ul li a { text-decoration: none; color: #444; font-size: 0.9rem; }
-.footer-bottom { background-color: var(--brand-green); color: #ffffff; text-align: center; padding: 30px 0; width: 100%; }
-.footer-tagline { font-style: italic; opacity: 0.9; font-size: 0.85rem; margin-top: 8px; }
+.footer-brand { 
+  flex: 1; 
+  min-width: 280px; 
+}
+
+.footer-logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 4px; /* ✅ Tightened footer logo gap too */
+  margin-bottom: 15px; 
+}
+
+.logo-icon-img-small { 
+  width: auto; 
+  height: 60px; 
+  object-fit: contain; 
+}
+
+.footer-logo .logo-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.footer-brand p { 
+  color: #666; 
+  font-size: 0.95rem; 
+  max-width: 320px; 
+}
+
+.footer-links-container { 
+  display: flex; 
+  gap: 80px; 
+  flex-wrap: wrap; 
+}
+
+.footer-column h4 { 
+  color: var(--brand-green); 
+  margin-bottom: 25px; 
+  font-size: 1.1rem; 
+}
+
+.footer-column ul { 
+  list-style: none; 
+  padding: 0; 
+}
+
+.footer-column ul li { 
+  margin-bottom: 15px; 
+}
+
+.footer-column ul li span, .footer-column ul li a { 
+  text-decoration: none; 
+  color: #444; 
+  font-size: 0.9rem; 
+}
+
+.footer-bottom { 
+  background-color: var(--brand-green); 
+  color: #ffffff; 
+  text-align: center; 
+  padding: 30px 0; 
+  width: 100%; 
+}
+
+.footer-tagline { 
+  font-style: italic; 
+  opacity: 0.9; 
+  font-size: 0.85rem; 
+  margin-top: 8px; 
+}
 
 /* ========================================= */
-/* MOBILE RESPONSIVE STYLES (THE BIG FIX)   */
+/* MOBILE RESPONSIVE STYLES                  */
 /* ========================================= */
 
 @media (max-width: 768px) {
-  /* 1. Tighten the Navbar Container */
   .landing-container {
-    padding: 0 3%; /* Less side padding to give more room */
+    padding: 0 3%;
   }
 
   .navbar {
     padding: 10px 0;
-    gap: 5px; /* Tiny gap between Logo and Links */
-  }
-
-  /* 2. Shrink Logo significantly */
-  .logo {
     gap: 5px;
   }
-  .logo-icon-img { 
-    width: 20px; 
-    height: 20px; 
+
+  .logo {
+    gap: 2px; /* Keeps it tight on mobile viewports */
   }
-  .logo h1 { 
-    font-size: 1rem; /* Smaller text */
+  
+  .logo-icon-img { 
+    height: 24px; 
+  }
+  
+  .navbar .logo-text { 
+    font-size: 1rem; 
   }
 
-  /* 3. Fit all Links + Button on one line */
   .nav-links {
-    gap: 8px; /* Very small space between Home, Product, Buy, Login */
+    gap: 8px;
     flex-grow: 1;
     justify-content: flex-end;
   }
 
-  .nav-links a {
-    font-size: 0.75rem; /* Small font for text links */
+  .nav-links span {
+    font-size: 0.75rem;
     font-weight: 500;
   }
 
   .nav-search-btn {
-    padding: 5px 10px; /* Smallest possible button */
+    padding: 5px 10px;
     font-size: 0.75rem;
     border-radius: 4px;
   }
 
-  /* Other Mobile Fixes */
   .hero-title { font-size: 1.8rem; }
   .hero-subtitle { font-size: 0.9rem; }
   .stats-grid { grid-template-columns: 1fr; }
