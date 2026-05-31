@@ -81,6 +81,11 @@ export default function SupplierSignup() {
           Already have an account?{' '}
           <Link to="/login" style={styles.loginLink}>Login</Link>
         </p>
+
+        <p style={styles.footerText}>
+                  <Link to="/" style={styles.backHome}>← Back to Home</Link>
+                </p>
+
       </form>
     </div>
   );
@@ -147,6 +152,12 @@ const styles = {
     marginTop: '60px',
     fontSize: '14px',
     fontWeight: '500',
+    color: '#000',
+  },
+  footerText: {
+    textAlign: 'center',
+    marginTop: '20px',
+    fontSize: '14px',
     color: '#000',
   },
   loginLink: {

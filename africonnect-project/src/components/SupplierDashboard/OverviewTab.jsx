@@ -4,7 +4,10 @@ import cocoaImg from '../../assets/LandingPage/cocoa.png';
 import cashewImg from '../../assets/LandingPage/cashew.jpg';
 import supplierAvatar from '../../assets/supplieravator.png';
 
-const OverviewTab = () => {
+// Localized modular styling import
+import './OverviewTab.css';
+
+const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
   const productsPreview = [
     {
       id: 1,
@@ -91,7 +94,7 @@ const OverviewTab = () => {
 
       {/* 2. Analytics Mini-Grid */}
       <div className="analytics-summary-grid">
-        <div className="metric-card">
+        <div className="metric-card" style={{ cursor: 'pointer' }} onClick={() => onTabSwitch('rfqu')}>
           <div className="metric-card-header">
             <span className="metric-title">Active RFQs</span>
             <TrendingUp size={20} className="text-green" />
@@ -100,7 +103,7 @@ const OverviewTab = () => {
           <span className="metric-trend text-green">↑ 12% from last month</span>
         </div>
 
-        <div className="metric-card">
+        <div className="metric-card" style={{ cursor: 'pointer' }} onClick={() => onTabSwitch('messages')}>
           <div className="metric-card-header">
             <span className="metric-title">Unread Messages</span>
             <MessageSquare size={20} className="text-orange" />
@@ -109,7 +112,7 @@ const OverviewTab = () => {
           <span className="metric-trend text-orange">New request from 3 buyers</span>
         </div>
 
-        <div className="metric-card">
+        <div className="metric-card" style={{ cursor: 'pointer' }} onClick={() => onTabSwitch('products')}>
           <div className="metric-card-header">
             <span className="metric-title">Total Products</span>
             <Layers size={20} className="text-blue" />
@@ -125,7 +128,8 @@ const OverviewTab = () => {
           <section className="dashboard-block-section block-blue">
             <div className="block-section-header">
               <h3>My Products</h3>
-              <button className="add-product-badge-btn">
+              {/* ✅ Wire up navigation prop to redirect to full page entry form */}
+              <button className="add-product-badge-btn" onClick={onNavigateToCreate}>
                 <Plus size={16} />
                 <span>Add new product</span>
               </button>
@@ -159,7 +163,9 @@ const OverviewTab = () => {
               ))}
             </div>
             <div className="block-section-footer">
-              <button className="footer-view-all-btn">View All 32 Products</button>
+              <button className="footer-view-all-btn" onClick={() => onTabSwitch('products')}>
+                View All 32 Products
+              </button>
             </div>
           </section>
         </div>
@@ -191,7 +197,9 @@ const OverviewTab = () => {
               ))}
             </div>
             <div className="block-section-footer">
-              <button className="footer-view-all-btn chat-center-btn">Open Message Center</button>
+              <button className="footer-view-all-btn chat-center-btn" onClick={() => onTabSwitch('messages')}>
+                Open Message Center
+              </button>
             </div>
           </div>
         </div>
@@ -228,12 +236,19 @@ const OverviewTab = () => {
                     <span className={`rfq-status-pill ${rfq.statusClass}`}>{rfq.status}</span>
                   </td>
                   <td>
-                    <button className="rfq-action-respond-btn">Respond</button>
+                    <button className="rfq-action-respond-btn" onClick={() => onTabSwitch('rfqu')}>
+                      Respond
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="block-section-footer">
+          <button className="footer-view-all-btn" onClick={() => onTabSwitch('rfqu')}>
+            View All Active RFQs
+          </button>
         </div>
       </section>
     </div>

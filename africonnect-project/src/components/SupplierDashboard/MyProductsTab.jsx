@@ -1,14 +1,10 @@
 import React from 'react';
 import { Plus, Search, Edit3, Trash2 } from 'lucide-react';
-import cocoaImg from '../../assets/LandingPage/cocoa.png';
-import cashewImg from '../../assets/LandingPage/cashew.jpg';
 
-const MyProductsTab = ({ onNavigateToCreate }) => {
-  const inventoryItems = [
-    { id: 1, name: "Premium Cocoa Beans", category: "Agriculture", stock: "14,500 KG", moq: "500 KG", price: "$8.20/KG", img: cocoaImg, status: "In Stock" },
-    { id: 2, name: "Raw Organic Cashew Nuts", category: "Agriculture", stock: "8,000 KG", moq: "1,000 KG", price: "$4.50/KG", img: cashewImg, status: "In Stock" }
-  ];
+import './MyProductsTab.css';
 
+// ✅ Accepts the global live products array prop passed down from dashboard container
+const MyProductsTab = ({ onNavigateToCreate, products }) => {
   return (
     <div className="tab-pane-layout">
       <div className="view-action-header-row">
@@ -16,7 +12,6 @@ const MyProductsTab = ({ onNavigateToCreate }) => {
           <h2>Product Inventory Management</h2>
           <p>Update, review, and manage your published B2B market commodities.</p>
         </div>
-        {/* ✅ Calls the layout handler passed down from SupplierDashboard page */}
         <button className="add-product-badge-btn large-btn" onClick={onNavigateToCreate}>
           <Plus size={18} />
           <span>Publish New Product</span>
@@ -44,7 +39,8 @@ const MyProductsTab = ({ onNavigateToCreate }) => {
             </tr>
           </thead>
           <tbody>
-            {inventoryItems.map((item) => (
+            {/* ✅ Loops live through state entries */}
+            {products.map((item) => (
               <tr key={item.id}>
                 <td>
                   <div className="product-table-identity-cell">

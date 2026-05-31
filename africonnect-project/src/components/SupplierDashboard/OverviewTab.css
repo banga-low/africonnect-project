@@ -1,0 +1,413 @@
+/* ==========================================================================
+   1. OVERVIEW CORE WORKSPACE WRAPPERS
+   ========================================================================== */
+.tab-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Verification Alert Banner */
+.verification-banner {
+  background-color: #FFF5F5;
+  border: 1.5px solid #FFD2D2;
+  border-left: 5px solid #FF3B30;
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.banner-left h4 {
+  margin: 0 0 2px 0;
+  color: #1e293b;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.banner-left p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.banner-upload-btn {
+  background-color: #FF3B30;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.banner-upload-btn:hover {
+  background-color: #E03128;
+}
+
+/* Analytics Summary Cards Grid */
+.analytics-summary-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+}
+
+.metric-card { 
+  background: #ffffff; 
+  padding: 24px; 
+  border-radius: 12px; 
+  border: 1px solid #e2e8f0; 
+}
+
+.metric-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-title { 
+  font-size: 0.85rem; 
+  color: #64748b; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+}
+
+.metric-card h3 { 
+  font-size: 2rem; 
+  margin: 12px 0 6px 0; 
+  font-weight: 800; 
+  color: #1e293b; 
+}
+
+.metric-trend { 
+  font-size: 0.8rem; 
+  font-weight: 600; 
+}
+
+/* ==========================================================================
+   2. SIDE-BY-SIDE COLUMN GRID LAYOUT (PRODUCTS + CHATS)
+   ========================================================================== */
+.overview-grid-row {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  align-items: start;
+}
+
+.grid-main-column {
+  flex: 1.8;
+  min-width: 0;
+}
+
+.grid-side-column {
+  flex: 1;
+  min-width: 320px;
+}
+
+.overview-grid-row .dashboard-block-section {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   3. MY PRODUCTS CARD PREVIEWS & IMAGE CONTAINMENT FIX
+   ========================================================================== */
+.products-preview-flex {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.inventory-preview-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* ✅ Forces image assets to respect exact bounding frame parameters */
+.card-image-box {
+  width: 100%;
+  height: 140px; 
+  background-color: #f1f5f9;
+  overflow: hidden;
+}
+
+.card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops the raw graphic nicely inside the card frame */
+}
+
+.card-info-box {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-info-box h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.product-desc-sub {
+  margin: -8px 0 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.card-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.info-lbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.info-val {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.card-footer-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.status-instock { background-color: #e6f7f0; color: #036942; }
+.status-lowstock { background-color: #fff7ed; color: #c2410c; }
+
+.edit-mini-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   4. RECENT CHATS WIDGET PANEL
+   ========================================================================== */
+.block-gray-chat {
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+}
+
+.chat-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-notification-count-badge {
+  background-color: #ffedd5;
+  color: #ea580c;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.chats-widget-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.widget-chat-row-item {
+  display: flex;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.widget-chat-row-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.chat-item-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chat-row-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.active-online-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #22c55e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+.chat-item-body-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-row-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-item-body-content h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.chat-row-timestamp {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.chat-row-company-lbl {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #036942;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+.chat-row-snippet-text {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Cleans and cuts text down to 2 lines safely */
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   5. RECENT RFQS PREVIEW DATA TABLE
+   ========================================================================== */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rfq-dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px;
+}
+
+.rfq-dashboard-table th {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rfq-dashboard-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.rfq-title-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rfq-main-item {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.rfq-sub-meta {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.buyer-cell-txt, 
+.volume-cell-txt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* RFQ Status Pills */
+.rfq-status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.rfq-new {
+  background: linear-gradient(135deg, #fef08a 0%, #bbf7d0 100%);
+  color: #15803d;
+}
+
+.rfq-negotiating {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.rfq-action-respond-btn {
+  background-color: #036942;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}

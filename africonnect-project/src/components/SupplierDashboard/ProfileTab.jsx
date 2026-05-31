@@ -1,6 +1,9 @@
 import React from 'react';
-import { Save, Building, ShieldAlert } from 'lucide-react';
+import { Save, ShieldAlert } from 'lucide-react';
 import supplierAvatar from '../../assets/supplieravator.png';
+
+// ✅ Link profile design sheet
+import './ProfileTab.css';
 
 const ProfileTab = () => {
   return (

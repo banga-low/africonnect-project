@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { ArrowLeft, Upload, Package, Layers, DollarSign } from 'lucide-react';
+import { ArrowLeft, Upload } from 'lucide-react';
 
-const NewProductFormTab = ({ onCancel }) => {
+const NewProductFormTab = ({ onCancel, onPublish }) => {
   const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,10 +24,18 @@ const NewProductFormTab = ({ onCancel }) => {
     }
   };
 
+  // ✅ Handles submit verification and pushes upstream
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.stock || !formData.moq || !formData.price) {
+      alert("Please fill out all missing fields before publishing.");
+      return;
+    }
+    onPublish(formData);
+  };
+
   return (
     <div className="tab-pane-layout max-width-form">
-      
-      {/* View Back Title Nav Bar Strip */}
       <div className="view-action-header-row" style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }} onClick={onCancel}>
           <ArrowLeft size={20} className="text-black" />
@@ -39,12 +47,11 @@ const NewProductFormTab = ({ onCancel }) => {
       </div>
 
       <div className="profile-dashboard-layout-grid" style={{ marginTop: '16px' }}>
-        
-        {/* Left Form Panel */}
-        <form className="profile-settings-form-wrapper" onSubmit={(e) => e.preventDefault()}>
+        {/* ✅ Form action now tied into standard onSubmit handler stack */}
+        <form className="profile-settings-form-wrapper" onSubmit={handleSubmit}>
           <div className="form-field-item">
             <label>Product Common Title</label>
-            <input type="text" name="name" placeholder="e.g., Organic Ground Cashews" value={formData.name} onChange={handleChange} />
+            <input type="text" name="name" required placeholder="e.g., Organic Ground Cashews" value={formData.name} onChange={handleChange} />
           </div>
 
           <div className="form-field-item">
@@ -59,17 +66,17 @@ const NewProductFormTab = ({ onCancel }) => {
           <div className="form-input-group-row">
             <div className="form-field-item">
               <label>Current Available Stock</label>
-              <input type="text" name="stock" placeholder="e.g., 8,500 KG" value={formData.stock} onChange={handleChange} />
+              <input type="text" name="stock" required placeholder="e.g., 8,500" value={formData.stock} onChange={handleChange} />
             </div>
             <div className="form-field-item">
               <label>Minimum Order Cap (MOQ)</label>
-              <input type="text" name="moq" placeholder="e.g., 500 KG" value={formData.moq} onChange={handleChange} />
+              <input type="text" name="moq" required placeholder="e.g., 500" value={formData.moq} onChange={handleChange} />
             </div>
           </div>
 
           <div className="form-field-item">
             <label>Target Unit Valuation Pricing</label>
-            <input type="text" name="price" placeholder="e.g., $4.50 / QTY" value={formData.price} onChange={handleChange} />
+            <input type="text" name="price" required placeholder="e.g., 4.50" value={formData.price} onChange={handleChange} />
           </div>
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
@@ -78,10 +85,9 @@ const NewProductFormTab = ({ onCancel }) => {
           </div>
         </form>
 
-        {/* Right Asset Sidebar */}
         <div className="profile-identity-card-sidebar">
           <div className="avatar-uploader-center" style={{ width: '100%', boxSizing: 'border-box' }} onClick={() => fileInputRef.current.click()}>
-            <div style={{ width: '100%', height: '200px', backgroundColor: '#f8fafc', borderRadius: '12px', border: '2px dashed #cbd5e1', display: 'flex', alignItems: 'center', justifycenter: 'center', overflow: 'hidden', position: 'relative', cursor: 'pointer' }}>
+            <div style={{ width: '100%', height: '200px', backgroundColor: '#f8fafc', borderRadius: '12px', border: '2px dashed #cbd5e1', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative', cursor: 'pointer' }}>
               {formData.imagePreview ? (
                 <img src={formData.imagePreview} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               ) : (
@@ -95,7 +101,6 @@ const NewProductFormTab = ({ onCancel }) => {
             <button className="edit-mini-btn" style={{ marginTop: '16px', width: '100%' }}>Select Graphic File</button>
           </div>
         </div>
-
       </div>
     </div>
   );
