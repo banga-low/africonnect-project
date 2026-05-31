@@ -1,12 +1,62 @@
 import React from 'react';
-import { ShieldCheck, TrendingUp, MessageSquare, Layers } from 'lucide-react';
+import { ShieldCheck, TrendingUp, MessageSquare, Layers, Plus, Edit2 } from 'lucide-react';
+import cocoaImg from '../../assets/LandingPage/cocoa.png';
+import cashewImg from '../../assets/LandingPage/cashew.jpg';
 import supplierAvatar from '../../assets/supplieravator.png';
 
-// ✅ Directly calling your other official components
-import MyProductsTab from './MyProductsTab';
-import RfqsTab from './RfqsTab';
-
 const OverviewTab = () => {
+  const productsPreview = [
+    {
+      id: 1,
+      name: "Premium Cocoa Beans",
+      moq: "500",
+      price: "$8,200 / QTY",
+      status: "In Stock",
+      statusClass: "status-instock",
+      img: cocoaImg
+    },
+    {
+      id: 2,
+      name: "Grade A millet",
+      desc: "Grade A non-GMO millet",
+      moq: "1,200",
+      price: "$280 / QTY",
+      status: "Low Stock",
+      statusClass: "status-lowstock",
+      img: cashewImg
+    }
+  ];
+
+  const recentRfqs = [
+    {
+      id: "RFQ-08215",
+      details: "Premium cocoa",
+      time: "2h ago",
+      buyer: "Swiss Trust Bank",
+      volume: "25 KG",
+      status: "New Request",
+      statusClass: "rfq-new"
+    },
+    {
+      id: "RFQ-08194",
+      details: "Raw Cashew Nuts",
+      time: "1h ago",
+      buyer: "Global Foods Inc.",
+      volume: "450 MT",
+      status: "New Request",
+      statusClass: "rfq-new"
+    },
+    {
+      id: "RFQ-07992",
+      details: "High-Grade Copper Ore",
+      time: "3d ago",
+      buyer: "Shenzhen Metals",
+      volume: "2,000 MT",
+      status: "NEGOTIATING",
+      statusClass: "rfq-negotiating"
+    }
+  ];
+
   const mockChats = [
     {
       id: 1,
@@ -27,7 +77,6 @@ const OverviewTab = () => {
 
   return (
     <div className="tab-content-wrapper">
-      
       {/* 1. Verification Alert Banner */}
       <div className="verification-banner">
         <div className="banner-left">
@@ -70,15 +119,51 @@ const OverviewTab = () => {
         </div>
       </div>
 
-      {/* 3. Horizontal Row Wrapper (Products page + Chats panel side-by-side) */}
+      {/* 3. Products + Chats Row */}
       <div className="overview-grid-row">
-        
-        {/* Left main window slot */}
         <div className="grid-main-column">
-          <MyProductsTab />
+          <section className="dashboard-block-section block-blue">
+            <div className="block-section-header">
+              <h3>My Products</h3>
+              <button className="add-product-badge-btn">
+                <Plus size={16} />
+                <span>Add new product</span>
+              </button>
+            </div>
+
+            <div className="products-preview-flex">
+              {productsPreview.map((prod) => (
+                <div key={prod.id} className="inventory-preview-card">
+                  <div className="card-image-box">
+                    <img src={prod.img} alt={prod.name} />
+                  </div>
+                  <div className="card-info-box">
+                    <h4>{prod.name}</h4>
+                    {prod.desc && <p className="product-desc-sub">{prod.desc}</p>}
+                    <div className="card-pricing-row">
+                      <div>
+                        <span className="info-lbl">MOQ</span>
+                        <span className="info-val">{prod.moq}</span>
+                      </div>
+                      <div>
+                        <span className="info-lbl text-red">PRICE</span>
+                        <span className="info-val text-green">{prod.price}</span>
+                      </div>
+                    </div>
+                    <div className="card-footer-action-row">
+                      <span className={`status-badge ${prod.statusClass}`}>{prod.status}</span>
+                      <button className="edit-mini-btn"><Edit2 size={14} /></button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="block-section-footer">
+              <button className="footer-view-all-btn">View All 32 Products</button>
+            </div>
+          </section>
         </div>
 
-        {/* Right sidebar window slot: Recent Chats Panel */}
         <div className="grid-side-column">
           <div className="dashboard-block-section block-gray-chat">
             <div className="block-section-header">
@@ -87,7 +172,6 @@ const OverviewTab = () => {
                 <span className="chat-notification-count-badge">2 New</span>
               </div>
             </div>
-
             <div className="chats-widget-list-stack">
               {mockChats.map((chat) => (
                 <div key={chat.id} className="widget-chat-row-item">
@@ -106,18 +190,52 @@ const OverviewTab = () => {
                 </div>
               ))}
             </div>
-
             <div className="block-section-footer">
               <button className="footer-view-all-btn chat-center-btn">Open Message Center</button>
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* 4. Bottom Row: Reusing your official RFQs page layout */}
-      <RfqsTab />
-
+      {/* 4. Recent RFQs Section */}
+      <section className="dashboard-block-section block-magenta">
+        <div className="block-section-header">
+          <h3>Recent RFQs</h3>
+        </div>
+        <div className="table-responsive-wrapper">
+          <table className="rfq-dashboard-table">
+            <thead>
+              <tr>
+                <th>Inquiry Details</th>
+                <th>Buyer</th>
+                <th>Volume</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recentRfqs.map((rfq) => (
+                <tr key={rfq.id}>
+                  <td>
+                    <div className="rfq-title-cell">
+                      <span className="rfq-main-item">{rfq.details}</span>
+                      <span className="rfq-sub-meta">{rfq.id} • {rfq.time}</span>
+                    </div>
+                  </td>
+                  <td className="buyer-cell-txt">{rfq.buyer}</td>
+                  <td className="volume-cell-txt">{rfq.volume}</td>
+                  <td>
+                    <span className={`rfq-status-pill ${rfq.statusClass}`}>{rfq.status}</span>
+                  </td>
+                  <td>
+                    <button className="rfq-action-respond-btn">Respond</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 };

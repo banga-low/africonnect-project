@@ -1,13 +1,12 @@
 import React from 'react';
-import { Plus, Search, Edit3, Trash2, Filter } from 'lucide-react';
+import { Plus, Search, Edit3, Trash2 } from 'lucide-react';
 import cocoaImg from '../../assets/LandingPage/cocoa.png';
 import cashewImg from '../../assets/LandingPage/cashew.jpg';
 
-const MyProductsTab = () => {
+const MyProductsTab = ({ onNavigateToCreate }) => {
   const inventoryItems = [
     { id: 1, name: "Premium Cocoa Beans", category: "Agriculture", stock: "14,500 KG", moq: "500 KG", price: "$8.20/KG", img: cocoaImg, status: "In Stock" },
-    { id: 2, name: "Raw Organic Cashew Nuts", category: "Agriculture", stock: "8,000 KG", moq: "1,000 KG", price: "$4.50/KG", img: cashewImg, status: "In Stock" },
-    { id: 3, name: "Grade A White Maize Ground", category: "Grains", stock: "200 KG", moq: "1,200 KG", price: "$1.80/KG", img: cocoaImg, status: "Low Stock" }
+    { id: 2, name: "Raw Organic Cashew Nuts", category: "Agriculture", stock: "8,000 KG", moq: "1,000 KG", price: "$4.50/KG", img: cashewImg, status: "In Stock" }
   ];
 
   return (
@@ -17,7 +16,8 @@ const MyProductsTab = () => {
           <h2>Product Inventory Management</h2>
           <p>Update, review, and manage your published B2B market commodities.</p>
         </div>
-        <button className="add-product-badge-btn large-btn">
+        {/* ✅ Calls the layout handler passed down from SupplierDashboard page */}
+        <button className="add-product-badge-btn large-btn" onClick={onNavigateToCreate}>
           <Plus size={18} />
           <span>Publish New Product</span>
         </button>
@@ -28,13 +28,9 @@ const MyProductsTab = () => {
           <Search size={16} />
           <input type="text" placeholder="Search product line..." />
         </div>
-        <button className="util-icon-filter-btn">
-          <Filter size={16} />
-          <span>Filters</span>
-        </button>
       </div>
 
-      <div className="inventory-list-table-container">
+      <div className="table-responsive-wrapper">
         <table className="rfq-dashboard-table">
           <thead>
             <tr>
@@ -59,11 +55,9 @@ const MyProductsTab = () => {
                 <td className="buyer-cell-txt">{item.category}</td>
                 <td className="volume-cell-txt">{item.stock}</td>
                 <td className="volume-cell-txt">{item.moq}</td>
-                <td className="volume-cell-txt text-green" style={{fontWeight: 700}}>{item.price}</td>
+                <td className="volume-cell-txt text-green" style={{ fontWeight: 700 }}>{item.price}</td>
                 <td>
-                  <span className={`status-badge ${item.status === 'In Stock' ? 'status-instock' : 'status-lowstock'}`}>
-                    {item.status}
-                  </span>
+                  <span className="status-badge status-instock">{item.status}</span>
                 </td>
                 <td>
                   <div className="table-actions-flex">

@@ -355,13 +355,19 @@ body, html {
 /* Left main container slot - My Products takes up ~65% width space */
 .grid-main-column {
   flex: 1.8;
-  min-width: 0;
+  min-width: 0; /* Lets content shrink safely inside the column wrapper */
 }
 
 /* Right narrow panel slot - Recent Chats occupies the right boundary */
 .grid-side-column {
   flex: 1;
   min-width: 320px;
+}
+
+/* ✅ CRITICAL LAYOUT ENFORCER: Caps internal tables from causing flex blowout */
+.grid-main-column > * {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 /* Resets margins inside structural overview row grid containers */
@@ -605,7 +611,7 @@ body, html {
 
 /* Responsive Workflow Tables */
 .table-responsive-wrapper { width: 100%; overflow-x: auto; }
-.rfq-dashboard-table { width: 100%; border-collapse: collapse; text-align: left; }
+.rfq-dashboard-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; }
 .rfq-dashboard-table th { background-color: #f1f5f9; color: #475569; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; padding: 12px 16px; border-bottom: 1px solid #e2e8f0; }
 .rfq-dashboard-table td { padding: 16px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
 .rfq-title-cell { display: flex; flex-direction: column; gap: 4px; }
