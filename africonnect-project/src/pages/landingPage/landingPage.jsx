@@ -44,8 +44,11 @@ const LandingPage = () => {
         {/* 1. Navbar with Functional Navigation Links */}
         <nav className="navbar">
           <div className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-            <img src={logoImg} alt="" className="logo-icon-img" />
-            <h1>Africonnect</h1>
+            <img src={logoImg} alt="Africonnect Logo" className="logo-icon-img" />
+            <h1 className="logo-text">
+              <span className="text-green">FRI</span>
+              <span className="text-black">CONNECT</span>
+            </h1>
           </div>
 
           <div className="nav-links">
@@ -55,9 +58,9 @@ const LandingPage = () => {
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Product</span>
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
             
-            {/* ✅ FIXED: "Login" routes exactly to lowercase /login */}
-            <button className="nav-search-btn" onClick={() => navigate('/login')}>
-              Login
+            {/* ✅ FIXED: Button matches Figma text label "Signup" and links to /signup */}
+            <button className="nav-search-btn" onClick={() => navigate('/signup')}>
+              Signup
             </button>
           </div>
         </nav>
@@ -134,9 +137,12 @@ const LandingPage = () => {
       <footer className="footer">
         <div className="footer-top">
           <div className="footer-brand">
-            <div className="footer-logo">
-              <img src={logoImg} alt="" className="logo-icon-img-small" />
-              <h2>AFRICONNECT</h2>
+            <div className="footer-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+              <img src={logoImg} alt="Africonnect Logo" className="logo-icon-img-small" />
+              <h2 className="logo-text">
+                <span className="text-green">FRI</span>
+                <span className="text-black">CONNECT</span>
+              </h2>
             </div>
             <p>Connecting African businesses with verified raw material suppliers.</p>
           </div>
@@ -169,7 +175,7 @@ const LandingPage = () => {
 
         <div className="footer-bottom">
           <p>© AFRICONNECT 2026. All rights reserved.</p>
-          <p className="footer-tagline">“Build the West African tech”</p>
+          
         </div>
       </footer>
     </>
