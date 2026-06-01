@@ -13,6 +13,7 @@ import MarketplacePage from './pages/MarketplacePage.jsx';
 import RFQPage from './pages/RFQPage.jsx'; 
 import AppBuyer from './AppBuyer';
 import BuyerLogin from './pages/BuyerLogin';
+import BuyerSignup from './pages/BuyerSignup';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/supplier-set-profile" element={<SupplierProfile />} />
           <Route path="/product-listing" element={<ProductListing />} />
           <Route path="/buyer-login" element={<BuyerLogin />} />
+          <Route path="/buyer-signup" element={<BuyerSignup />} />
 
         </Routes>
       </div>
@@ -39,3 +41,6 @@ function App() {
 }
 
 export default App;
+
+
+//TO DO fix buyer-login to show BuyerLogon.jsx-Include logo on sign up page - Buyers dashboard and Ai will be ready
