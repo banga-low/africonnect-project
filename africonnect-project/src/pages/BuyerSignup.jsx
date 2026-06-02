@@ -1,11 +1,23 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './BuyerSignup.css';
 
 export default function BuyerSignup() {
   const navigate = useNavigate();
+  const [form, setForm] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSignup = (e) => {
     e.preventDefault();
+    console.log('Buyer data:', form);
     // For now just go to dashboard after signup
     navigate('/buyer/dashboard');
   };
@@ -14,11 +26,7 @@ export default function BuyerSignup() {
     <div className="signup-container">
       {/* Left side - Logo */}
       <div className="signup-left">
-        <img 
-          src="/assets2/africonnect-logo.png" 
-          alt="AFRICONNECT Logo" 
-          className="signup-logo"
-        />
+        <img src="/assets2/logo.png" alt="AFRICONNECT Logo" className="signup-logo" />
         <p className="tagline">SOURCE SMARTER. CONNECT AFRICA.</p>
       </div>
 
@@ -26,43 +34,40 @@ export default function BuyerSignup() {
       <div className="signup-right">
         <div className="signup-form-wrapper">
           <div className="form-header">
-            <img src="/assets2/africonnect-icon.png" alt="Icon" className="form-icon" />
-            <h2>Create Your Buyer Account</h2>
+            <img src="/assets2/logo.png" alt="Icon" className="form-icon" />
+            <h2>Create Buyer Account</h2>
             <p>Join thousands of businesses sourcing smarter</p>
           </div>
 
           <form onSubmit={handleSignup}>
             <div className="form-group">
               <label>Full Name</label>
-              <input type="text" placeholder="Enter your full name" required />
+              <input type="text" name="Full-Name" placeholder="Enter your full name" value={form.fullName} onChange={handleChange} required />
             </div>
-            
+
             <div className="form-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="Enter your email address" required />
+              <label>Email</label>
+              <input type="email" name="email" placeholder="Enter your email" value={form.email} onChange={handleChange} required />
+            </div>
+
+            <div className="form-group">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="Enter your phone" value={form.phone} onChange={handleChange} required />
             </div>
 
             <div className="form-group">
               <label>Password</label>
-              <input type="password" placeholder="Create a strong password" required />
+              <input type="password" name="password" placeholder="Create password" value={form.password} onChange={handleChange} required />
             </div>
 
-            <div className="form-group">
-              <label>Confirm password</label>
-              <input type="password" placeholder="Confirm your password" required />
-            </div>
-
-            <div className="checkbox-group">
-              <input type="checkbox" id="terms" required />
-              <label htmlFor="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-            </div>
-
-            <button type="submit" className="btn-create">Create Account</button>
+            <button type="submit" className="create-btn">Create Account</button>
           </form>
 
-          <p className="login-link">
-            Already have an account? <Link to="/buyer-login">Log in</Link>
-          </p>
+          <p className="login-link">Already have an account? <Link to="/buyer-login">Login here</Link></p>
+
+          <footer className="footer" style={{background:'#1a3d2a', color:'white', padding:'3rem', marginTop:'4rem'}}>
+            <p>© AFRICONNECT 2026. All Rights Reserved.</p>
+          </footer>  
         </div>
       </div>
     </div>

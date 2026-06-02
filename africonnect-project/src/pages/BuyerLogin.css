@@ -1,0 +1,128 @@
+.buyer-login-page {
+  display: flex;
+  min-height: 100vh;
+  background: white;
+}
+
+.login-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+}
+
+.logo-left {
+  width: 280px;
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.logo-top {
+  width: 160px;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.login-card h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 15px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  background: white;
+}
+
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: #2d6a4f;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #1b4332;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.register-text a {
+  color: #2d6a4f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer{
+  background: #1a3d2a;
+  color: white;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin-top: 5rem;
+  width: 100vw;
+  margin-left: calc(-105vw + 75%);
+
+}
