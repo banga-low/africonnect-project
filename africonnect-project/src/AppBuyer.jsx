@@ -1,11 +1,13 @@
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Routes, Route, Link } from 'react-router-dom';
 import { dummyProducts } from './data/dummyProducts';
-import Login from './pages/Login.jsx';
-import './pages/Login.css';
+import BuyerLogin from './pages/BuyerLogin.jsx';
 import './components/MarketplaceGrid.css';
 import RFQPage from './pages/RFQPage.jsx';
 import './pages/RFQPage.css';
+import BuyerSignup from './pages/BuyerSignup';
+import './pages/BuyerSignup.css';
+
 
 function HomePage() {
   const navigate = useNavigate();
@@ -15,9 +17,12 @@ function HomePage() {
       <div className="marketplace-hero">
         <nav className="hero-topnav">
           <a href="/">Home</a>
-          <a href="login">Login</a>
+          <a href="login">BuyerLogin</a>
+          <a href="buyer-signup">BuyerSignup</a>
         </nav>
-        <img src="/assets2/hero-cocoa.jpg" alt="Empowering African Industry" />
+        <div className="hero">
+          <img src="/assets2/hero-cocoa.jpg" alt="Empowering African Industry" />
+        </div>
       </div>
 
       {/* FEATURED PRODUCTS */}
@@ -48,16 +53,18 @@ function HomePage() {
 export default function AppBuyer() {
   return (
     <div>
+      <nav style={{ padding: '10px 20px', background: '#f5f5f5', display: 'flex', gap: '15px' }}>
+        <Link to="/">Home</Link>
+        <Link to="/buyer-login">BuyerLogin</Link>
+        <Link to="/buyer-signup">BuyerSignup</Link>
+      </nav>
 
-
-      
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/buyer-login" element={<Login />} />
-        <Route path="/rfq" element={<RFQPage/>} />
+        <Route path="/buyer-login" element={<BuyerLogin />} />
+        <Route path="/rfq" element={<RFQPage />} />
+        <Route path="/buyer-signup" element={<BuyerSignup/>} />
       </Routes>
     </div>
-
-    
-);
+  );
 }
