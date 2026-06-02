@@ -79,7 +79,7 @@ export default function SupplierSignup() {
 
         <p style={styles.loginText}>
           Already have an account?{' '}
-          <Link to="/login" style={styles.loginLink}>Login</Link>
+          <Link to="/supplier-login" style={styles.loginLink}>Login</Link>
         </p>
 
         <p style={styles.footerText}>

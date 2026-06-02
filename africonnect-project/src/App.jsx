@@ -24,8 +24,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
 
           {/* Navigation Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SupplierSignup />} />
+          <Route path="/supplier-login" element={<Login />} />
+          <Route path="/supplier-signup" element={<SupplierSignup />} />
           <Route path="/marketplace" element={<AppBuyer />} />
           <Route path="/rfq" element={<RFQPage />} />
           <Route path="/supplierdashboard" element={<SupplierDashboard />} />

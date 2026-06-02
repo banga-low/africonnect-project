@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './landingPage.css';
 
 // ✅ Import Modal
-import SearchModal from '../../components/SearchModal/SearchModal';
+//import SearchModal from '../../components/SearchModal/SearchModal';
 
 // Image Imports
 import heroImg from '../../assets/LandingPage/hero-image.jpeg';
@@ -35,11 +35,11 @@ const LandingPage = () => {
   return (
     <>
       <div className="landing-container">
-        <SearchModal
+        {/* <SearchModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           onSearchResults={handleSearch}
-        />
+        /> */}
 
         {/* 1. Navbar with Functional Navigation Links */}
         <nav className="navbar">
@@ -74,7 +74,7 @@ const LandingPage = () => {
               <button className="btn-primary" onClick={() => setIsModalOpen(true)}>Search Materials</button>
               
               {/* ✅ FIXED: Routes to your exact lowercase /signup path */}
-              <button className="btn-primary btn-spacer" onClick={() => navigate('/signup')}>
+              <button className="btn-primary btn-spacer" onClick={() => navigate('/supplier-signup')}>
                 Become a supplier
               </button>
             </div>

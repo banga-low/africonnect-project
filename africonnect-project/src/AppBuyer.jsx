@@ -17,7 +17,7 @@ function HomePage() {
       <div className="marketplace-hero">
         <nav className="hero-topnav">
           <a href="/">Home</a>
-          <a href="login">BuyerLogin</a>
+          <a href="buyer-login">BuyerLogin</a>
           <a href="buyer-signup">BuyerSignup</a>
         </nav>
         <div className="hero">
