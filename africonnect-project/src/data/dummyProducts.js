@@ -46,7 +46,7 @@ export const dummyProducts = [
     origin: "Lagos, Nigeria", 
     price: 800, 
     moq: 10, 
-    image: "assets2/cotton.png", 
+    image: "assets2/sesame.jpg", 
     status: "Verified Supplier" 
   },
   { 
@@ -56,7 +56,7 @@ export const dummyProducts = [
     origin: "Zambia", 
     price: 1100, 
     moq: 10, 
-    image: "assets2/cotton.png", 
+    image: "assets2/ginger.jpg", 
     status: "Verified Supplier" 
   },
   { 
@@ -88,7 +88,37 @@ export const dummyProducts = [
     moq: 10, 
     image: "assets2/cocoa-beans.jpg", 
     status: "Verified Supplier" 
-  }
+  },
+  { 
+    id: 10, 
+    name: "Shea-Butter Pack", 
+    supplier: "Nigeria Cocoa Ltd", 
+    origin: "Abuja, Nigeria", 
+    price: 1000, 
+    moq: 10, 
+    image: "assets2/shea-butter.png", 
+    status: "Verified Supplier" 
+  },
+  { 
+    id: 11, 
+    name: "Wool Pack", 
+    supplier: "Ghana Wool Ltd", 
+    origin: "Abuja, Nigeria", 
+    price: 1000, 
+    moq: 10, 
+    image: "assets2/wool.jpeg", 
+    status: "Verified Supplier" 
+  },
+  { 
+    id: 12, 
+    name: "Cotton Pack", 
+    supplier: "Nigeria Cotton Ltd", 
+    origin: "Abuja, Nigeria", 
+    price: 1000, 
+    moq: 10, 
+    image: "assets2/cotton.png", 
+    status: "Verified Supplier" 
+  },
 ];
 
 export default dummyProducts;

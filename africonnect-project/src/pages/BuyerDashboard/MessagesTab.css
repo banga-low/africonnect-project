@@ -1,0 +1,231 @@
+/* --- LIVE CHAT COMMUNICATIONS WORKSPACE --- */
+.messages-workspace-wrapper {
+  display: flex;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+}
+
+/* Sidebar Channels Stream */
+.messages-sidebar-panel {
+  width: 340px;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-search-header {
+  padding: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.panel-search-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.threads-vertical-stack {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.thread-card-row {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f8fafc;
+  transition: background 0.2s;
+}
+
+.thread-card-row:hover {
+  background-color: #f8fafc;
+}
+
+.thread-card-row.selected-active {
+  background-color: #f0fdf4;
+  border-left: 4px solid var(--brand-green);
+}
+
+.thread-avatar-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.thread-avatar-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-beacon-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #22c55e;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.thread-meta-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.thread-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thread-meta-body h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.thread-time-lbl {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.thread-company-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-green);
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.thread-snippet-paragraph {
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+/* Active Workspace Messaging Viewport */
+.chat-window-viewport {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+}
+
+.chat-window-header {
+  height: 68px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.chat-window-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.subtitle-company {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.chat-message-log-scroll {
+  flex-grow: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-bubble {
+  max-width: 60%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.bubble-incoming {
+  background-color: #ffffff;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.bubble-outgoing {
+  background-color: #e6f7f0;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+  color: #036942;
+}
+
+.bubble-timestamp {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Bottom Input Control Bar Footer Strip */
+.chat-input-control-footer {
+  height: 70px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 12px;
+}
+
+.chat-attach-trigger {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.chat-text-field {
+  flex-grow: 1;
+  border: 1px solid #e2e8f0;
+  background-color: #f1f5f9;
+  padding: 10px 16px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.88rem;
+}
+
+.chat-send-trigger-btn {
+  background-color: var(--brand-green);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -105,6 +105,7 @@ export default function RFQPage() {
         </label>
 
         <button type="submit" className="rfq-submit">Submit RFQ →</button>
+        
       </form>
     </div>
   );

@@ -106,12 +106,7 @@
   display: flex;
 }
 
-.hero img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0px;
-}
+
 
 .section-title {
   font-size: 28px;
