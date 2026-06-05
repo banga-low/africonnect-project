@@ -7,6 +7,10 @@ import RFQPage from './pages/RFQPage.jsx';
 import './pages/RFQPage.css';
 import BuyerSignup from './pages/BuyerSignup';
 import './pages/BuyerSignup.css';
+import BuyerDashboard from './pages/BuyerDashboard/BuyerDashboard';
+import './pages/BuyerDashboard/BuyerDashboard.css';
+import BuyerProfile from './pages/BuyerDashboard/BuyerProfile';
+import './pages/BuyerDashboard/BuyerProfile.css';
 
 
 function HomePage() {
@@ -20,6 +24,7 @@ function HomePage() {
           <a href="buyer-login">BuyerLogin</a>
           <a href="buyer-signup">BuyerSignup</a>
           <a href="/rfq">RFQ</a>
+          <a href="/buyer-dashboard">BuyerDashboard</a>
 
         </nav>
         <div className="marketplace-hero">
@@ -62,6 +67,8 @@ export default function AppBuyer() {
         <Route path="/buyer-login" element={<BuyerLogin />} />
         <Route path="/rfq" element={<RFQPage />} />
         <Route path="/buyer-signup" element={<BuyerSignup/>} />
+        <Route path="/buyer-dashboard" element={<BuyerDashboard/>} />
+
       </Routes>
     </div>
   );

@@ -15,6 +15,8 @@ import AppBuyer from './AppBuyer';
 import BuyerLogin from './pages/BuyerLogin';
 import BuyerSignup from './pages/BuyerSignup';
 import SupplierVerification from './pages/SupplierVerification/SupplierVerification.jsx';
+import BuyerDashboard from './pages/BuyerDashboard/BuyerDashboard';
+import BuyerProfile from './pages/BuyerDashboard/BuyerProfile';
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
           <Route path="/buyer-login" element={<BuyerLogin />} />
           <Route path="/buyer-signup" element={<BuyerSignup />} />
           <Route path="/supplier-verify" element={<SupplierVerification />} />
+          <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
+          <Route path="/profile" element={<BuyerProfile />} />
         </Routes>
       </div>
     </Router>
