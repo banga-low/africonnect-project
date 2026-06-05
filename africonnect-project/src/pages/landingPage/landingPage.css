@@ -10,6 +10,12 @@ body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 /* Main Content Wrapper */
@@ -19,6 +25,7 @@ body, html {
   background-color: #fff;
   max-width: 1440px;
   margin: 0 auto;
+  width: 100%;
 }
 
 /* 1. Navbar - Desktop Base */
@@ -34,13 +41,13 @@ body, html {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0px; /* ✅ REMOVED PADDING: Tightened gap drastically so text sits right next to the logo graphic */
+  gap: 0px !important; /* ✅ REMOVED GAP completely for header branding */
   flex-shrink: 0;
 }
 
 .logo-icon-img {
   width: auto;
-  height: 60px; /* Restored to your preferred size that works on screen */
+  height: 60px; 
   object-fit: contain;
 }
 
@@ -48,7 +55,7 @@ body, html {
   font-size: 1.9rem;
   font-weight: 900; 
   margin: 0;
-  padding: 0; /* ✅ Explicitly cleared any native heading padding */
+  padding: 0; 
   display: flex;
   letter-spacing: -0.5px; 
 }
@@ -76,7 +83,6 @@ body, html {
   cursor: pointer;
 }
 
-/* Updated Button to Match Figma's Styled Green Signup Pill */
 .nav-search-btn {
   background-color: #4ed396; 
   color: white;
@@ -107,6 +113,7 @@ body, html {
   border-radius: 20px;
   margin-top: 20px;
   color: var(--text-dark);
+  width: 100%;
 }
 
 .hero::before {
@@ -166,6 +173,7 @@ body, html {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin: 50px 0;
+  width: 100%;
 }
 
 .stat-card {
@@ -184,6 +192,7 @@ body, html {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 20px;
+  width: 100%;
 }
 
 .huddle-text h3 {
@@ -239,6 +248,7 @@ body, html {
 /* 5. Popular Materials */
 .materials-section {
   padding: 60px 0;
+  width: 100%;
 }
 
 .section-title {
@@ -281,6 +291,7 @@ body, html {
 /* 6. Info Sections */
 .info-section {
   margin-top: 60px;
+  width: 100%;
 }
 
 .check-list {
@@ -305,25 +316,22 @@ body, html {
   font-size: 1.5rem;
 }
 
-/* 8. Footer */
+/* 8. Footer Section */
 .footer {
-  background-color: #ffffff;
-  padding-top: 80px;
+  background-color: #ffffff; 
+  color: #222222;
   border-top: 1px solid #eaeaea;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100% !important; 
+  margin: 0 !important;
+  display: block;
 }
 
 .footer-top {
-  max-width: 1200px;
+  max-width: 1440px; 
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 0 5% 60px 5%;
+  padding: 0 5% 60px 5%; 
   flex-wrap: wrap;
   gap: 40px;
 }
@@ -336,27 +344,39 @@ body, html {
 .footer-logo { 
   display: flex; 
   align-items: center; 
-  gap: 0px; /* ✅ Tightened footer logo gap too */
+  gap: 0px !important; /* ✅ REMOVED GAP completely for footer branding */
   margin-bottom: 15px; 
 }
 
 .logo-icon-img-small { 
   width: auto; 
-  height: 60px; 
+  height: 45px; 
+  display: block;
   object-fit: contain; 
 }
 
 .footer-logo .logo-text {
-  font-size: 1.4rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 900;
   margin: 0;
+  display: flex;
+  letter-spacing: -0.5px;
+}
+
+.footer-logo .text-green {
+  color: var(--brand-green);
+}
+
+.footer-logo .text-black {
+  color: var(--text-dark);
 }
 
 .footer-brand p { 
-  color: #666; 
+  color: #333333; 
   font-size: 0.95rem; 
-  max-width: 320px; 
+  max-width: 340px; 
+  line-height: 1.5;
+  margin-top: 15px;
 }
 
 .footer-links-container { 
@@ -366,39 +386,46 @@ body, html {
 }
 
 .footer-column h4 { 
-  color: var(--brand-green); 
+  color: #2bb673; 
   margin-bottom: 25px; 
-  font-size: 1.1rem; 
+  font-size: 1.2rem; 
+  font-weight: 700;
 }
 
 .footer-column ul { 
   list-style: none; 
   padding: 0; 
+  margin: 0;
 }
 
 .footer-column ul li { 
-  margin-bottom: 15px; 
+  margin-bottom: 16px; 
 }
 
-.footer-column ul li span, .footer-column ul li a { 
+.footer-column ul li span, 
+.footer-column ul li a { 
   text-decoration: none; 
-  color: #444; 
-  font-size: 0.9rem; 
+  color: #222222; 
+  font-size: 0.95rem; 
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
+.footer-column ul li span:hover, 
+.footer-column ul li a:hover { 
+  color: var(--brand-green); 
+}
+
+/* Full-bleed Bright Green Copyright Bottom Bar */
 .footer-bottom { 
-  background-color: var(--brand-green); 
+  background-color: #22c55e; 
   color: #ffffff; 
   text-align: center; 
-  padding: 30px 0; 
-  width: 100%; 
-}
-
-.footer-tagline { 
-  font-style: italic; 
-  opacity: 0.9; 
-  font-size: 0.85rem; 
-  margin-top: 8px; 
+  padding: 22px 0; 
+  width: 100% !important; 
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 !important;
 }
 
 /* ========================================= */
@@ -416,7 +443,7 @@ body, html {
   }
 
   .logo {
-    gap: 2px; /* Keeps it tight on mobile viewports */
+    gap: 0px !important; 
   }
   
   .logo-icon-img { 

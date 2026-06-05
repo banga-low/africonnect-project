@@ -122,3 +122,16 @@
   color: #7f1d1d;
   line-height: 1.5;
 }
+
+/* Avatar profile image hover layout interaction effects */
+.avatar-preview-hover-container:hover .avatar-overlay-cam {
+  opacity: 1 !important;
+}
+
+.uploader-preview-avatar {
+  transition: filter 0.2s ease;
+}
+
+.avatar-preview-hover-container:hover .uploader-preview-avatar {
+  filter: brightness(0.8);
+}

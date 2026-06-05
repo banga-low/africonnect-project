@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { LayoutDashboard, Box, FileText, MessageSquare, User, LogOut, Search, Bell, Settings } from 'lucide-react';
 import './SupplierDashboard.css';
@@ -19,11 +19,35 @@ const SupplierDashboard = () => {
   const navigate = useNavigate(); 
   const [activeTab, setActiveTab] = useState('overview');
 
+  // ✅ States to dynamically track avatar and company title changes across tabs
+  const [headerAvatar, setHeaderAvatar] = useState(supplierAvatar);
+  const [companyTitle, setCompanyTitle] = useState("Ghana Ecofarm Ltd.");
+
   // ✅ Moving the products array into state so it updates dynamically!
   const [products, setProducts] = useState([
     { id: 1, name: "Premium Cocoa Beans", category: "Agriculture", stock: "14,500 KG", moq: "500 KG", price: "$8.20/KG", img: cocoaImg, status: "In Stock" },
     { id: 2, name: "Raw Organic Cashew Nuts", category: "Agriculture", stock: "8,000 KG", moq: "1,000 KG", price: "$4.50/KG", img: cashewImg, status: "In Stock" }
   ]);
+
+  // ✅ Pull and update metadata from localStorage whenever the profile saves changes
+  const refreshProfileMetadata = () => {
+    const savedAvatar = localStorage.getItem('supplier_avatar_url');
+    const savedName = localStorage.getItem('supplier_company_name');
+    if (savedAvatar) setHeaderAvatar(savedAvatar);
+    if (savedName) setCompanyTitle(savedName);
+  };
+
+  useEffect(() => {
+    // Read initial data values if they exist on component mount
+    refreshProfileMetadata();
+
+    // Setup listener event to catch changes dispatched from ProfileTab
+    window.addEventListener('storage_avatar_update', refreshProfileMetadata);
+    
+    return () => {
+      window.removeEventListener('storage_avatar_update', refreshProfileMetadata);
+    };
+  }, []);
 
   // ✅ Function to append a new product from the form payload
   const handleAddProduct = (newProduct) => {
@@ -98,7 +122,12 @@ const SupplierDashboard = () => {
           <div className="header-actions-wrapper">
             <button className="icon-badge-btn"><Bell size={20} /><span className="badge-dot"></span></button>
             <button className="icon-badge-btn"><Settings size={20} /></button>
-            <div className="header-profile-pill"><img src={supplierAvatar} alt="Avatar" className="user-pill-avatar" /><span className="user-pill-name">Ghana Ecofarm Ltd.</span></div>
+            
+            {/* ✅ FIXED: Now using headerAvatar and companyTitle state configurations */}
+            <div className="header-profile-pill">
+              <img src={headerAvatar} alt="Avatar" className="user-pill-avatar" />
+              <span className="user-pill-name">{companyTitle}</span>
+            </div>
           </div>
         </header>
         <main className="viewport-main-content">{renderTabContent()}</main>

@@ -52,7 +52,7 @@ function Login() {
 
         <p style={styles.footerText}>
           Don't have a supplier account?{' '}
-          <Link to="/signup" style={styles.link}>Sign up</Link>
+          <Link to="/supplier-signup" style={styles.link}>Sign up</Link>
         </p>
         
         <p style={styles.footerText}>

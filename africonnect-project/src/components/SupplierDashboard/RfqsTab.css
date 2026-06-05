@@ -145,9 +145,200 @@
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .rfq-action-respond-btn:hover {
   background-color: #024f31;
+}
+
+/* ========================================================================== */
+/* ✅ NEW INLINE SLIDE-DOWN DRAWER WORKBENCH MODIFICATIONS                    */
+/* ========================================================================== */
+
+/* Visual row highlights when expanding proposal forms */
+.active-row-focus {
+  background-color: #f0fdf4 !important;
+  transition: background-color 0.2s ease;
+}
+
+.active-row-focus .rfq-action-respond-btn {
+  background-color: #166534;
+}
+
+/* Drawer table container wrappers */
+.drawer-container-cell {
+  background-color: #fafafa;
+  padding: 24px !important;
+  border-bottom: 2px solid #036942 !important;
+}
+
+/* Internal card container panels */
+.rfq-response-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  animation: slideDownFade 0.25s ease-out forwards;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.drawer-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #036942;
+}
+
+.close-drawer-btn {
+  border: none;
+  background: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.close-drawer-btn:hover {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* Form layouts grid blocks */
+.drawer-form-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.full-width-field {
+  grid-column: 1 / -1;
+}
+
+.form-field-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Form entry inputs structure */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #64748b;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 12px;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-with-icon input:focus,
+.form-field-group textarea:focus {
+  border-color: #036942;
+  box-shadow: 0 0 0 1px #036942;
+}
+
+.form-field-group textarea {
+  width: 100%;
+  height: 90px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+/* Submitting workflow alignment rows */
+.form-actions-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+.cancel-action-btn {
+  padding: 10px 20px;
+  background-color: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.cancel-action-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.submit-proposal-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background-color: #036942;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.submit-proposal-btn:hover {
+  background-color: #024f31;
+}
+
+/* Smooth enter slide animation keyframes */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rfq-progress {
+  background-color: #e0f2fe; /* Soft subtle sky blue background */
+  color: #0369a1;            /* Deep clear blue text */
 }

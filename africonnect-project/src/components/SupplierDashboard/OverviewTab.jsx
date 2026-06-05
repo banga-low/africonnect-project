@@ -1,13 +1,28 @@
-import React from 'react';
-import { ShieldCheck, TrendingUp, MessageSquare, Layers, Plus, Edit2 } from 'lucide-react';
-import cocoaImg from '../../assets/LandingPage/cocoa.png';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ShieldCheck, ShieldAlert, TrendingUp, MessageSquare, Layers, Plus, Edit2 } from 'lucide-react';
+import cocoaImg from '../../assets/ProductListing/cocoa-beans.jpg';
 import cashewImg from '../../assets/LandingPage/cashew.jpg';
+import milletImg from '../../assets/ProductListing/millet.jpg'
 import supplierAvatar from '../../assets/supplieravator.png';
+import chat1Img from '../../assets/chat1.jpg'
+import chat2Img from '../../assets/chat2.jpg'
 
 // Localized modular styling import
 import './OverviewTab.css';
 
 const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
+  const navigate = useNavigate();
+  const [isVerified, setIsVerified] = useState(false);
+
+  // Checks verification status flag inside storage lifecycles
+  useEffect(() => {
+    const status = localStorage.getItem('supplier_verified_status');
+    if (status === 'verified') {
+      setIsVerified(true);
+    }
+  }, []);
+
   const productsPreview = [
     {
       id: 1,
@@ -26,7 +41,7 @@ const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
       price: "$280 / QTY",
       status: "Low Stock",
       statusClass: "status-lowstock",
-      img: cashewImg
+      img: milletImg
     }
   ];
 
@@ -67,30 +82,50 @@ const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
       company: "SHENZHEN METALS",
       text: "We are reviewing your last quote for the Copper Ore. Can you provide...",
       time: "14:22",
-      badge: true
+      badge: true,
+      avatar: chat1Img
     },
     {
       id: 2,
       name: "Sarah Miller",
       company: "GLOBAL FOODS INC.",
       text: "Thank you for the document upload. We will process it within...",
-      time: "Yesterday"
+      time: "Yesterday",
+      avatar: chat2Img
     }
   ];
 
   return (
     <div className="tab-content-wrapper">
-      {/* 1. Verification Alert Banner */}
-      <div className="verification-banner">
-        <div className="banner-left">
-          <ShieldCheck color="#FF3B30" size={32} strokeWidth={2.5} className="banner-verify-icon" />
-          <div>
-            <h4>Complete Your Verification</h4>
-            <p>Unlock the "Verified" badge to build buyer trust and increase your bid visibility.</p>
+      {/* 1. Dynamic Verification Alert Banner */}
+      {isVerified ? (
+        /* Verified State Layout Style Block */
+        <div className="verification-banner" style={{ borderColor: '#22c55e', backgroundColor: '#f0fdf4' }}>
+          <div className="banner-left">
+            <ShieldCheck color="#22c55e" size={32} strokeWidth={2.5} className="banner-verify-icon" />
+            <div>
+              <h4 style={{ color: '#166534' }}>Your Account is Verified</h4>
+              <p style={{ color: '#166534' }}>Your verified supplier credential status is active. You have enhanced search visibility!</p>
+            </div>
           </div>
+          <button className="banner-upload-btn" style={{ backgroundColor: '#22c55e' }} disabled>Verified Profile</button>
         </div>
-        <button className="banner-upload-btn">Upload Documents</button>
-      </div>
+      ) : (
+        /* Unverified Danger State Layout Style Block */
+        <div className="verification-banner">
+          <div className="banner-left">
+            <ShieldAlert color="#FF3B30" size={32} strokeWidth={2.5} className="banner-verify-icon" />
+            <div>
+              <h4>Complete Your Verification</h4>
+              <p>Unlock the "Verified" badge to build buyer trust and increase your bid visibility.</p>
+            </div>
+          </div>
+          {/* ✅ FIXED: Added interactive route navigator connection */}
+          <button className="banner-upload-btn" onClick={() => navigate('/supplier-verify')}>
+            Upload Documents
+          </button>
+        </div>
+      )}
 
       {/* 2. Analytics Mini-Grid */}
       <div className="analytics-summary-grid">
@@ -128,7 +163,6 @@ const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
           <section className="dashboard-block-section block-blue">
             <div className="block-section-header">
               <h3>My Products</h3>
-              {/* ✅ Wire up navigation prop to redirect to full page entry form */}
               <button className="add-product-badge-btn" onClick={onNavigateToCreate}>
                 <Plus size={16} />
                 <span>Add new product</span>
@@ -182,7 +216,7 @@ const OverviewTab = ({ onTabSwitch, onNavigateToCreate }) => {
               {mockChats.map((chat) => (
                 <div key={chat.id} className="widget-chat-row-item">
                   <div className="chat-item-avatar-wrapper">
-                    <img src={supplierAvatar} alt={chat.name} className="chat-row-avatar" />
+                    <img src={chat.avatar} alt={chat.name} className="chat-row-avatar" />
                     {chat.badge && <span className="active-online-dot"></span>}
                   </div>
                   <div className="chat-item-body-content">

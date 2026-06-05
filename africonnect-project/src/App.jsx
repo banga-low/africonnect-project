@@ -14,6 +14,8 @@ import RFQPage from './pages/RFQPage.jsx';
 import AppBuyer from './AppBuyer';
 import BuyerLogin from './pages/BuyerLogin';
 import BuyerSignup from './pages/BuyerSignup';
+import SupplierVerification from './pages/SupplierVerification/SupplierVerification.jsx';
+
 
 function App() {
   return (
@@ -33,7 +35,7 @@ function App() {
           <Route path="/product-listing" element={<ProductListing />} />
           <Route path="/buyer-login" element={<BuyerLogin />} />
           <Route path="/buyer-signup" element={<BuyerSignup />} />
-
+          <Route path="/supplier-verify" element={<SupplierVerification />} />
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Send, Paperclip, Search } from 'lucide-react';
 import supplierAvatar from '../../assets/supplieravator.png';
+import chat1Img from '../../assets/chat1.jpg'
+import chat2Img from '../../assets/chat2.jpg'
 
 // ✅ Isolated component layout styles link
 import './MessagesTab.css';
@@ -16,7 +18,7 @@ const MessagesTab = () => {
         <div className="threads-vertical-stack">
           <div className="thread-card-row selected-active">
             <div className="thread-avatar-container">
-              <img src={supplierAvatar} alt="David" />
+              <img src={chat1Img} alt="David" />
               <span className="online-beacon-dot"></span>
             </div>
             <div className="thread-meta-body">

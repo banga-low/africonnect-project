@@ -14,11 +14,15 @@ import wool from '../../assets/LandingPage/wool.jpeg';
 import woolTree from '../../assets/LandingPage/wool-tree.png';
 import cashew from '../../assets/LandingPage/cashew.jpg';
 import cocoa from '../../assets/LandingPage/cocoa.png';
-// ✅ New Logo Import
+// ✅ Logo Import
 import logoImg from '../../assets/LandingPage/logo.png';
 
+//AuthModal Import
+import AuthModal from '../../components/AuthModal/AuthModal';
+
+
 const LandingPage = () => {
-  const navigate = useNavigate(); // Hooks up your path router switcher
+  const navigate = useNavigate(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = (term) => {
@@ -31,6 +35,8 @@ const LandingPage = () => {
     { name: 'cocoa', img: cocoa },
     { name: 'cotton', img: cottonImg }
   ];
+
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
     <>
@@ -46,34 +52,29 @@ const LandingPage = () => {
           <div className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
             <img src={logoImg} alt="Africonnect Logo" className="logo-icon-img" />
             <h1 className="logo-text">
-              <span className="text-green">FRI</span>
-              <span className="text-black">CONNECT</span>
+              <span className="text-green" style={{ color: '#036942' }}>FRI</span>
+              <span className="text-black" style={{ color: '#000000' }}>CONNECT</span>
             </h1>
           </div>
 
           <div className="nav-links">
             <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</span>
-            
-            {/* ✅ FIXED: "Product" and "Buy" now route seamlessly to /marketplace */}
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Product</span>
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
-            
-            {/* ✅ FIXED: Button matches Figma text label "Signup" and links to /signup */}
-            <button className="nav-search-btn" onClick={() => navigate('/signup')}>
-              Signup
+            <button className="nav-search-btn" onClick={() => setIsAuthModalOpen(true)}>
+            Login
             </button>
+             
           </div>
         </nav>
 
         {/* 2. Hero Section */}
         <header className="hero" style={{ backgroundImage: `url(${heroImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="hero-content">
-            <h2 className="hero-title">Source Raw materials Across <span className="text-green">Africa,</span><br />Faster, Cheaper, And <span className="text-green">Smarter</span></h2>
+            <h2 className="hero-title">Source Raw materials Across <span className="text-green" style={{ color: '#036942' }}>Africa,</span><br />Faster, Cheaper, And <span className="text-green" style={{ color: '#036942' }}>Smarter</span></h2>
             <p className="hero-subtitle">Connect with trusted suppliers, compare prices, and source raw materials across the continent.</p>
             <div className="hero-btns">
               <button className="btn-primary" onClick={() => setIsModalOpen(true)}>Search Materials</button>
-              
-              {/* ✅ FIXED: Routes to your exact lowercase /signup path */}
               <button className="btn-primary btn-spacer" onClick={() => navigate('/supplier-signup')}>
                 Become a supplier
               </button>
@@ -92,7 +93,7 @@ const LandingPage = () => {
         {/* 4. Sourcing Huddle (Mosaic) */}
         <section className="sourcing-huddle">
           <div className="huddle-text">
-            <h3>Sourcing <span className="text-green">raw</span> materials shouldn't be a hurdle</h3>
+            <h3>Sourcing <span className="text-green" style={{ color: '#036942' }}>raw</span> materials shouldn't be a hurdle</h3>
           </div>
           <div className="huddle-grid">
             <img src={cocoaTree} alt="Cocoa tree" className="huddle-img" />
@@ -107,7 +108,6 @@ const LandingPage = () => {
           <h3 className="section-title">Popular materials on Africonnect</h3>
           <div className="material-list">
             {popularMaterials.map((item) => (
-              /* ✅ FIXED: Card clicks take users directly to your marketplace page */
               <div key={item.name} className="material-item" onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>
                 <img src={item.img} alt={item.name} className="material-thumb" />
                 <span className="material-name">{item.name.toUpperCase()}</span>
@@ -118,12 +118,12 @@ const LandingPage = () => {
 
         {/* 6 & 7. Info Sections */}
         <section className="info-section">
-          <h3 className="section-title">About <span className="text-green">Africonnect</span></h3>
+          <h3 className="section-title">About <span className="text-green" style={{ color: '#036942' }}>Africonnect</span></h3>
           <p className="lorem-text">Africonnect is revolutionizing how businesses source raw materials by leveraging geospatial machine learning to find the most efficient, cost-effective, and reliable suppliers across the African continent.</p>
         </section>
 
         <section className="info-section">
-          <h3 className="section-title">Why choose <span className="text-green">Africonnect</span></h3>
+          <h3 className="section-title">Why choose <span className="text-green" style={{ color: '#036942' }}>Africonnect</span></h3>
           <ul className="check-list">
             <li>Verified supplier network</li>
             <li>Lower sourcing cost</li>
@@ -134,52 +134,66 @@ const LandingPage = () => {
       </div>
 
       {/* 8. Footer */}
-      <footer className="footer">
+      <footer className="footer" style={{ backgroundColor: '#ffffff', color: '#222222', paddingTop: '80px', borderTop: '1px solid #eaeaea', width: '100%', display: 'block', margin: '0' }}>
         <div className="footer-top">
           <div className="footer-brand">
             <div className="footer-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
               <img src={logoImg} alt="Africonnect Logo" className="logo-icon-img-small" />
               <h2 className="logo-text">
-                <span className="text-green">FRI</span>
-                <span className="text-black">CONNECT</span>
+                <span className="text-green" style={{ color: '#036942' }}>FRI</span>
+                <span className="text-black" style={{ color: '#000000' }}>CONNECT</span>
               </h2>
             </div>
-            <p>Connecting African businesses with verified raw material suppliers.</p>
+            <p style={{ color: '#333333', fontSize: '0.95rem', maxWidth: '340px', lineHeight: '1.5', marginTop: '15px' }}>
+              Connecting African businesses with verified raw material suppliers.
+            </p>
           </div>
 
           <div className="footer-links-container">
             <div className="footer-column">
-              <h4>Product</h4>
+              <h4 style={{ color: '#2bb673', marginBottom: '25px', fontSize: '1.2rem', fontWeight: '700' }}>Product</h4>
               <ul>
-                <li><span onClick={() => setIsModalOpen(true)} style={{ cursor: 'pointer' }}>Search & Buy</span></li>
-                <li><span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Find Suppliers</span></li>
-                <li><span onClick={() => navigate('/signup')} style={{ cursor: 'pointer' }}>List Your Products</span></li>
+                <li style={{ marginBottom: '16px' }}><span onClick={() => navigate('/how-it-works')} style={{ cursor: 'pointer', color: '#222222', fontSize: '0.95rem', fontWeight: '500' }}>How It Works</span></li>
+                <li style={{ marginBottom: '16px' }}><span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer', color: '#222222', fontSize: '0.95rem', fontWeight: '500' }}>Find Suppliers</span></li>
+                <li style={{ marginBottom: '16px' }}><span onClick={() => navigate('/signup')} style={{ cursor: 'pointer', color: '#222222', fontSize: '0.95rem', fontWeight: '500' }}>List Your Products</span></li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Company</h4>
+              <h4 style={{ color: '#2bb673', marginBottom: '25px', fontSize: '1.2rem', fontWeight: '700' }}>Company</h4>
               <ul>
-                <li><a href="#about">About Africonnect</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li style={{ marginBottom: '16px' }}><a href="#about" style={{ color: '#222222', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>About Africonnect</a></li>
+                <li style={{ marginBottom: '16px' }}><a href="#contact" style={{ color: '#222222', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Contact</a></li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Legal</h4>
+              <h4 style={{ color: '#2bb673', marginBottom: '25px', fontSize: '1.2rem', fontWeight: '700' }}>Legal</h4>
               <ul>
-                <li><a href="#tos">Terms of Service</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
+                <li style={{ marginBottom: '16px' }}><a href="#tos" style={{ color: '#222222', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Terms of Service</a></li>
+                <li style={{ marginBottom: '16px' }}><a href="#privacy" style={{ color: '#222222', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Privacy Policy</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p>© AFRICONNECT 2026. All rights reserved.</p>
-          
+        <div className="footer-bottom" style={{ backgroundColor: '#22c55e', color: '#ffffff', textAlign: 'center', padding: '22px 0', width: '100%', display: 'block', margin: '0' }}>
+          <p style={{ margin: '0', padding: '0' }}>© AFRICONNECT 2026. All rights reserved.</p>
         </div>
+        
+
       </footer>
+
+  
+  <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </>
-  );
+
+
+
+);
 };
+
+
 
 export default LandingPage;
