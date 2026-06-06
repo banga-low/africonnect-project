@@ -18,8 +18,9 @@ export default function BuyerSignup() {
   const handleSignup = (e) => {
     e.preventDefault();
     console.log('Buyer data:', form);
-    // For now just go to dashboard after signup
-    navigate('/buyer/dashboard');
+    
+    // ✅ FIXED: Matched exact URL path path designated in our unified App.jsx
+    navigate('/buyer-dashboard');
   };
 
   return (
@@ -42,32 +43,57 @@ export default function BuyerSignup() {
           <form onSubmit={handleSignup}>
             <div className="form-group">
               <label>Full Name</label>
-              <input type="text" name="Full-Name" placeholder="Enter your full name" value={form.fullName} onChange={handleChange} required />
+              {/* ✅ FIXED: Changed name from 'Full-Name' to 'fullName' to sync with useState key hook */}
+              <input 
+                type="text" 
+                name="fullName" 
+                placeholder="Enter your full name" 
+                value={form.fullName} 
+                onChange={handleChange} 
+                required 
+              />
             </div>
 
             <div className="form-group">
               <label>Email</label>
-              <input type="email" name="email" placeholder="Enter your email" value={form.email} onChange={handleChange} required />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Enter your email" 
+                value={form.email} 
+                onChange={handleChange} 
+                required 
+              />
             </div>
 
             <div className="form-group">
               <label>Phone</label>
-              <input type="tel" name="phone" placeholder="Enter your phone" value={form.phone} onChange={handleChange} required />
+              <input 
+                type="tel" 
+                name="phone" 
+                placeholder="Enter your phone" 
+                value={form.phone} 
+                onChange={handleChange} 
+                required 
+              />
             </div>
 
             <div className="form-group">
               <label>Password</label>
-              <input type="password" name="password" placeholder="Create password" value={form.password} onChange={handleChange} required />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="Create password" 
+                value={form.password} 
+                onChange={handleChange} 
+                required 
+              />
             </div>
 
             <button type="submit" className="create-btn">Create Account</button>
           </form>
 
           <p className="login-link">Already have an account? <Link to="/buyer-login">Login here</Link></p>
-
-          <footer className="footer" style={{background:'#1a3d2a', color:'white', padding:'3rem', marginTop:'4rem'}}>
-            <p>© AFRICONNECT 2026. All Rights Reserved.</p>
-          </footer>  
         </div>
       </div>
     </div>

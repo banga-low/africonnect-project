@@ -1,253 +1,251 @@
-{
-  margin: 0;
-  padding: 0;
+/* --- SCOPED BUYER DASHBOARD CONTEXT STYLES --- */
+.buyer-dashboard-scope {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  width: 100%;
   box-sizing: border-box;
 }
 
-.buyer-dashboard {
-  min-height: 100vh;
-  background: #f5f5f5;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+.buyer-dashboard-scope *, 
+.buyer-dashboard-scope *:before, 
+.buyer-dashboard-scope *:after {
+  box-sizing: border-box;
 }
 
-.dashboard-wrapper {
+.buyer-dashboard-scope .dashboard-wrapper {
   display: flex;
 }
 
-/* Sidebar - white, left, from screenshot */
-.sidebar {
-  width: 220px;
-  background: #ffffff;
-  border-right: 1px solid #e5e5e5;
-  padding: 20px 16px;
+/* Sidebar Layout Architecture From Screenshot */
+.buyer-dashboard-scope .sidebar {
+  width: 240px;
+  background: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+  padding: 32px 20px;
   min-height: 100vh;
-}
-
-.sidebar h3 {
-  font-size: 16px;
-  color: #0a8f3f;
-  margin-bottom: 4px;
-  font-weight: 700;
-}
-
-.sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 24px;
 }
 
-.sidebar a {
-  padding: 10px 12px;
-  font-size: 14px;
-  color: #555;
-  text-decoration: none;
-  border-radius: 6px;
-  cursor: pointer;
+.buyer-dashboard-scope .sidebar-brand-block {
+  margin-bottom: 35px;
+  padding-left: 8px;
 }
 
-.sidebar a.active {
-  background: #0a8f3f;
-  color: #ffffff;
+.buyer-dashboard-scope .sidebar h3 {
+  font-size: 22px;
+  color: #036942;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.buyer-dashboard-scope .brand-subtitle {
+  font-size: 0.8rem;
+  color: #64748b;
   font-weight: 500;
 }
 
-.sidebar a.logout {
-  color: #d32f2f;
+.buyer-dashboard-scope .sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Clean Flex Nav Actions Buttons */
+.buyer-dashboard-scope .nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.buyer-dashboard-scope .nav-btn:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* Green Capsule Active State Rule */
+.buyer-dashboard-scope .nav-btn.active {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.buyer-dashboard-scope .nav-btn.logout {
+  color: #ef4444;
   margin-top: 20px;
 }
 
-/* Main */
-.dashboard-main {
+.buyer-dashboard-scope .nav-btn.logout:hover {
+  background-color: #fef2f2;
+}
+
+/* Main Content Workspace Layouts */
+.buyer-dashboard-scope .dashboard-main {
   flex: 1;
-  padding: 24px 28px;
+  padding: 24px 40px;
+  background-color: #ffffff;
 }
 
-/* Header */
-.dashboard-header h1 {
-  font-size: 24px;
-  color: #222;
-  margin-bottom: 4px;
-  font-weight: 600;
+/* Top Navigation Header Mock Strip */
+.buyer-dashboard-scope .viewport-top-bar {
+  width: 100%;
 }
 
-.dashboard-header p {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 24px;
-}
-
-/* Search bar - "MISSION: 2s to buy" */
-.search-bar {
+.buyer-dashboard-scope .search-bar {
+  position: relative;
   display: flex;
-  margin-bottom: 28px;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
 }
 
-.search-bar input {
-  flex: 1;
-  max-width: 600px;
-  padding: 10px 14px;
-  border: 1px solid #ddd;
-  border-right: none;
-  border-radius: 6px 0 0 6px;
-  font-size: 14px;
+.buyer-dashboard-scope .search-bar input {
+  width: 100%;
+  padding: 10px 16px 10px 42px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.9rem;
   outline: none;
+  background-color: #f8fafc;
 }
 
-.search-bar button {
-  padding: 10px 18px;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 0 6px 6px 0;
-  font-size: 14px;
-  cursor: pointer;
+/* Header Content Header Blocks */
+.buyer-dashboard-scope .dashboard-header h1 {
+  font-size: 2rem;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
-/* Stats - green border, white bg, green numbers like screenshot */
-.stats-grid {
+.buyer-dashboard-scope .dashboard-header p {
+  font-size: 1rem;
+  color: #475569;
+  margin: 0 0 35px 0;
+}
+
+/* Statistics Summary Panel Cards */
+.buyer-dashboard-scope .stats-grid {
   display: flex;
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 24px;
+  margin-bottom: 40px;
 }
 
-.stat-card {
+.buyer-dashboard-scope .stat-card {
   flex: 1;
   background: #ffffff;
-  border: 2px solid #0a8f3f;
-  border-radius: 8px;
-  padding: 20px;
+  border: 2px solid #22c55e;
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
 }
 
-.stat-card h2 {
-  font-size: 36px;
-  color: #0a8f3f;
+.buyer-dashboard-scope .stat-label {
+  font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.stat-card p {
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.badge {
-  display: inline-block;
-  background: #e8f5e9;
-  color: #0a8f3f;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.subtext {
-  display: inline-block;
-  font-size: 12px;
-  color: #888;
-}
-
-/* Products */
-.products-section {
-  margin-bottom: 32px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.section-header h2 {
-  font-size: 18px;
-  color: #222;
-  font-weight: 600;
-}
-
-.section-header a {
-  font-size: 13px;
-  color: #0a8f3f;
-  text-decoration: none;
-}
-
-.products-grid {
-  display: flex;
-  gap: 14px;
-}
-
-.product-card {
-  flex: 1;
-}
-
-.product-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
+  color: #64748b;
+  display: block;
   margin-bottom: 8px;
 }
 
-.product-card p {
-  font-size: 14px;
-  color: #333;
+.buyer-dashboard-scope .stat-card h2 {
+  font-size: 3.2rem;
+  color: #036942;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  line-height: 1;
 }
 
-/* Orders Table - green border like screenshot */
-.orders-section {
-  border: 2px solid #0a8f3f;
-  border-radius: 8px;
-  padding: 20px;
-  background: #ffffff;
+.buyer-dashboard-scope .badge {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
-.table-wrapper {
-  overflow-x: auto;
+.buyer-dashboard-scope .subtext {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 600;
 }
 
-table {
+/* Products Gallery Sections */
+.buyer-dashboard-scope .products-section {
+  margin-bottom: 40px;
+}
+
+.buyer-dashboard-scope .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.buyer-dashboard-scope .section-header h2 {
+  font-size: 1.35rem;
+  color: #0f172a;
+  font-weight: 800;
+  margin: 0;
+}
+
+.buyer-dashboard-scope .view-market-link {
+  font-size: 0.95rem;
+  color: #036942;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buyer-dashboard-scope .products-grid {
+  display: flex;
+  gap: 24px;
+}
+
+.buyer-dashboard-scope .product-card {
+  flex: 1;
+  max-width: calc(50% - 12px);
+}
+
+.buyer-dashboard-scope .product-card img {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
-th {
-  text-align: left;
-  padding: 10px 8px;
-  color: #777;
-  font-weight: 500;
-  font-size: 13px;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-td {
-  padding: 12px 8px;
-  color: #333;
-  border-bottom: 1px solid #f5f5f5;
-}
-
-td:first-child {
-  color: #0a8f3f;
-  font-weight: 500;
-}
-
-.status.active {
-  background: #e8f5e9;
-  color: #0a8f3f;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-/* Mobile hide sidebar */
+/* Responsive Structural Breakpoints */
 @media (max-width: 768px) {
-  .sidebar {
+  .buyer-dashboard-scope .sidebar {
     display: none;
   }
-  .dashboard-main {
-    padding: 16px;
+  .buyer-dashboard-scope .dashboard-main {
+    padding: 20px;
   }
-  .stats-grid {
+  .buyer-dashboard-scope .stats-grid {
     flex-direction: column;
+    gap: 16px;
+  }
+  .buyer-dashboard-scope .products-grid {
+    flex-direction: column;
+  }
+  .buyer-dashboard-scope .product-card {
+    max-width: 100%;
   }
 }

@@ -1,7 +1,9 @@
+/* --- SCOPED BUYER SIGNUP CONTAINER --- */
 .signup-container {
   display: flex;
   min-height: 100vh;
-  background: #fff;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
 }
 
 .signup-left {
@@ -23,6 +25,7 @@
   color: #666;
   font-size: 14px;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .signup-right {
@@ -50,14 +53,17 @@
 
 .form-header h2 {
   margin: 10px 0 5px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e293b;
 }
 
 .form-header p {
-  color: #666;
+  color: #64748b;
   font-size: 14px;
 }
 
+/* --- FORM COMPONENTS --- */
 .form-group {
   margin-bottom: 18px;
 }
@@ -66,16 +72,26 @@
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  color: #374151;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: #f8f9fa;
-  font-size: 14px;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 15px;
+  color: #1f2937;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #2d6a4f;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #2d6a4f;
 }
 
 .checkbox-group {
@@ -87,83 +103,40 @@
 }
 
 .checkbox-group a {
-  color: #2e7d32;
-  text-decoration: none;
-}
-
-.btn-create {
-  width: 100%;
-  padding: 14px;
-  background: #2e7d32;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.login-link a {
-  color: #2e7d32;
+  color: #2d6a4f;
   text-decoration: none;
   font-weight: 600;
 }
 
-.signup-form label{
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #374151;
-
-}
-
-.footer{
-  background: #1a3d2a;
-  color: white;
-  text-align: center;
-  padding: 2.5rem 1rem;
-  margin-top: 5rem;
-  width: 100vw;
-  margin-left: calc(-105vw + 75%);
-
-}
-
-
-.signup-form input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-size: 15px;
-  background: #f9fafb;
-}
-
-.signup-form input:focus {
-  outline: none;
-  border-color: #2d6a4f;
-  background: white;
-}
-
+/* --- PRIMARY CREATE ACCOUNT BUTTON --- */
 .create-btn {
   width: 100%;
   padding: 14px;
   background: #2d6a4f;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   margin-top: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 .create-btn:hover {
   background: #1b4332;
+}
+
+/* --- FOOTER LINK ELEMENT --- */
+.login-link {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.login-link a {
+  color: #2d6a4f;
+  text-decoration: none;
+  font-weight: 700;
 }

@@ -59,7 +59,6 @@ const LandingPage = () => {
 
           <div className="nav-links">
             <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</span>
-            <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Product</span>
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
             <button className="nav-search-btn" onClick={() => setIsAuthModalOpen(true)}>
             Login
