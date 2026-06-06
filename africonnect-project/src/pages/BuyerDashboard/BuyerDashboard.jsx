@@ -1,16 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LayoutDashboard, User, MessageSquare, FileText, ShoppingBag, LogOut, Search, Bell } from 'lucide-react';
 import './BuyerDashboard.css';
 
+// Local Asset Imports Mapped From Your Directory Tree
+import cashewTreeImg from '../../assets/ProductListing/cashew-tree.png';
+import cashewImg from '../../assets/ProductListing/cashew.jpg';
+import cocoaBeansImg from '../../assets/ProductListing/cocoa-beans.jpg';
+import cocoaTreeImg from '../../assets/ProductListing/cocoa-tree.png';
+import cottonImg from '../../assets/ProductListing/cotton.png';
+import fineCocoaImg from '../../assets/ProductListing/fine-cocoa.png';
+import gingerImg from '../../assets/ProductListing/ginger.jpg';
+import milletImg from '../../assets/ProductListing/millet.jpg';
+import sesameImg from '../../assets/ProductListing/sesame.jpg';
+import sheaButterImg from '../../assets/ProductListing/shea-butter.png';
+
 const BuyerDashboard = () => {
   const navigate = useNavigate();
+
+  // Master database array holding all your imported raw materials
+  const allProducts = [
+    { id: 'prod-1', name: 'Premium Cotton', img: cottonImg },
+    { id: 'prod-2', name: 'Split Ginger', img: gingerImg },
+    { id: 'prod-3', name: 'Raw Cashew Nuts', img: cashewImg },
+    { id: 'prod-4', name: 'Sesame Seeds', img: sesameImg },
+    { id: 'prod-5', name: 'Premium Cocoa Beans', img: cocoaBeansImg },
+    { id: 'prod-6', name: 'Organic Shea Butter', img: sheaButterImg },
+    { id: 'prod-7', name: 'Pearl Millet', img: milletImg }
+  ];
+
+  // ✅ State tracks the starting index of the 2 displayed items
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // ✅ Automatically transitions and slides/swaps items every 4 seconds
+  useEffect(() => {
+    const rotateInterval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        // Step forward by 2 items. If we run out of pairs, cycle back to the beginning!
+        if (prevIndex + 2 >= allProducts.length) {
+          return 0;
+        }
+        return prevIndex + 2;
+      });
+    }, 4000);
+
+    return () => clearInterval(rotateInterval);
+  }, [allProducts.length]);
+
+  // ✅ Grab exactly two items relative to our tracking index pointer
+  const visibleProducts = allProducts.slice(currentIndex, currentIndex + 2);
+
+  // Fallback protection handler just in case the total array length is odd
+  if (visibleProducts.length < 2) {
+    visibleProducts.push(allProducts[0]);
+  }
 
   return (
     <div className="buyer-dashboard-scope">
       <div className="dashboard-wrapper">
         
-        {/* ✅ SIDEBAR MATCHED WITH SCREENSHOT DESIGN */}
+        {/* Sidebar */}
         <aside className="sidebar">
           <div className="sidebar-brand-block">
             <h3>TerraTrade</h3>
@@ -49,7 +98,7 @@ const BuyerDashboard = () => {
         <main className="dashboard-main">
           {/* Top Header Search + Meta Bar */}
           <div className="viewport-top-bar" style={styles.topBar}>
-            <div className="search-bar">
+            <div className="search-bar" style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
               <Search size={16} style={styles.searchIcon} />
               <input type="text" placeholder="Search for materials, suppliers, or logistics..." />
             </div>
@@ -80,7 +129,7 @@ const BuyerDashboard = () => {
             </div>
           </div>
 
-          {/* Top Products */}
+          {/* Top Products Section */}
           <div className="products-section">
             <div className="section-header">
               <div>
@@ -93,13 +142,22 @@ const BuyerDashboard = () => {
                 View Marketplace →
               </span>
             </div>
+
+            {/* ✅ DYNAMIC 2-ITEM ROTATING CAROUSEL LIST GRID */}
             <div className="products-grid">
-              <div className="product-card">
-                <img src="https://images.unsplash.com/photo-1594488270432-8419dbf2e622?auto=format&fit=crop&q=80&w=600" alt="Cotton" />
-              </div>
-              <div className="product-card">
-                <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=600" alt="Ginger" />
-              </div>
+              {visibleProducts.map((product, idx) => (
+                <div 
+                  className="product-card" 
+                  key={`${product.id}-${idx}`} 
+                  style={{ animation: 'fadeIn 0.5s ease-in-out', position: 'relative' }}
+                >
+                  <img src={product.img} alt={product.name} />
+                  {/* Subtle caption overlay to showcase the asset name dynamically */}
+                  <div style={styles.carouselCaption}>
+                    <span>{product.name}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </main>
@@ -111,9 +169,21 @@ const BuyerDashboard = () => {
 
 const styles = {
   topBar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' },
-  searchIcon: { position: 'absolute', left: '14px', color: '#64748b' },
+  searchIcon: { position: 'absolute', left: '14px', color: '#64748b', zIndex: 10 },
   headerRight: { display: 'flex', alignItems: 'center', gap: '20px' },
-  avatarPill: { width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #cbd5e1' }
+  avatarPill: { width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #cbd5e1' },
+  carouselCaption: {
+    position: 'absolute',
+    bottom: '16px',
+    left: '16px',
+    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+    color: '#ffffff',
+    padding: '6px 14px',
+    borderRadius: '20px',
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    backdropFilter: 'blur(4px)'
+  }
 };
 
 export default BuyerDashboard;
