@@ -1,4 +1,6 @@
-/* --- SCOPED BUYER DASHBOARD CONTEXT STYLES --- */
+/* ==========================================================================
+   --- SCOPED BUYER DASHBOARD CONTEXT STYLES ---
+   ========================================================================== */
 .buyer-dashboard-scope {
   min-height: 100vh;
   background: #ffffff;
@@ -17,7 +19,9 @@
   display: flex;
 }
 
-/* Sidebar Layout Architecture From Screenshot */
+/* ==========================================================================
+   SIDEBAR STYLING (PIXEL PERFECT WITH FIGMA SCREENSHOT)
+   ========================================================================== */
 .buyer-dashboard-scope .sidebar {
   width: 240px;
   background: #f8fafc;
@@ -92,16 +96,23 @@
   background-color: #fef2f2;
 }
 
-/* Main Content Workspace Layouts */
+/* ==========================================================================
+   MAIN VIEWPORT WORKSPACE LOGISTICS
+   ========================================================================== */
 .buyer-dashboard-scope .dashboard-main {
   flex: 1;
   padding: 24px 40px;
   background-color: #ffffff;
 }
 
-/* Top Navigation Header Mock Strip */
+/* Top Navigation Header Strip */
 .buyer-dashboard-scope .viewport-top-bar {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 16px;
 }
 
 .buyer-dashboard-scope .search-bar {
@@ -122,7 +133,45 @@
   background-color: #f8fafc;
 }
 
-/* Header Content Header Blocks */
+.buyer-dashboard-scope .search-bar .search-icon {
+  position: absolute;
+  left: 14px;
+  color: #64748b;
+  z-index: 10;
+}
+
+.buyer-dashboard-scope .header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.buyer-dashboard-scope .bell-alert-btn {
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.buyer-dashboard-scope .bell-alert-btn:hover {
+  color: #0f172a;
+}
+
+.buyer-dashboard-scope .avatar-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+}
+
+.buyer-dashboard-scope .avatar-pill img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Typography Header Content */
 .buyer-dashboard-scope .dashboard-header h1 {
   font-size: 2rem;
   color: #0f172a;
@@ -137,7 +186,9 @@
   margin: 0 0 35px 0;
 }
 
-/* Statistics Summary Panel Cards */
+/* ==========================================================================
+   STATISTICS SUMMARY TILES
+   ========================================================================== */
 .buyer-dashboard-scope .stats-grid {
   display: flex;
   gap: 24px;
@@ -186,7 +237,9 @@
   font-weight: 600;
 }
 
-/* Products Gallery Sections */
+/* ==========================================================================
+   PRODUCT SHOWCASE & ROTATING CAROUSEL
+   ========================================================================== */
 .buyer-dashboard-scope .products-section {
   margin-bottom: 40px;
 }
@@ -205,6 +258,12 @@
   margin: 0;
 }
 
+.buyer-dashboard-scope .section-header p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
 .buyer-dashboard-scope .view-market-link {
   font-size: 0.95rem;
   color: #036942;
@@ -218,19 +277,165 @@
   gap: 24px;
 }
 
-.buyer-dashboard-scope .product-card {
+.buyer-dashboard-scope .product-card-wrapper {
   flex: 1;
   max-width: calc(50% - 12px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.buyer-dashboard-scope .product-card img {
+.buyer-dashboard-scope .product-card-wrapper img {
   width: 100%;
   height: 240px;
   object-fit: cover;
   border-radius: 16px;
+  display: block;
 }
 
-/* Responsive Structural Breakpoints */
+.buyer-dashboard-scope .carousel-caption {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background-color: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   DYNAMIC TAB SUB-VIEW CARD LAYOUTS (PROFILE SETTINGS)
+   ========================================================================== */
+.buyer-dashboard-scope .profile-view-wrapper,
+.buyer-dashboard-scope .messages-view-wrapper,
+.buyer-dashboard-scope .rfqs-view-wrapper {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.buyer-dashboard-scope .profile-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 32px;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.buyer-dashboard-scope .avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.buyer-dashboard-scope .avatar-section img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+}
+
+.buyer-dashboard-scope .change-photo {
+  padding: 10px 18px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.buyer-dashboard-scope .change-photo:hover {
+  background: #e2e8f0;
+}
+
+.buyer-dashboard-scope .profile-form .form-group {
+  margin-bottom: 0;
+}
+
+.buyer-dashboard-scope .form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.buyer-dashboard-scope .form-row .form-group {
+  flex: 1;
+}
+
+.buyer-dashboard-scope .form-group.full {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.buyer-dashboard-scope .profile-form input,
+.buyer-dashboard-scope .profile-form select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 15px;
+  outline: none;
+  color: #1f2937;
+  transition: border-color 0.2s;
+}
+
+.buyer-dashboard-scope .profile-form input:focus,
+.buyer-dashboard-scope .profile-form select:focus {
+  border-color: #22c55e;
+  background: #ffffff;
+}
+
+.buyer-dashboard-scope .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+}
+
+.buyer-dashboard-scope .btn-secondary {
+  padding: 12px 24px;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.buyer-dashboard-scope .btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.buyer-dashboard-scope .btn-primary {
+  padding: 12px 24px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.buyer-dashboard-scope .btn-primary:hover {
+  background: #16a34a;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT MEDIA QUERIES
+   ========================================================================== */
 @media (max-width: 768px) {
   .buyer-dashboard-scope .sidebar {
     display: none;
@@ -245,11 +450,16 @@
   .buyer-dashboard-scope .products-grid {
     flex-direction: column;
   }
-  .buyer-dashboard-scope .product-card {
+  .buyer-dashboard-scope .product-card-wrapper {
     max-width: 100%;
+  }
+  .buyer-dashboard-scope .form-row {
+    flex-direction: column;
+    gap: 20px;
   }
 }
 
+/* Cross-fade Carousel Entry Transitions */
 @keyframes fadeIn {
   from {
     opacity: 0.3;
@@ -258,5 +468,476 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   --- NEGOTIATION HUB WORKSPACE (MESSAGES) ---
+   ========================================================================== */
+.buyer-dashboard-scope .chat-master-container {
+  display: flex;
+  height: 580px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-top: 24px;
+}
+
+/* Left Panel Sidebar Lists */
+.buyer-dashboard-scope .chat-left-panel {
+  width: 340px;
+  border-right: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-dashboard-scope .panel-search-box {
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+}
+
+.buyer-dashboard-scope .panel-search-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.buyer-dashboard-scope .chat-list-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.buyer-dashboard-scope .chat-list-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  background-color: #f8fafc;
+}
+
+.buyer-dashboard-scope .chat-list-item:hover {
+  background-color: #f1f5f9;
+}
+
+.buyer-dashboard-scope .chat-list-item.active {
+  background-color: #ffffff;
+  border-left: 4px solid #22c55e;
+}
+
+.buyer-dashboard-scope .chat-list-item.unread-tint {
+  background-color: #f0fdf4;
+}
+
+.buyer-dashboard-scope .avatar-holder {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.buyer-dashboard-scope .avatar-holder img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.buyer-dashboard-scope .online-dot-pulse {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 11px;
+  height: 11px;
+  background-color: #22c55e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+.buyer-dashboard-scope .item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.buyer-dashboard-scope .item-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.buyer-dashboard-scope .item-row-top h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buyer-dashboard-scope .chat-time-stamp {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.buyer-dashboard-scope .item-commodity-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #036942;
+  margin: 0 0 4px 0;
+}
+
+.buyer-dashboard-scope .item-preview-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right Chat Active Stream Window Layouts */
+.buyer-dashboard-scope .chat-right-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.buyer-dashboard-scope .chat-window-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buyer-dashboard-scope .header-meta-group h4 {
+  margin: 0 0 2px 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.buyer-dashboard-scope .header-meta-group p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.buyer-dashboard-scope .header-meta-group p span {
+  color: #036942;
+  font-weight: 700;
+}
+
+.buyer-dashboard-scope .status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  background-color: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.buyer-dashboard-scope .status-pill.online {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+
+/* Chat History Stream Bubbles */
+.buyer-dashboard-scope .chat-messages-stream {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buyer-dashboard-scope .message-bubble-row {
+  display: flex;
+  width: 100%;
+}
+
+.buyer-dashboard-scope .message-bubble-row.incoming {
+  justify-content: flex-start;
+}
+
+.buyer-dashboard-scope .message-bubble-row.outgoing {
+  justify-content: flex-end;
+}
+
+.buyer-dashboard-scope .bubble-wrapper {
+  max-width: 65%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.buyer-dashboard-scope .incoming .bubble-wrapper {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  border-top-left-radius: 2px;
+}
+
+.buyer-dashboard-scope .outgoing .bubble-wrapper {
+  background-color: #22c55e;
+  color: #ffffff;
+  border-top-right-radius: 2px;
+}
+
+.buyer-dashboard-scope .bubble-text {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.buyer-dashboard-scope .bubble-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.buyer-dashboard-scope .outgoing .receipt-check {
+  color: #ffffff;
+}
+
+/* Bottom Chat Panel Form Input Controllers */
+.buyer-dashboard-scope .chat-input-panel-form {
+  padding: 16px 24px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 14px;
+  background-color: #ffffff;
+}
+
+.buyer-dashboard-scope .chat-input-panel-form input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.buyer-dashboard-scope .chat-input-panel-form input:focus {
+  border-color: #22c55e;
+  background-color: #ffffff;
+}
+
+.buyer-dashboard-scope .chat-send-btn-action {
+  padding: 0 16px;
+  background-color: #22c55e;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.buyer-dashboard-scope .chat-send-btn-action:hover {
+  background-color: #16a34a;
+}
+
+@media (max-width: 900px) {
+  .buyer-dashboard-scope .chat-left-panel {
+    width: 80px;
+  }
+  .buyer-dashboard-scope .panel-search-box,
+  .buyer-dashboard-scope .item-details {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   --- RFQ SYSTEM DASHBOARD HUB ---
+   ========================================================================== */
+.buyer-dashboard-scope .rfq-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.buyer-dashboard-scope .create-rfq-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #036942;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 2px 4px rgba(3, 105, 66, 0.15);
+}
+
+.buyer-dashboard-scope .create-rfq-action-btn:hover {
+  background-color: #024f31;
+}
+
+/* Mini Sub-Stats Indicators Inside Dashboard Portal */
+.buyer-dashboard-scope .rfq-mini-stats-grid {
+  display: flex;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.buyer-dashboard-scope .rfq-mini-card {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.buyer-dashboard-scope .rfq-mini-card h4 {
+  margin: 0 0 6px 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.buyer-dashboard-scope .rfq-mini-card p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.buyer-dashboard-scope .stat-count { color: #0f172a; }
+.buyer-dashboard-scope .stat-count-green { color: #22c55e; }
+.buyer-dashboard-scope .stat-count-muted { color: #94a3b8; }
+
+/* Main Procurement Data Engine Tables Sheet */
+.buyer-dashboard-scope .rfq-table-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.buyer-dashboard-scope .rfq-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.buyer-dashboard-scope .rfq-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.buyer-dashboard-scope .rfq-data-table th {
+  padding: 14px 16px;
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.buyer-dashboard-scope .rfq-data-table td {
+  padding: 16px;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  font-weight: 500;
+}
+
+.buyer-dashboard-scope .rfq-id-cell {
+  color: #036942 !important;
+  font-weight: 700 !important;
+}
+
+.buyer-dashboard-scope .rfq-material-name {
+  color: #0f172a;
+  font-weight: 700 !important;
+}
+
+.buyer-dashboard-scope .bids-count-badge {
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Strategic Quality Badging Handles */
+.buyer-dashboard-scope .rfq-status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.buyer-dashboard-scope .rfq-status-badge.open {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.buyer-dashboard-scope .rfq-status-badge.under-review {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.buyer-dashboard-scope .rfq-status-badge.closed {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* Dynamic Table Action Row Buttons */
+.buyer-dashboard-scope .rfq-view-action-row-btn {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.buyer-dashboard-scope .rfq-view-action-row-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+@media (max-width: 1024px) {
+  .buyer-dashboard-scope .rfq-mini-stats-grid {
+    flex-direction: column;
+    gap: 12px;
   }
 }

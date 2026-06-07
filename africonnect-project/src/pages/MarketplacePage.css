@@ -1,0 +1,518 @@
+/* ==========================================================================
+   --- NEW HIGH-FIDELITY TOP NAVBAR STYLES ---
+   ========================================================================== */
+.mkt-navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* Brand Logo Layout Architecture */
+.mkt-nav-logo-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.mkt-nav-logo-icon {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mkt-logo-text-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  font-family: 'Inter', sans-serif;
+}
+
+.mkt-logo-green {
+  color: #036942; /* Premium African Green */
+}
+
+.mkt-logo-dark {
+  color: #0f172a; /* Slate Black for high contrast visibility on white backgrounds */
+}
+
+/* Nav Bar Navigation Options Links */
+.mkt-nav-links-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.mkt-nav-links-group a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.mkt-nav-links-group a:hover {
+  color: #036942;
+}
+
+@media (max-width: 768px) {
+  .mkt-navbar-header {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   --- CENTRAL UNIFIED MARKETPLACE STYLE ENGINE ---
+   ========================================================================== */
+.mkt-page-wrapper {
+  background-color: #ffffff !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 80px;
+}
+
+/* ==========================================================================
+   --- FIGMA TWO-COLUMN HERO SECTOR LAYOUT ---
+   ========================================================================== */
+.mkt-hero-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 60px 40px 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+/* Left Text Layout Grid Block */
+.mkt-hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.mkt-hero-title {
+  font-size: 2.75rem !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -1.5px !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.mkt-hero-subtitle {
+  font-size: 1.05rem !important;
+  color: #475569 !important;
+  line-height: 1.6 !important;
+  margin: 0 0 32px 0 !important;
+}
+
+.mkt-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.mkt-badge-highlight {
+  color: #10b981;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* Right Aspect-Ratio Image Frame Container (Fixes Blurriness completely) */
+.mkt-hero-right {
+  flex: 1;
+  width: 100%;
+  max-width: 540px;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.mkt-main-hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  /* Ensures crisp rendering of the uncompressed asset file */
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: quality !important;
+}
+
+/* ==========================================================================
+   --- FIGMA SEARCH COMPONENT STRIP BAR ---
+   ========================================================================== */
+.mkt-filter-strip {
+  max-width: 1240px;
+  margin: 0 auto 48px;
+  padding: 0 40px;
+}
+
+.mkt-filter-bar {
+  display: flex;
+  gap: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.mkt-search-wrapper {
+  flex: 2;
+}
+
+.mkt-search-wrapper input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.mkt-dropdown {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.mkt-search-btn {
+  background-color: #036942;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 32px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.mkt-search-btn:hover {
+  background-color: #024f31;
+}
+
+/* ==========================================================================
+   --- PRODUCTS ARCHITECTURE EXHIBITION GRID ---
+   ========================================================================== */
+.mkt-products-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.mkt-section-heading {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin: 0 0 6px 0 !important;
+  text-align: left;
+}
+
+.mkt-section-subheading {
+  font-size: 0.95rem !important;
+  color: #64748b !important;
+  margin: 0 0 36px 0 !important;
+  text-align: left;
+}
+
+.mkt-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+/* Individual Grid Card Elements */
+.mkt-product-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.mkt-card-img-box {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.mkt-card-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Quality Tag Badges */
+.mkt-status-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mkt-status-tag.verified,
+.mkt-status-tag.verified-supplier {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.mkt-status-tag.out-of-stock {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+/* Card Content Logistics alignment spacing rules */
+.mkt-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mkt-product-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin: 0 0 10px 0 !important;
+  text-align: left;
+}
+
+.mkt-product-origin {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0 0 24px 0;
+  text-align: left;
+}
+
+.mkt-price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-top: auto;
+}
+
+.mkt-price-value {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #036942;
+}
+
+.mkt-moq-value {
+  font-size: 0.85rem;
+  color: #ef4444;
+  font-weight: 700;
+}
+
+/* Primary Action Execution Buttons alignment */
+.mkt-card-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.mkt-btn-inquiry {
+  flex: 3;
+  padding: 12px;
+  background-color: #036942;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.mkt-btn-inquiry:hover {
+  background-color: #024f31;
+}
+
+.mkt-btn-chat {
+  flex: 1;
+  padding: 12px;
+  background-color: #ffffff;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- MOBILE LAYOUT SCALE CONSTRAINTS --- */
+@media (max-width: 992px) {
+  .mkt-hero-container { flex-direction: column; padding: 40px 20px; text-align: center; }
+  .mkt-hero-left { align-items: center; text-align: center; }
+  .mkt-hero-right { height: 280px; }
+  .mkt-filter-bar { flex-direction: column; }
+}
+
+/* ==========================================================================
+   --- NO SEARCH RESULTS FALLBACK SPECIFICATIONS ---
+   ========================================================================== */
+.mkt-no-results-card {
+  width: 100%;
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+  margin-top: 10px;
+}
+
+.mkt-no-results-card h3 {
+  font-size: 1.4rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.mkt-no-results-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   --- HIGH FIDELITY STAGGERED AI MODE LAYOUT ENGINE ---
+   ========================================================================== */
+.marketplace-page-scope .mkt-ai-mode-section {
+  width: 100%;
+  padding: 80px 20px;
+  /* Premium radial glowing gradient context matching your attachment background */
+  background: radial-gradient(circle at 85% 65%, #dcfce7 0%, #ffffff 55%);
+  margin-top: 60px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.marketplace-page-scope .mkt-ai-section-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.marketplace-page-scope .mkt-ai-heading {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin: 0 0 40px 0 !important;
+  text-align: left;
+  letter-spacing: -0.5px;
+}
+
+.marketplace-page-scope .mkt-ai-highlight {
+  color: #22c55e !important;
+  font-weight: 800 !important;
+}
+
+/* Staggered Cards Engine Pipeline */
+.marketplace-page-scope .mkt-ai-staggered-links {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.marketplace-page-scope .mkt-ai-action-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #22c55e; /* Elegant glowing border token */
+  border-radius: 12px;
+  padding: 20px 24px;
+  width: 100%;
+  max-width: 600px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.marketplace-page-scope .mkt-ai-action-card span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.marketplace-page-scope .mkt-ai-chevron {
+  color: #1e293b;
+  transition: transform 0.2s ease;
+}
+
+/* Hover States: Soft card scaling and arrow displacement */
+.marketplace-page-scope .mkt-ai-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.08);
+  background-color: #fafafa;
+}
+
+.marketplace-page-scope .mkt-ai-action-card:hover .mkt-ai-chevron {
+  transform: translateX(4px);
+  color: #22c55e;
+}
+
+/* STAGGERED ALIGNMENT OFFSETS (Matches screenshot design) */
+.marketplace-page-scope .align-right {
+  margin-left: 20%;
+}
+
+.marketplace-page-scope .align-left {
+  margin-left: 10%;
+}
+
+.marketplace-page-scope .align-far-right {
+  margin-left: 25%;
+}
+
+/* Responsive constraints for smaller laptops/mobiles */
+@media (max-width: 900px) {
+  .marketplace-page-scope .align-right,
+  .marketplace-page-scope .align-left,
+  .marketplace-page-scope .align-far-right {
+    margin-left: 0 !important;
+    max-width: 100%;
+  }
+  .marketplace-page-scope .mkt-ai-mode-section {
+    background: #ffffff;
+  }
+}

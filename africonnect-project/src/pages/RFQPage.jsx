@@ -1,9 +1,10 @@
-
-
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Imported the navigation hook
 import './RFQPage.css';
 
 export default function RFQPage() {
+  const navigate = useNavigate(); // ✅ Initialized the navigation engine
+  
   const [form, setForm] = useState({
     category: '',
     commodity: '',
@@ -13,7 +14,7 @@ export default function RFQPage() {
     price: '',
     specs: ''
   });
-  
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -21,8 +22,12 @@ export default function RFQPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('RFQ submitted:', form);
-    const matches = form.category ? 2 : 0;
-    alert(`RFQ sent to ${matches} suppliers!`);
+    
+    // Display the submission success alert frame
+    alert('RFQ sent to suppliers successfully!');
+    
+    // ✅ REDIRECT CONTEXT: Takes the buyer instantly back to the marketplace page
+    navigate('/marketplace');
   };
 
   return (
@@ -105,7 +110,6 @@ export default function RFQPage() {
         </label>
 
         <button type="submit" className="rfq-submit">Submit RFQ →</button>
-        
       </form>
     </div>
   );
