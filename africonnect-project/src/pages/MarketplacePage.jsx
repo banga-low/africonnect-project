@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react'; // Added chevron for the AI cards
+import { useNavigate, Link } from 'react-router-dom'; // Included Link components for production client-side navigation
+import { ChevronRight } from 'lucide-react'; 
 import { dummyProducts } from '../data/dummyProducts';
 import './MarketplacePage.css'; 
 import cocoaFarmImg from '../assets/Marketplace/cocoa-farm.jpg';
@@ -12,7 +12,7 @@ function MarketplacePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(dummyProducts);
 
-  // Global event listener to redirect 'Submit Inquiry' clicks to the RFQ portal
+  // Intercepts button clicks to bypass the signup form and jump directly to the RFQ setup
   useEffect(() => {
     const handleGlobalInquiryClick = (e) => {
       if (e.target && e.target.textContent === 'Submit Inquiry') {
@@ -45,7 +45,7 @@ function MarketplacePage() {
     setFilteredProducts(matches);
   };
 
-  // Placeholder functions for future AI API connections
+  // Integration hooks for AI API microservice connections
   const handleAISupplierMatch = () => {
     console.log("Triggering Geospatial AI API to find closest supplier...");
     alert("Connecting to AI Model: Calculating closest geolocation routing metrics...");
@@ -62,7 +62,7 @@ function MarketplacePage() {
   };
 
   return (
-    <div className="marketplace-page-scope">
+    <div className="mkt-page-wrapper">
       
       {/* TOP NAVIGATION HEADER BAR */}
       <header className="mkt-navbar-header">
@@ -74,21 +74,22 @@ function MarketplacePage() {
           </span>
         </div>
         
+        {/* Swapped standard anchors for native React Router Link items to avoid Netlify 404s */}
         <nav className="mkt-nav-links-group">
-          <a href="/">Home</a>
-          <a href="/buyer-login">Login</a>
-          <a href="/buyer-dashboard">Dashboard</a>
+          <Link to="/">Home</Link>
+          <Link to="/buyer-login">Login</Link>
+          <Link to="/buyer-dashboard">Dashboard</Link>
         </nav>
       </header>
 
       {/* TWO-COLUMN HERO SECTION */}
       <section className="mkt-hero-container">
         <div className="mkt-hero-left">
-          <h1>Empowering African Industry through sustainable innovation & streamlined production.</h1>
+          <h1 className="mkt-hero-title">Empowering African Industry through sustainable innovation & streamlined production.</h1>
           <p className="mkt-hero-subtitle">The premium B2B gateway connecting global institutional buyers with verified, high-capacity African producers and manufacturers.</p>
           
           <div className="mkt-hero-badge">
-            <span>500+</span> Verified Industrial Suppliers
+            <span className="mkt-badge-highlight">500+</span> Verified Industrial Suppliers
           </div>
         </div>
         
@@ -98,7 +99,7 @@ function MarketplacePage() {
       </section>
 
       {/* SEARCH FILTER STRIP */}
-      <div className="search-filter-strip">
+      <div className="mkt-filter-strip">
         <form className="mkt-filter-bar" onSubmit={handleSearchExecute}>
           <div className="mkt-search-wrapper">
             <input 
@@ -163,7 +164,7 @@ function MarketplacePage() {
         )}
       </section>
 
-      {/* ✅ HIGH-FIDELITY STAGGERED AI MODE SECTION */}
+      {/* HIGH-FIDELITY STAGGERED AI MODE SECTION */}
       <section className="mkt-ai-mode-section">
         <div className="mkt-ai-section-inner">
           <h2 className="mkt-ai-heading">
