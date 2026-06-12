@@ -1,152 +1,153 @@
-/* --- SCOPED BUYER LOGIN PAGE CONTAINER --- */
-.buyer-login-page {
-  display: flex;
-  min-height: 100vh;
-  background: #ffffff;
-  font-family: 'Inter', sans-serif;
-  width: 100%;
+/* ==========================================================================
+   --- UNIFIED BUYER LOGIN ENGINE (SCOPED) ---
+   ========================================================================== */
+.buyer-auth-scope {
+  background-color: #f8fafc !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  box-sizing: border-box !important;
+  padding: 40px 20px !important;
 }
 
-.login-left {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f9fafb;
-  padding: 40px;
+/* Central Card Housing Context */
+.buyer-auth-scope .auth-card-wrapper {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  width: 100% !important;
+  max-width: 460px !important;
+  padding: 40px !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
+  box-sizing: border-box !important;
 }
 
-.logo-left {
-  width: 280px;
-  height: auto;
-  object-fit: contain;
+/* Header Text Alignments */
+.buyer-auth-scope .auth-header-block {
+  text-align: center !important;
+  margin-bottom: 36px !important;
 }
 
-.login-right {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+.buyer-auth-scope .auth-header-block h2 {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin: 0 0 10px 0 !important;
+  letter-spacing: -0.75px !important;
 }
 
-/* --- LOGIN FORM CARD PANEL --- */
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: #ffffff;
+.buyer-auth-scope .auth-header-block p {
+  font-size: 0.95rem !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
 }
 
-.logo-top {
-  width: 160px;
-  display: block;
-  margin: 0 auto 1.5rem;
-  height: auto;
-  object-fit: contain;
+/* Input Form Structuring Rules */
+.buyer-auth-scope .auth-form-element {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
 }
 
-.login-card h2 {
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: -0.5px;
+.buyer-auth-scope .auth-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  text-align: left !important;
 }
 
-.subtitle {
-  text-align: center;
-  color: #6b7280;
-  margin-bottom: 2rem;
-  font-size: 14px;
-  font-weight: 500;
+.buyer-auth-scope .auth-field-group label {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
 }
 
-/* --- FORM CONTROLS & INPUTS --- */
-.form-group {
-  margin-bottom: 1.5rem;
+.buyer-auth-scope .label-row-forgot {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #374151;
+.buyer-auth-scope .forgot-password-link {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #036942 !important;
+  text-decoration: none !important;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #f9fafb;
-  font-size: 15px;
-  color: #1f2937;
-  outline: none;
-  transition: all 0.2s ease;
+.buyer-auth-scope .forgot-password-link:hover {
+  text-decoration: underline !important;
 }
 
-.form-group input:focus {
-  border-color: #2d6a4f;
-  background: #ffffff;
-  box-shadow: 0 0 0 1px #2d6a4f;
+/* Form Input Boundaries */
+.buyer-auth-scope .auth-field-group input {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease-in-out !important;
 }
 
-.forgot-link {
-  display: block;
-  text-align: right;
-  font-size: 14px;
-  color: #2d6a4f;
-  text-decoration: none;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  transition: color 0.15s ease;
+.buyer-auth-scope .auth-field-group input:focus {
+  border-color: #036942 !important;
+  box-shadow: 0 0 0 3px rgba(3, 105, 66, 0.08) !important;
 }
 
-.forgot-link:hover {
-  color: #1b4332;
-  text-decoration: underline;
+/* Primary Form Action Button Token */
+.buyer-auth-scope .auth-execute-btn {
+  background-color: #036942 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 14px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  margin-top: 8px !important;
+  width: 100% !important;
+  transition: background-color 0.15s ease !important;
 }
 
-/* --- ACTION SUBMIT BUTTON --- */
-.login-btn {
-  width: 100%;
-  padding: 14px;
-  background: #2d6a4f;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.buyer-auth-scope .auth-execute-btn:hover {
+  background-color: #024f31 !important;
 }
 
-.login-btn:hover {
-  background: #1b4332;
+/* Redirect Footer Navigation Options links */
+.buyer-auth-scope .auth-redirect-footer {
+  text-align: center !important;
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  font-size: 0.9rem !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
 }
 
-/* --- BOTTOM REDIRECT METATEXT --- */
-.register-text {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 14px;
-  color: #6b7280;
+.buyer-auth-scope .auth-redirect-footer a {
+  color: #036942 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
 }
 
-.register-text a {
-  color: #2d6a4f;
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 0.15s ease;
+.buyer-auth-scope .auth-redirect-footer a:hover {
+  text-decoration: underline !important;
 }
 
-.register-text a:hover {
-  color: #1b4332;
-  text-decoration: underline;
+/* Responsive Scaling Constraints */
+@media (max-width: 480px) {
+  .buyer-auth-scope .auth-card-wrapper {
+    padding: 28px 20px !important;
+    border-radius: 12px !important;
+  }
 }

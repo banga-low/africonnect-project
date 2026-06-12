@@ -11,60 +11,53 @@ function BuyerLogin() {
     e.preventDefault();
     console.log('Logging in with:', { email, password });
     
-    // ✅ FIXED: Routes seamlessly to the unified dashboard URL path
+    // Smooth navigation directly to the client-side buyer core dashboard
     navigate('/buyer-dashboard');
   };
 
   return (
-    <div className="buyer-login-page">
-      
-      <div className="login-left">
-        <img src="/assets2/logo.png" alt="Africonnect" className="logo-left" />
-      </div>
-
-      <div className="login-right">
-        <div className="login-card">
-          <img src="/assets2/logo.png" alt="Africonnect" className="logo-top" />
-          {/* ✅ FIXED: Corrected her hilarious "Verify Your Back!" typo */}
+    <div className="buyer-auth-scope">
+      <div className="auth-card-wrapper">
+        <div className="auth-header-block">
           <h2>Welcome Back!</h2>
-          <p className="subtitle">Login to your buyer account</p>
-
-          <form className="login-form" onSubmit={handleLogin}>
-            <div className="form-group">
-              <label>Email Address</label>
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required 
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Password</label>
-              <input 
-                type="password" 
-                placeholder="Enter your password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required 
-              />
-            </div>
-
-            <Link to="/forgot-password" className="forgot-link">Forgot Password</Link>
-
-            <button type="submit" className="login-btn">Login</button>
-
-            <p className="register-text">
-              Don't have an account? <Link to="/buyer-signup">Register Now</Link>
-            </p>
-          </form>
-          
-          {/* ✅ REMOVED: Injected breaking footer duplicate block cleanly removed */}
+          <p>Login to your buyer account</p>
         </div>
-      </div>
 
+        <form className="auth-form-element" onSubmit={handleLogin}>
+          <div className="auth-field-group">
+            <label>Email Address</label>
+            <input 
+              type="email" 
+              placeholder="Enter your email address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+            />
+          </div>
+
+          <div className="auth-field-group">
+            <div className="label-row-forgot">
+              <label>Password</label>
+              <Link to="/forgot-password" style={{ textDecoration: 'none' }} className="forgot-password-link">
+                Forgot Password?
+              </Link>
+            </div>
+            <input 
+              type="password" 
+              placeholder="Enter your password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required 
+            />
+          </div>
+
+          <button type="submit" className="auth-execute-btn">Login</button>
+
+          <p className="auth-redirect-footer">
+            Don't have an account? <Link to="/buyer-signup">Register Now</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

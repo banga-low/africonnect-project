@@ -16,7 +16,7 @@ import ProductListing from './components/ProductListing/ProductListing.jsx';
 import SupplierVerification from './pages/SupplierVerification/SupplierVerification.jsx';
 
 // --- Buyer Portal Context Routes ---
-import BuyerLogin from './pages/BuyerLogin';
+import BuyerLogin from './pages/BuyerLogin.jsx';
 import BuyerSignup from './pages/BuyerSignup';
 import BuyerDashboard from './pages/BuyerDashboard/BuyerDashboard';
 import BuyerProfile from './pages/BuyerDashboard/BuyerProfile';
