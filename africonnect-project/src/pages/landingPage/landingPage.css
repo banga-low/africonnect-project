@@ -28,7 +28,7 @@ body, html {
   width: 100%;
 }
 
-/* 1. Navbar - Desktop Base */
+/* 1. Navbar Base Architecture */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -45,10 +45,11 @@ body, html {
   flex-shrink: 0;
 }
 
+/* ✅ FIXED: Height scaled to 34px to sit perfectly on the typography baseline */
 .logo-icon-img {
-  width: auto;
-  height: 60px; 
-  object-fit: contain;
+  width: auto !important;
+  height: 32px !important; 
+  object-fit: contain !important;
 }
 
 .logo-text {
@@ -331,7 +332,7 @@ body, html {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 0 5% 60px 5%; 
+  padding: 80px 5% 60px 5%; 
   flex-wrap: wrap;
   gap: 40px;
 }
@@ -348,11 +349,12 @@ body, html {
   margin-bottom: 15px; 
 }
 
+/* ✅ FIXED: Height scaled to 28px to sit flush with the 1.6rem footer letters */
 .logo-icon-img-small { 
-  width: auto; 
-  height: 45px; 
+  width: auto !important; 
+  height: 28px !important; 
   display: block;
-  object-fit: contain; 
+  object-fit: contain !important; 
 }
 
 .footer-logo .logo-text {
@@ -377,6 +379,27 @@ body, html {
   max-width: 340px; 
   line-height: 1.5;
   margin-top: 15px;
+}
+
+/* DESIGNER TRUST BADGE ELEMENT */
+.lp-designer-footer-trust {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background-color: #f8fafc !important; 
+  padding: 8px 14px !important;
+  border-radius: 6px !important;
+  margin-top: 24px !important;
+  width: fit-content !important;
+}
+
+.lp-designer-trust-text {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+  letter-spacing: 0.1px !important;
 }
 
 .footer-links-container { 
@@ -428,55 +451,59 @@ body, html {
   margin: 0 !important;
 }
 
-/* ========================================= */
-/* MOBILE RESPONSIVE STYLES                  */
-/* ========================================= */
-
+/* ==========================================================================
+   --- MOBILE RESPONSIVE ADAPTATION ---
+   ========================================================================== */
 @media (max-width: 768px) {
   .landing-container {
     padding: 0 3%;
   }
 
   .navbar {
-    padding: 10px 0;
-    gap: 5px;
+    padding: 16px 0;
+    gap: 12px;
   }
 
-  .logo {
-    gap: 0px !important; 
-  }
-  
+  /* ✅ FIXED: Proportions remain structurally exact and baseline locked on mobile screen */
   .logo-icon-img { 
-    height: 24px; 
+    height: 28px !important; 
   }
   
+  .logo-icon-img-small {
+    height: 28px !important;
+  }
+
   .navbar .logo-text { 
-    font-size: 1rem; 
+    font-size: 1.6rem; 
   }
 
   .nav-links {
-    gap: 8px;
+    gap: 16px;
     flex-grow: 1;
     justify-content: flex-end;
   }
 
   .nav-links span {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 
   .nav-search-btn {
-    padding: 5px 10px;
-    font-size: 0.75rem;
-    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    border-radius: 12px;
   }
 
-  .hero-title { font-size: 1.8rem; }
-  .hero-subtitle { font-size: 0.9rem; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1rem; }
   .stats-grid { grid-template-columns: 1fr; }
   .sourcing-huddle { grid-template-columns: 1fr; }
   .huddle-grid { grid-template-columns: 1fr 1fr; margin-top: 20px; }
-  .huddle-img { height: 150px; }
-  .material-thumb { height: 200px; }
-  .material-name { font-size: 1.2rem; }
+  .huddle-img { height: 180px; }
+  .material-thumb { height: 240px; }
+  .material-name { font-size: 1.5rem; }
+  
+  .lp-designer-footer-trust {
+    margin: 24px auto 0 auto !important;
+  }
 }

@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './landingPage.css';
 
-// ✅ Import Modal
-//import SearchModal from '../../components/SearchModal/SearchModal';
-
 // Image Imports
 import heroImg from '../../assets/LandingPage/hero-image.jpeg';
 import cottonImg from '../../assets/LandingPage/cotton.png';
@@ -14,12 +11,12 @@ import wool from '../../assets/LandingPage/wool.jpeg';
 import woolTree from '../../assets/LandingPage/wool-tree.png';
 import cashew from '../../assets/LandingPage/cashew.jpg';
 import cocoa from '../../assets/LandingPage/cocoa.png';
-// ✅ Logo Import
+
+// Logo Import
 import logoImg from '../../assets/LandingPage/logo.png';
 
-//AuthModal Import
+// AuthModal Import
 import AuthModal from '../../components/AuthModal/AuthModal';
-
 
 const LandingPage = () => {
   const navigate = useNavigate(); 
@@ -41,13 +38,8 @@ const LandingPage = () => {
   return (
     <>
       <div className="landing-container">
-        {/* <SearchModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSearchResults={handleSearch}
-        /> */}
 
-        {/* 1. Navbar with Functional Navigation Links */}
+        {/* 1. Navbar with Proportional Logo Constraints */}
         <nav className="navbar">
           <div className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
             <img src={logoImg} alt="Africonnect Logo" className="logo-icon-img" />
@@ -61,9 +53,8 @@ const LandingPage = () => {
             <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</span>
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
             <button className="nav-search-btn" onClick={() => setIsAuthModalOpen(true)}>
-            Login
+              Login
             </button>
-             
           </div>
         </nav>
 
@@ -121,6 +112,7 @@ const LandingPage = () => {
           <p className="lorem-text">Africonnect is revolutionizing how businesses source raw materials by leveraging geospatial machine learning to find the most efficient, cost-effective, and reliable suppliers across the African continent.</p>
         </section>
 
+        {/* Core Value Pillar Points */}
         <section className="info-section">
           <h3 className="section-title">Why choose <span className="text-green" style={{ color: '#036942' }}>Africonnect</span></h3>
           <ul className="check-list">
@@ -132,7 +124,7 @@ const LandingPage = () => {
         </section>
       </div>
 
-      {/* 8. Footer */}
+      {/* 8. Modernized Footer Element */}
       <footer className="footer" style={{ backgroundColor: '#ffffff', color: '#222222', paddingTop: '80px', borderTop: '1px solid #eaeaea', width: '100%', display: 'block', margin: '0' }}>
         <div className="footer-top">
           <div className="footer-brand">
@@ -143,9 +135,18 @@ const LandingPage = () => {
                 <span className="text-black" style={{ color: '#000000' }}>CONNECT</span>
               </h2>
             </div>
-            <p style={{ color: '#333333', fontSize: '0.95rem', maxWidth: '340px', lineHeight: '1.5', marginTop: '15px' }}>
+            <p style={{ color: '#333333', fontSize: '0.95rem', maxWidth: '340px', lineHeight: '1.5', marginTop: '15px', marginBottom: '0' }}>
               Connecting African businesses with verified raw material suppliers.
             </p>
+
+            {/* ✅ FIXED: Embedded designer specified Escrow trust block directly below brand description */}
+            <div className="lp-designer-footer-trust">
+              <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', flexShrink: 0 }}>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="m9 11 2 2 4-4" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="lp-designer-trust-text">Escrow Supported</span>
+            </div>
           </div>
 
           <div className="footer-links-container">
@@ -177,22 +178,14 @@ const LandingPage = () => {
         <div className="footer-bottom" style={{ backgroundColor: '#22c55e', color: '#ffffff', textAlign: 'center', padding: '22px 0', width: '100%', display: 'block', margin: '0' }}>
           <p style={{ margin: '0', padding: '0' }}>© AFRICONNECT 2026. All rights reserved.</p>
         </div>
-        
-
       </footer>
 
-  
-  <AuthModal 
+      <AuthModal 
         isOpen={isAuthModalOpen} 
         onClose={() => setIsAuthModalOpen(false)} 
       />
     </>
-
-
-
-);
+  );
 };
-
-
 
 export default LandingPage;
