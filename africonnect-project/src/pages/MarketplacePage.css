@@ -20,7 +20,7 @@
 }
 
 .mkt-nav-logo-icon {
-  height: 36px;
+  height: 28px;
   width: auto;
   object-fit: contain;
 }
@@ -47,7 +47,8 @@
   gap: 32px;
 }
 
-.mkt-nav-links-group a {
+.mkt-nav-links-group a,
+.mkt-dashboard-nav-link {
   text-decoration: none;
   color: #475569;
   font-weight: 600;
@@ -55,8 +56,9 @@
   transition: color 0.15s ease;
 }
 
-.mkt-nav-links-group a:hover {
-  color: #036942;
+.mkt-nav-links-group a:hover,
+.mkt-dashboard-nav-link:hover {
+  color: #036942 !important;
 }
 
 @media (max-width: 768px) {
@@ -137,7 +139,7 @@
   font-size: 1.1rem;
 }
 
-/* Right Aspect-Ratio Image Frame Container (Fixes Blurriness completely) */
+/* Right Image Frame Container */
 .mkt-hero-right {
   flex: 1;
   width: 100%;
@@ -153,13 +155,11 @@
   height: 100% !important;
   object-fit: cover !important;
   object-position: center !important;
-  /* Ensures crisp rendering of the uncompressed asset file */
   image-rendering: -webkit-optimize-contrast !important;
-  image-rendering: quality !important;
 }
 
 /* ==========================================================================
-   --- FIGMA SEARCH COMPONENT STRIP BAR ---
+   --- UNIFIED SEARCH MATRIX PANEL (DOUBLE ROW ENGINE) ---
    ========================================================================== */
 .mkt-filter-strip {
   max-width: 1240px;
@@ -167,6 +167,14 @@
   padding: 0 40px;
 }
 
+.mkt-filter-inner-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  width: 100%;
+}
+
+/* Row 1: Traditional Directory Filter Bar */
 .mkt-filter-bar {
   display: flex;
   gap: 16px;
@@ -174,6 +182,8 @@
   border: 1px solid #e2e8f0;
   padding: 12px;
   border-radius: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mkt-search-wrapper {
@@ -216,6 +226,85 @@
 
 .mkt-search-btn:hover {
   background-color: #024f31;
+}
+
+/* Row 2: Promoted AI Smart Mode Search Structural Layout Frame */
+.mkt-ai-smart-search-bar {
+  display: flex;
+  gap: 16px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #faf5ff 100%); 
+  border: 1px solid #d8b4fe; 
+  padding: 12px;
+  border-radius: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.03);
+}
+
+.mkt-ai-search-input-wrapper {
+  flex: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mkt-ai-icon-sparkle {
+  position: absolute;
+  left: 16px;
+  color: #a855f7; 
+}
+
+.mkt-ai-search-input-wrapper input {
+  width: 100%;
+  padding: 14px 16px 14px 44px; 
+  border: 1px solid #e9d5ff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.mkt-ai-search-input-wrapper input::placeholder {
+  color: #a855f7;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.mkt-ai-search-input-wrapper input:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.08);
+}
+
+.mkt-ai-dropdown {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #e9d5ff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #6b21a8; 
+  font-size: 0.9rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+.mkt-ai-search-submit-btn {
+  background: linear-gradient(135deg, #7c3aed 0%, #036942 100%); 
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 32px;
+  height: 48px; 
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.mkt-ai-search-submit-btn:hover {
+  opacity: 0.92;
 }
 
 /* ==========================================================================
@@ -375,14 +464,6 @@
   cursor: pointer;
 }
 
-/* --- MOBILE LAYOUT SCALE CONSTRAINTS --- */
-@media (max-width: 992px) {
-  .mkt-hero-container { flex-direction: column; padding: 40px 20px; text-align: center; }
-  .mkt-hero-left { align-items: center; text-align: center; }
-  .mkt-hero-right { height: 280px; }
-  .mkt-filter-bar { flex-direction: column; }
-}
-
 /* ==========================================================================
    --- NO SEARCH RESULTS FALLBACK SPECIFICATIONS ---
    ========================================================================== */
@@ -411,108 +492,11 @@
   line-height: 1.5;
 }
 
-/* ==========================================================================
-   --- HIGH FIDELITY STAGGERED AI MODE LAYOUT ENGINE ---
-   ========================================================================== */
-.marketplace-page-scope .mkt-ai-mode-section {
-  width: 100%;
-  padding: 80px 20px;
-  /* Premium radial glowing gradient context matching your attachment background */
-  background: radial-gradient(circle at 85% 65%, #dcfce7 0%, #ffffff 55%);
-  margin-top: 60px;
-  border-top: 1px solid #f1f5f9;
-}
-
-.marketplace-page-scope .mkt-ai-section-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.marketplace-page-scope .mkt-ai-heading {
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  margin: 0 0 40px 0 !important;
-  text-align: left;
-  letter-spacing: -0.5px;
-}
-
-.marketplace-page-scope .mkt-ai-highlight {
-  color: #22c55e !important;
-  font-weight: 800 !important;
-}
-
-/* Staggered Cards Engine Pipeline */
-.marketplace-page-scope .mkt-ai-staggered-links {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-}
-
-.marketplace-page-scope .mkt-ai-action-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid #22c55e; /* Elegant glowing border token */
-  border-radius: 12px;
-  padding: 20px 24px;
-  width: 100%;
-  max-width: 600px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.marketplace-page-scope .mkt-ai-action-card span {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #334155;
-}
-
-.marketplace-page-scope .mkt-ai-chevron {
-  color: #1e293b;
-  transition: transform 0.2s ease;
-}
-
-/* Hover States: Soft card scaling and arrow displacement */
-.marketplace-page-scope .mkt-ai-action-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.08);
-  background-color: #fafafa;
-}
-
-.marketplace-page-scope .mkt-ai-action-card:hover .mkt-ai-chevron {
-  transform: translateX(4px);
-  color: #22c55e;
-}
-
-/* STAGGERED ALIGNMENT OFFSETS (Matches screenshot design) */
-.marketplace-page-scope .align-right {
-  margin-left: 20%;
-}
-
-.marketplace-page-scope .align-left {
-  margin-left: 10%;
-}
-
-.marketplace-page-scope .align-far-right {
-  margin-left: 25%;
-}
-
-/* Responsive constraints for smaller laptops/mobiles */
-@media (max-width: 900px) {
-  .marketplace-page-scope .align-right,
-  .marketplace-page-scope .align-left,
-  .marketplace-page-scope .align-far-right {
-    margin-left: 0 !important;
-    max-width: 100%;
-  }
-  .marketplace-page-scope .mkt-ai-mode-section {
-    background: #ffffff;
-  }
+/* --- MOBILE LAYOUT SCALE CONSTRAINTS --- */
+@media (max-width: 992px) {
+  .mkt-hero-container { flex-direction: column; padding: 40px 20px; text-align: center; }
+  .mkt-hero-left { align-items: center; text-align: center; }
+  .mkt-hero-right { height: 280px; }
+  .mkt-filter-bar, .mkt-ai-smart-search-bar { flex-direction: column; gap: 12px; }
+  .mkt-ai-dropdown, .mkt-dropdown, .mkt-ai-search-submit-btn, .mkt-search-btn { width: 100%; }
 }

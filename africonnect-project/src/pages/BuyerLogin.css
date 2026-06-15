@@ -1,153 +1,286 @@
 /* ==========================================================================
-   --- UNIFIED BUYER LOGIN ENGINE (SCOPED) ---
+   --- HIGH FIDELITY FIGMA BUYER LOGIN ARCHITECTURE (TWO-COLUMN SPLIT) ---
    ========================================================================== */
-.buyer-auth-scope {
-  background-color: #f8fafc !important;
-  min-height: 100vh !important;
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-  box-sizing: border-box !important;
-  padding: 40px 20px !important;
+.byr-login-container {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+  padding: 60px 40px;
 }
 
-/* Central Card Housing Context */
-.buyer-auth-scope .auth-card-wrapper {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 16px !important;
-  width: 100% !important;
-  max-width: 460px !important;
-  padding: 40px !important;
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
-  box-sizing: border-box !important;
+.byr-login-inner {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
 }
 
-/* Header Text Alignments */
-.buyer-auth-scope .auth-header-block {
-  text-align: center !important;
-  margin-bottom: 36px !important;
+/* --- LEFT SIDE VALUE PROPOSITION COLUMN --- */
+.byr-login-left {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.buyer-auth-scope .auth-header-block h2 {
-  font-size: 1.85rem !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  margin: 0 0 10px 0 !important;
-  letter-spacing: -0.75px !important;
+.byr-restricted-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #16a34a;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-.buyer-auth-scope .auth-header-block p {
-  font-size: 0.95rem !important;
-  color: #64748b !important;
-  margin: 0 !important;
-  line-height: 1.5 !important;
+.byr-main-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0b192c;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
 }
 
-/* Input Form Structuring Rules */
-.buyer-auth-scope .auth-form-element {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 24px !important;
+.byr-main-desc {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0 0 40px 0;
 }
 
-.buyer-auth-scope .auth-field-group {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  text-align: left !important;
+/* Feature 2x2 Layout Matrix Box */
+.byr-feature-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
 }
 
-.buyer-auth-scope .auth-field-group label {
-  font-size: 0.85rem !important;
-  font-weight: 700 !important;
-  color: #334155 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
+.byr-feature-card {
+  background: #eff6ff; /* Soft layout tint matching blueprint specifications */
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.buyer-auth-scope .label-row-forgot {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  width: 100% !important;
+.byr-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
 }
 
-.buyer-auth-scope .forgot-password-link {
-  font-size: 0.85rem !important;
-  font-weight: 600 !important;
-  color: #036942 !important;
-  text-decoration: none !important;
+.byr-icon-box.bg-green {
+  background-color: #dcfce7;
 }
 
-.buyer-auth-scope .forgot-password-link:hover {
-  text-decoration: underline !important;
+.byr-feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
 }
 
-/* Form Input Boundaries */
-.buyer-auth-scope .auth-field-group input {
-  width: 100% !important;
-  padding: 14px 16px !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 8px !important;
-  font-size: 0.95rem !important;
-  outline: none !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  box-sizing: border-box !important;
-  transition: all 0.15s ease-in-out !important;
+.byr-feature-card p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
 }
 
-.buyer-auth-scope .auth-field-group input:focus {
-  border-color: #036942 !important;
-  box-shadow: 0 0 0 3px rgba(3, 105, 66, 0.08) !important;
+/* --- RIGHT SIDE AUTHENTICATION CARD COLUMN --- */
+.byr-login-right {
+  flex: 0.9;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-/* Primary Form Action Button Token */
-.buyer-auth-scope .auth-execute-btn {
-  background-color: #036942 !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  padding: 14px !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-  margin-top: 8px !important;
-  width: 100% !important;
-  transition: background-color 0.15s ease !important;
+.byr-auth-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  box-sizing: border-box;
 }
 
-.buyer-auth-scope .auth-execute-btn:hover {
-  background-color: #024f31 !important;
+.byr-card-header {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-/* Redirect Footer Navigation Options links */
-.buyer-auth-scope .auth-redirect-footer {
-  text-align: center !important;
-  margin-top: 12px !important;
-  margin-bottom: 0 !important;
-  font-size: 0.9rem !important;
-  color: #64748b !important;
-  font-weight: 500 !important;
+.byr-card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0b192c;
+  margin: 0 0 6px 0;
 }
 
-.buyer-auth-scope .auth-redirect-footer a {
-  color: #036942 !important;
-  text-decoration: none !important;
-  font-weight: 700 !important;
+.byr-card-header p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
 }
 
-.buyer-auth-scope .auth-redirect-footer a:hover {
-  text-decoration: underline !important;
+/* Google OAuth Pill Button widget styling */
+.byr-google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s;
 }
 
-/* Responsive Scaling Constraints */
-@media (max-width: 480px) {
-  .buyer-auth-scope .auth-card-wrapper {
-    padding: 28px 20px !important;
-    border-radius: 12px !important;
-  }
+.byr-google-btn:hover {
+  background-color: #f8fafc;
+}
+
+.byr-google-icon-svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.byr-google-btn span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Structural Splitter Lines */
+.byr-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin: 24px 0;
+}
+
+.byr-divider::before,
+.byr-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.byr-divider:not(:empty)::before { margin-right: 16px; }
+.byr-divider:not(:empty)::after { margin-left: 16px; }
+
+/* Traditional Manual Fields Form Container */
+.byr-form-element {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.byr-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.byr-input-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.byr-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background-color: #f8fafc;
+  color: #334155;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.byr-input-group input:focus {
+  border-color: #000000;
+  background-color: #ffffff;
+}
+
+/* Figma Deep Solid Action Button Element */
+.byr-submit-btn {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+
+.byr-submit-btn:hover {
+  opacity: 0.9;
+}
+
+.byr-card-footer {
+  text-align: center;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.byr-forgot-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: underline;
+}
+
+.byr-register-redirect {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.byr-register-redirect a {
+  color: #16a34a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.byr-register-redirect a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adaptive Fluid Breakpoints */
+@media (max-width: 992px) {
+  .byr-login-inner { flex-direction: column; gap: 48px; }
+  .byr-login-left { align-items: center; text-align: center; }
+  .byr-login-right { justify-content: center; }
+  .byr-feature-matrix { grid-template-columns: 1fr; }
 }

@@ -1,7 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, User, MessageSquare, FileText, ShoppingBag, LogOut, Search, Bell, Send, CheckCheck, Plus, Eye } from 'lucide-react';
+import { 
+  LayoutDashboard, 
+  User, 
+  MessageSquare, 
+  FileText, 
+  ShoppingBag, 
+  LogOut, 
+  Search, 
+  Bell, 
+  Send, 
+  CheckCheck, 
+  Plus, 
+  Eye 
+} from 'lucide-react';
 import './BuyerDashboard.css';
+
+// Component Import
+import BuyerTransactions from '../../components/BuyerDashboard/BuyerTransactions';
 
 // Local Asset Imports
 import cottonImg from '../../assets/ProductListing/cotton.png';
@@ -55,7 +71,7 @@ const BuyerDashboard = () => {
       supplier: 'Zambezi Organic Ltd',
       commodity: 'Split Ginger',
       lastMessage: 'Samples are dispatched. Tracking ID: AF-99427-X',
-      time: 'June 4',
+      time: 'Yesterday',
       unread: false,
       online: true,
       avatar: 'https://placehold.co/100/b45309/ffffff?text=ZO'
@@ -174,11 +190,17 @@ const BuyerDashboard = () => {
               <FileText size={18} />
               <span>My RFQs</span>
             </button>
-            <button className="nav-btn" onClick={() => navigate('/marketplace')}>
+            
+            <button className={`nav-btn ${activeTab === 'transactions' ? 'active' : ''}`} onClick={() => setActiveTab('transactions')}>
               <ShoppingBag size={18} />
-              <span>Orders</span>
+              <span>Transactions</span>
             </button>
-            <button className="nav-btn logout" onClick={() => navigate('/')}>
+            
+            {/* ✅ FIXED: Safely cleans out browser token flags on application exit */}
+            <button className="nav-btn logout" onClick={() => {
+              localStorage.removeItem('isLoggedIn');
+              navigate('/');
+            }}>
               <LogOut size={18} />
               <span>Log out</span>
             </button>
@@ -367,7 +389,6 @@ const BuyerDashboard = () => {
             </div>
           )}
 
-          {/* ✅ RFQS TAB ENGINE INTEGRATION */}
           {activeTab === 'rfqs' && (
             <div className="rfqs-view-wrapper">
               <div className="rfq-header-row">
@@ -375,14 +396,12 @@ const BuyerDashboard = () => {
                   <h1>Sourcing & RFQ Portal</h1>
                   <p>Track bids, dispatch specifications, and manage global supplier invitations.</p>
                 </div>
-                {/* Strategic Call to Action button */}
                 <button className="create-rfq-action-btn" onClick={() => navigate('/rfq')}>
                   <Plus size={16} />
                   <span>Raise New RFQ</span>
                 </button>
               </div>
 
-              {/* Internal Dashboard RFQ Analytics Metrics Row */}
               <div className="rfq-mini-stats-grid">
                 <div className="rfq-mini-card">
                   <h4>Open Requests</h4>
@@ -398,7 +417,6 @@ const BuyerDashboard = () => {
                 </div>
               </div>
 
-              {/* Main Enterprise RFQs Data Table */}
               <div className="rfq-table-card">
                 <div className="rfq-table-wrapper">
                   <table className="rfq-data-table">
@@ -443,6 +461,13 @@ const BuyerDashboard = () => {
               </div>
             </div>
           )}
+
+          {activeTab === 'transactions' && (
+            <div className="messages-view-wrapper">
+              <BuyerTransactions />
+            </div>
+          )}
+          
         </main>
 
       </div>

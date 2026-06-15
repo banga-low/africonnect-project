@@ -1,0 +1,399 @@
+/* ==========================================================================
+   --- SUPPLIER CENTRALIZED TRANSACTIONS DATA MODULE VIEW ---
+   ========================================================================== */
+.supp-txn-view-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 1. Global View Search Layout Strip */
+.supp-txn-search-bar-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.supp-txn-search-input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.supp-txn-search-input-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: #334155;
+  width: 100%;
+}
+
+/* 2. Top Metric Total Revenue Header block */
+.supp-txn-revenue-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: left;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.supp-txn-card-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.supp-txn-revenue-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 12px 0 0 0;
+}
+
+/* 3. Centralized Transaction History Data Module */
+.supp-txn-history-board {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.supp-txn-board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.supp-txn-header-left {
+  text-align: left;
+}
+
+.supp-txn-header-left h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #143625; /* High fidelity deep forest theme */
+  margin: 0 0 6px 0;
+}
+
+.supp-txn-header-left p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.supp-txn-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.supp-txn-sub-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.supp-txn-export-btn {
+  background: #ffffff;
+  border: 1px solid #0f172a;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 4. Tabular Data Form Configurations */
+.supp-txn-table-responsive-frame {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.supp-txn-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.supp-txn-data-table th {
+  background-color: #f1f5f9;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 14px 16px;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.supp-txn-data-table td {
+  padding: 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.supp-txn-bold-id {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.supp-txn-bold-amount {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.supp-txn-buyer-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.supp-txn-avatar-placeholder {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.supp-txn-qty-subtext {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+/* High Fidelity Interactive Status Badges Status Indicators */
+.supp-txn-status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.supp-txn-status-pill.status-protected {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+.supp-txn-status-pill.status-escrow-active {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.supp-txn-status-pill.status-completed {
+  background-color: #ccfbf1;
+  color: #0f766e;
+}
+
+.supp-txn-delivery-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.supp-txn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.supp-txn-dot.dot-awaiting-shipment { background-color: #94a3b8; }
+.supp-txn-dot.dot-in-progress { background-color: #22c55e; }
+.supp-txn-dot.dot-in-transit { background-color: #06b6d4; }
+
+/* Table Pagination Block footer alignment rules */
+.supp-txn-table-footer-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.supp-txn-pagination-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.supp-txn-arrow-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 5. Double Column Interactive Security Framework Section blocks */
+.supp-txn-protection-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 24px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.supp-txn-funds-protection-card {
+  background: #ffffff;
+  border: 2px solid #22c55e;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.supp-txn-funds-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.supp-txn-funds-info h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.supp-txn-funds-info p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.supp-txn-lock-icon-container {
+  background-color: #fef3c7;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.supp-txn-protected-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 24px 0 0 0;
+}
+
+/* Right Premium Assurance Block configuration style specs */
+.supp-txn-assurance-banner-card {
+  background-color: #4ed396;
+  border-radius: 12px;
+  padding: 24px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.supp-txn-assurance-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.supp-txn-assurance-heading h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.supp-txn-assurance-body {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 24px 0;
+}
+
+/* Brand footer strip flex management */
+.supp-txn-assurance-footer-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* Spaces the capsule box nicely away from the raw images */
+  margin-top: auto !important;
+}
+
+/* ✅ FIXED: Pure text-only pill capsule container with circled corners */
+.supp-txn-text-only-capsule {
+  background-color: #000000 !important;
+  border-radius: 14px !important; /* Circled capsule corners */
+  padding: 4px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 24px !important;
+  box-sizing: border-box !important;
+}
+
+/* Crisp white styling for typography inside the dark background widget */
+.supp-txn-powered-by {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+}
+
+/* ✅ FIXED: External brand icons render clean out on the open green surface */
+.supp-txn-badge-asset-img {
+  height: 24px !important; /* Slightly larger to look excellent next to the text pill */
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Mobile View Scaling Adaptive Rule Adjustments */
+@media (max-width: 992px) {
+  .supp-txn-protection-row {
+    grid-template-columns: 1fr;
+  }
+}

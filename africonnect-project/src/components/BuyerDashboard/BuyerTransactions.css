@@ -1,0 +1,220 @@
+/* ==========================================================================
+   --- HIGH FIDELITY FIGMA BUYER TRANSACTIONS MOTOR VIEW ---
+   ========================================================================== */
+.byr-txn-view-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.byr-txn-board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.byr-txn-header-left { text-align: left; }
+.byr-txn-header-left h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #143625;
+  margin: 0 0 6px 0;
+}
+.byr-txn-header-left p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.byr-txn-export-btn {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Central Canvas Border Layout */
+.byr-txn-history-board {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.byr-txn-table-responsive-frame { width: 100%; overflow-x: auto; }
+
+.byr-txn-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.byr-txn-data-table th {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 16px;
+  letter-spacing: 0.3px;
+  background-color: #f8fafc;
+}
+
+.byr-txn-data-table td {
+  padding: 18px 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.byr-txn-bold-id { font-weight: 700; color: #0f172a; }
+.byr-txn-bold-amount { font-weight: 600; color: #334155; }
+
+.byr-txn-supplier-cell {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2px;
+}
+
+.byr-txn-supplier-title {
+  font-weight: 600;
+  color: #334155;
+}
+
+.byr-txn-supplier-loc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.byr-txn-commodity-cell {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.82rem;
+}
+
+/* Status Pill Layout Configurations matching original screenshot shapes */
+.byr-txn-status-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.byr-txn-status-pill.status-awaiting-payment {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+.byr-txn-status-pill.status-escrow-active {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.byr-txn-status-pill.status-completed {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+/* Pagination Row Styles */
+.byr-txn-table-footer-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 8px 0;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.byr-txn-pagination-arrows { display: flex; gap: 8px; }
+
+.byr-txn-arrow-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+/* Bottom Grid Architecture */
+.byr-txn-protection-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.byr-txn-funds-protection-card {
+  background: #ffffff;
+  border: 1px solid #22c55e;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.byr-txn-funds-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.byr-txn-funds-info h3 { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0 0 4px 0; }
+.byr-txn-funds-info p { font-size: 0.85rem; color: #64748b; margin: 0; }
+
+.byr-txn-lock-icon-container {
+  background-color: #fef3c7;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.byr-txn-protected-value { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 24px 0 0 0; }
+
+.byr-txn-assurance-banner-card {
+  background-color: #4ed396;
+  border-radius: 12px;
+  padding: 24px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.byr-txn-assurance-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.byr-txn-assurance-heading h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+.byr-txn-assurance-body { font-size: 0.88rem; line-height: 1.5; color: rgba(255, 255, 255, 0.92); margin: 0 0 24px 0; }
+
+/* The Pure Black text capsule widget tracking specifications */
+.byr-txn-assurance-footer-brand { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+
+.byr-txn-text-only-capsule {
+  background-color: #000000;
+  border-radius: 14px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.byr-txn-powered-by {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.byr-txn-badge-asset-img { height: 24px; width: auto; object-fit: contain; display: block; }
+
+@media (max-width: 992px) {
+  .byr-txn-protection-row { grid-template-columns: 1fr; }
+}

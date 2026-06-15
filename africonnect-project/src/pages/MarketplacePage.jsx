@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Included Link components for production client-side navigation
-import { ChevronRight } from 'lucide-react'; 
+import { useNavigate, Link } from 'react-router-dom';
+import { Sparkles } from 'lucide-react'; 
 import { dummyProducts } from '../data/dummyProducts';
 import './MarketplacePage.css'; 
 import cocoaFarmImg from '../assets/Marketplace/cocoa-farm.jpg';
@@ -10,15 +10,19 @@ function MarketplacePage() {
   const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [aiSearchQuery, setAiSearchQuery] = useState('');
+  const [aiStrategy, setAiStrategy] = useState('all');
   const [filteredProducts, setFilteredProducts] = useState(dummyProducts);
 
-  // Intercepts button clicks to bypass the signup form and jump directly to the RFQ setup
+  // Intercepts button clicks to jump directly to the RFQ setup if bypassed via inner HTML contents
   useEffect(() => {
     const handleGlobalInquiryClick = (e) => {
       if (e.target && e.target.textContent === 'Submit Inquiry') {
         e.preventDefault();
         e.stopPropagation();
-        navigate('/rfq');
+        
+        // Execute identical session gate check
+        handleInquiryProtectionGuard(e);
       }
     };
 
@@ -26,6 +30,22 @@ function MarketplacePage() {
     return () => document.removeEventListener('click', handleGlobalInquiryClick);
   }, [navigate]);
 
+  // ✅ CRITICAL PROTECTION INTERCEPTOR: Bounces unauthenticated guests to signup with a return bookmark
+  const handleInquiryProtectionGuard = (e) => {
+    e.preventDefault();
+    const userIsAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+    if (userIsAuthenticated) {
+      navigate('/rfq');
+    } else {
+      console.log("Anonymous guest context detected. Saving navigation state intercept point...");
+      localStorage.setItem('redirect_after_auth', '/rfq');
+      alert("Authentication required. Redirecting to registration to verify your business credentials securely.");
+      navigate('/buyer-signup');
+    }
+  };
+
+  // Directory Filter Search Engine Execution
   const handleSearchExecute = (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
@@ -45,20 +65,23 @@ function MarketplacePage() {
     setFilteredProducts(matches);
   };
 
-  // Integration hooks for AI API microservice connections
-  const handleAISupplierMatch = () => {
-    console.log("Triggering Geospatial AI API to find closest supplier...");
-    alert("Connecting to AI Model: Calculating closest geolocation routing metrics...");
-  };
+  // Smart AI Search Execution Handler 
+  const handleAISmartSearchExecute = (e) => {
+    e.preventDefault();
+    if (!aiSearchQuery.trim()) {
+      alert("Please enter an AI prompt query context");
+      return;
+    }
 
-  const handleAIVerifiedSearch = () => {
-    console.log("Triggering NLP verification analysis API...");
-    alert("Connecting to AI Model: Scanning global supplier credentials & historical risk analysis...");
-  };
+    console.log(`Executing AI Search Strategy [${aiStrategy}] with prompt:`, aiSearchQuery);
 
-  const handleAIPriceComparison = () => {
-    console.log("Triggering Predictive Pricing Analytics ML Model...");
-    alert("Connecting to AI Model: Fetching real-time global commodity index price forecasting...");
+    if (aiStrategy === 'closest') {
+      alert(`Connecting to Geospatial AI Engine...\nCalculating optimal route maps matching: "${aiSearchQuery}"`);
+    } else if (aiStrategy === 'verified') {
+      alert(`Connecting to NLP Compliance Model...\nScanning global supplier security certificates matching: "${aiSearchQuery}"`);
+    } else {
+      alert(`Connecting to General AI Matrix Layer...\nScanning marketplace parameters for: "${aiSearchQuery}"`);
+    }
   };
 
   return (
@@ -74,11 +97,26 @@ function MarketplacePage() {
           </span>
         </div>
         
-        {/* Swapped standard anchors for native React Router Link items to avoid Netlify 404s */}
         <nav className="mkt-nav-links-group">
           <Link to="/">Home</Link>
           <Link to="/buyer-login">Login</Link>
-          <Link to="/buyer-dashboard">Dashboard</Link>
+          
+          {/* ✅ FIXED SIDEBAR ACTION: Added protective guard logic intercept on dashboard link selection */}
+          <span 
+            onClick={() => {
+              const userIsAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+              if (userIsAuthenticated) {
+                navigate('/buyer-dashboard');
+              } else {
+                alert("Access Restricted. Please sign in to view your dashboard hub workspace.");
+                navigate('/buyer-login');
+              }
+            }} 
+            style={{ cursor: 'pointer' }}
+            className="mkt-dashboard-nav-link"
+          >
+            Dashboard
+          </span>
         </nav>
       </header>
 
@@ -100,23 +138,53 @@ function MarketplacePage() {
 
       {/* SEARCH FILTER STRIP */}
       <div className="mkt-filter-strip">
-        <form className="mkt-filter-bar" onSubmit={handleSearchExecute}>
-          <div className="mkt-search-wrapper">
-            <input 
-              type="text" 
-              placeholder="Search for materials, commodities or suppliers..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <select className="mkt-dropdown" defaultValue="">
-            <option value="" disabled>All Categories</option>
-          </select>
-          <select className="mkt-dropdown" defaultValue="">
-            <option value="" disabled>All Regions</option>
-          </select>
-          <button type="submit" className="mkt-search-btn">Search</button>
-        </form>
+        <div className="mkt-filter-inner-block">
+          
+          {/* Row 1: Traditional Directory Search Bar */}
+          <form className="mkt-filter-bar" onSubmit={handleSearchExecute}>
+            <div className="mkt-search-wrapper">
+              <input 
+                type="text" 
+                placeholder="Search for materials, commodities or suppliers..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <select className="mkt-dropdown" defaultValue="">
+              <option value="" disabled>All Categories</option>
+            </select>
+            <select className="mkt-dropdown" defaultValue="">
+              <option value="" disabled>All Regions</option>
+            </select>
+            <button type="submit" className="mkt-search-btn">Search</button>
+          </form>
+
+          {/* Row 2: Promoted AI Smart Mode Search Architecture */}
+          <form className="mkt-ai-smart-search-bar" onSubmit={handleAISmartSearchExecute}>
+            <div className="mkt-ai-search-input-wrapper">
+              <Sparkles size={16} className="mkt-ai-icon-sparkle" />
+              <input 
+                type="text"
+                placeholder="search smarter with ai"
+                value={aiSearchQuery}
+                onChange={(e) => setAiSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            <select 
+              className="mkt-ai-dropdown" 
+              value={aiStrategy}
+              onChange={(e) => setAiStrategy(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="closest">Find Closest Supplier</option>
+              <option value="verified">Search Verified Supplier</option>
+            </select>
+            
+            <button type="submit" className="mkt-ai-search-submit-btn">AI Search</button>
+          </form>
+
+        </div>
       </div>
 
       {/* PRODUCT EXHIBITION SECTION */}
@@ -139,7 +207,7 @@ function MarketplacePage() {
                 <div className="mkt-card-img-box">
                   <img src={product.image} alt={product.name} />
                   {product.status && (
-                    <span className={`mkt-status-tag ${product.status.toLowerCase().replace(' ', '-')}`}>
+                    <span className="mkt-status-tag verified">
                       {product.status}
                     </span>
                   )}
@@ -152,45 +220,16 @@ function MarketplacePage() {
                     <span className="mkt-moq-value">Min.order: {product.moq} tons</span>
                   </div>
                   <div className="mkt-card-actions">
-                    <button className="mkt-btn-inquiry" onClick={() => navigate('/rfq')}>
+                    <button className="mkt-btn-inquiry" onClick={handleInquiryProtectionGuard}>
                       Submit Inquiry
                     </button>
-                    <button className="mkt-btn-chat">Chat</button>
+                    <button className="mkt-btn-chat" onClick={handleInquiryProtectionGuard}>Chat</button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         )}
-      </section>
-
-      {/* HIGH-FIDELITY STAGGERED AI MODE SECTION */}
-      <section className="mkt-ai-mode-section">
-        <div className="mkt-ai-section-inner">
-          <h2 className="mkt-ai-heading">
-            Source Smarter With <span className="mkt-ai-highlight">AI Mode</span>
-          </h2>
-          
-          <div className="mkt-ai-staggered-links">
-            {/* Card 1: Right offset */}
-            <div className="mkt-ai-action-card align-right" onClick={handleAISupplierMatch}>
-              <span>Find Closest Supplier Here</span>
-              <ChevronRight size={18} className="mkt-ai-chevron" />
-            </div>
-
-            {/* Card 2: Centered / Left offset */}
-            <div className="mkt-ai-action-card align-left" onClick={handleAIVerifiedSearch}>
-              <span>Search Verified Supplier</span>
-              <ChevronRight size={18} className="mkt-ai-chevron" />
-            </div>
-
-            {/* Card 3: Deep right offset */}
-            <div className="mkt-ai-action-card align-far-right" onClick={handleAIPriceComparison}>
-              <span>Compare Commodity Price</span>
-              <ChevronRight size={18} className="mkt-ai-chevron" />
-            </div>
-          </div>
-        </div>
       </section>
 
     </div>
