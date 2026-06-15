@@ -5,14 +5,19 @@ import { dummyProducts } from '../data/dummyProducts';
 import './MarketplacePage.css'; 
 import cocoaFarmImg from '../assets/Marketplace/cocoa-farm.jpg';
 import logoImg from '../assets/LandingPage/logo.png';
+import { supabase } from '../supabase/supabaseClient';
 
 function MarketplacePage() {
   const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [category, setCategory] = useState('');
   const [aiSearchQuery, setAiSearchQuery] = useState('');
   const [aiStrategy, setAiStrategy] = useState('all');
   const [filteredProducts, setFilteredProducts] = useState(dummyProducts);
+  const [results, setResults] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // Intercepts button clicks to jump directly to the RFQ setup if bypassed via inner HTML contents
   useEffect(() => {
@@ -66,23 +71,38 @@ function MarketplacePage() {
   };
 
   // Smart AI Search Execution Handler 
-  const handleAISmartSearchExecute = (e) => {
-    e.preventDefault();
-    if (!aiSearchQuery.trim()) {
-      alert("Please enter an AI prompt query context");
-      return;
-    }
+  const handleAISmartSearchExecute = async (e) => {
+  e.preventDefault();
+  if (!aiSearchQuery.trim()) return alert("Enter search term");
 
-    console.log(`Executing AI Search Strategy [${aiStrategy}] with prompt:`, aiSearchQuery);
+  setIsLoading(true);
+  if (aiStrategy === 'closest'){
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-    if (aiStrategy === 'closest') {
-      alert(`Connecting to Geospatial AI Engine...\nCalculating optimal route maps matching: "${aiSearchQuery}"`);
-    } else if (aiStrategy === 'verified') {
-      alert(`Connecting to NLP Compliance Model...\nScanning global supplier security certificates matching: "${aiSearchQuery}"`);
-    } else {
-      alert(`Connecting to General AI Matrix Layer...\nScanning marketplace parameters for: "${aiSearchQuery}"`);
-    }
+
+    // Change function name here if yours is different
+    const { data, error } = await supabase.rpc('nearest_suppliers', {
+      user_lat: lat,
+      user_lng: lng,
+      search_term: aiSearchQuery
+    });
+
+    setIsLoading(false);
+    
+    if (error) return console.error(error), alert(error.message);
+    console.log('Results:', data);
+    setFilteredProducts(data);
+    setResults(data);
+  }, () => {
+    setIsLoading(false);
+    alert('GPS blocked. Enable location permission.');
+  });
+
   };
+}
+
+  
 
   return (
     <div className="mkt-page-wrapper">
@@ -183,6 +203,38 @@ function MarketplacePage() {
             
             <button type="submit" className="mkt-ai-search-submit-btn">AI Search</button>
           </form>
+
+    {/* Results from Supabase RPC */}
+
+    {isLoading && (
+      <p className="mt-4 text-gray-500">Finding suppliers near you...</p>
+    )}
+
+    {results.length > 0 && !isLoading && (
+      <div className="mt-6 space-y-3">
+        <h3 className="font-semibold text-lg">Closest Suppliers</h3>
+        
+        {results.map((s) => (
+          <div key={s.id} className="border rounded-lg p-4 hover:shadow-md transition">
+            <div className="flex justify-between items-start">
+              <div>
+                <h4 className="font-bold">{s.name}</h4>
+                <p className="text-sm text-gray-600">{s.product_category} • {s.country}, {s.region}</p>
+                <p className="text-sm mt-1">📞 {s.phone}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold text-green-600">{s.distance_km.toFixed(1)}</p>
+                <p className="text-xs text-gray-500">km away</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {!isLoading && results.length === 0 && aiStrategy === 'closest' && (
+      <p className="mt-4 text-gray-400">No suppliers found. Try 'cocoa' or 'cashew'.</p>
+    )}
 
         </div>
       </div>
