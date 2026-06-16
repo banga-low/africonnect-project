@@ -83,9 +83,10 @@ function MarketplacePage() {
 
     // Change function name here if yours is different
     const { data, error } = await supabase.rpc('nearest_suppliers', {
+      search_term: aiSearchQuery
       user_lat: lat,
       user_lng: lng,
-      search_term: aiSearchQuery
+     
     });
 
     setIsLoading(false);
