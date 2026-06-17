@@ -11,6 +11,7 @@ import {
 import './BuyerTransactions.css';
 import signImg from '../../assets/sign.png';
 import logoImg from '../../assets/logo.png';
+import EscrowPayment from '../EscrowPayment';
 
 // Dummy Data mapped precisely from your Buyer Figma template screen
 const buyerDummyTransactions = [
