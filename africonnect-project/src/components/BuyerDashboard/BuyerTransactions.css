@@ -73,6 +73,7 @@
   font-size: 0.88rem;
   color: #334155;
   border-bottom: 1px solid #f8fafc;
+  vertical-align: middle;
 }
 
 .byr-txn-bold-id { font-weight: 700; color: #0f172a; }
@@ -115,15 +116,75 @@
   color: #c2410c;
 }
 
+/* ✅ UPDATED: Shifted active escrow state to a vibrant purple to differentiate from complete */
 .byr-txn-status-pill.status-escrow-active {
-  background-color: #f0fdf4;
-  color: #16a34a;
+  background-color: #f5f3ff;
+  color: #7c3aed;
 }
 
 .byr-txn-status-pill.status-completed {
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: #dcfce7;
+  color: #16a34a;
 }
+
+/* ==========================================================================
+   --- NEW ESCROW DYNAMIC WORKFLOW INTERACTION ENGINE CLASSES ---
+   ========================================================================== */
+.byr-escrow-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  white-space: nowrap;
+}
+
+.byr-escrow-action-btn.deposit-btn {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.byr-escrow-action-btn.deposit-btn:hover {
+  background-color: #15803d;
+  transform: translateY(-1px);
+}
+
+.byr-escrow-action-btn.confirm-btn {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.byr-escrow-action-btn.confirm-btn:hover {
+  background-color: #6d28d9;
+  transform: translateY(-1px);
+}
+
+.byr-escrow-secured-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #16a34a;
+  background-color: #f0fdf4;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.icon-green {
+  color: #16a34a;
+}
+
+/* ==========================================================================
+   --- BASELINE LAYOUT RULES CONTINUED ---
+   ========================================================================== */
 
 /* Pagination Row Styles */
 .byr-txn-table-footer-pagination {
