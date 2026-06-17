@@ -52,7 +52,15 @@ const LandingPage = () => {
           <div className="nav-links">
             <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</span>
             <span onClick={() => navigate('/marketplace')} style={{ cursor: 'pointer' }}>Buy</span>
-            <button className="nav-search-btn" onClick={() => setIsAuthModalOpen(true)}>
+            
+            {/* ✅ FIXED: Wipes out lingering RFQ redirection state flags on direct header click intent */}
+            <button 
+              className="nav-search-btn" 
+              onClick={() => {
+                localStorage.removeItem('redirect_after_auth');
+                setIsAuthModalOpen(true);
+              }}
+            >
               Login
             </button>
           </div>
@@ -139,7 +147,6 @@ const LandingPage = () => {
               Connecting African businesses with verified raw material suppliers.
             </p>
 
-            {/* ✅ FIXED: Embedded designer specified Escrow trust block directly below brand description */}
             <div className="lp-designer-footer-trust">
               <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', flexShrink: 0 }}>
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>

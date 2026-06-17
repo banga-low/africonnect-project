@@ -186,7 +186,6 @@ function MarketplacePage() {
             >
               <option value="all">All</option>
               <option value="closest">Find Closest Supplier</option>
-              {/* FIXED: Label customized to enterprise typography preferences */}
               <option value="verified">Search Reliable Supplier</option>
             </select>
             
@@ -206,9 +205,15 @@ function MarketplacePage() {
                 <div key={s.id} className="border rounded-lg p-4 hover:shadow-md transition" style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', backgroundColor: '#f8fafc', marginBottom: '12px' }}>
                   <div className="flex justify-between items-start" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <div style={{ textAlign: 'left' }}>
-                      <h4 className="font-bold" style={{ margin: '0 0 4px 0', fontSize: '1.1rem', color: '#0f172a' }}>{s.name}</h4>
+                      
+                      <h4 className="font-bold" style={{ margin: '0 0 4px 0', fontSize: '1.1rem', color: '#0f172a' }}>
+                        {s.name} <span style={{ fontSize: '0.72rem', color: '#16a34a', backgroundColor: '#dcfce7', padding: '2px 8px', borderRadius: '10px', marginLeft: '6px', fontWeight: '700', whiteSpace: 'nowrap' }}>Verified Supplier</span>
+                      </h4>
                       <p className="text-sm text-gray-600" style={{ margin: '0 0 4px 0', fontSize: '0.85rem', color: '#475569' }}>{s.product_category} • {s.country}, {s.region}</p>
-                      <p className="text-sm mt-1" style={{ margin: '0', fontSize: '0.85rem', color: '#475569' }}>专 {s.phone}</p>
+                      
+                      <p className="text-sm mt-1" style={{ margin: '0', fontSize: '0.85rem', color: '#ef4444', fontWeight: '700' }}>
+                        Min.order: 1 ton
+                      </p>
                     </div>
                     <div className="text-right" style={{ textAlign: 'right' }}>
                       <p className="text-2xl font-bold text-green-600" style={{ margin: '0', fontSize: '1.5rem', fontWeight: '800', color: '#16a34a' }}>{s.distance_km ? s.distance_km.toFixed(1) : '0.0'}</p>
@@ -242,39 +247,65 @@ function MarketplacePage() {
           </div>
         ) : (
           <div className="mkt-products-grid">
-            {filteredProducts.map((product) => (
-              <div className="mkt-product-card" key={product.id}>
-                <div className="mkt-card-img-box">
-                  {/* FIXED: Gracefully uses fallback images when Supabase schema strings contain undefined image rows */}
-                  <img src={product.image || cocoaFarmImg} alt={product.name} />
-                  {(product.status || !product.image) && (
-                    <span className="mkt-status-tag verified">
-                      {product.status || "Verified"}
-                    </span>
-                  )}
-                </div>
-                <div className="mkt-card-body">
-                  <h3 className="mkt-product-title">{product.name}</h3>
-                  {/* FIXED: Normalizes origin rendering whether pulling from dummy mock fields or raw relational location columns */}
-                  <p className="mkt-product-origin">
-                    ORIGIN: {product.origin || `${product.region || ''}, ${product.country || ''}`}
-                  </p>
+            {filteredProducts.map((product) => {
+              const isOutOfStock = product.status?.toLowerCase() === 'out of stock';
+
+              return (
+                <div className={`mkt-product-card ${isOutOfStock ? 'mkt-card-out-of-stock' : ''}`} key={product.id}>
                   
-                  {/* FIXED: Modified metric token rendering context to display price per industrial ton */}
-                  <div className="mkt-price-line">
-                    <span className="mkt-price-value">PRICE: ${product.price || '1,250'}/ton</span>
-                    <span className="mkt-moq-value">Min.order: {product.moq || '15'} tons</span>
+                  <div className="mkt-card-img-box">
+                    {/* ✅ Image takes grayscale filter layer strictly on out of stock states */}
+                    <img 
+                      src={product.image || cocoaFarmImg} 
+                      alt={product.name} 
+                      className={isOutOfStock ? 'mkt-img-grayed-blur' : ''} 
+                    />
+                    
+                    {/* ✅ Image top level canvas stamp architecture */}
+                    {isOutOfStock ? (
+                      <div className="mkt-oos-image-stamp-wrapper">
+                        <div className="mkt-oos-stamp-badge">Out Of Stock</div>
+                      </div>
+                    ) : (
+                      (product.status || !product.image) && (
+                        <span className="mkt-status-tag verified">
+                          {product.status === "Verified" ? "Verified Supplier" : (product.status || "Verified Supplier")}
+                        </span>
+                      )
+                    )}
                   </div>
                   
-                  <div className="mkt-card-actions">
-                    <button className="mkt-btn-inquiry" onClick={handleInquiryProtectionGuard}>
-                      Submit Inquiry
-                    </button>
-                    <button className="mkt-btn-chat" onClick={handleInquiryProtectionGuard}>Chat</button>
+                  <div className="mkt-card-body">
+                    <h3 className="mkt-product-title">{product.name}</h3>
+                    <p className="mkt-product-origin">
+                      ORIGIN: {product.origin || `${product.region || ''}, ${product.country || ''}`}
+                    </p>
+                    
+                    <div className="mkt-price-line">
+                      <span className="mkt-price-value">PRICE: ${product.price || '1,250'}/ton</span>
+                      <span className="mkt-moq-value">Min.order: 1 ton</span>
+                    </div>
+                    
+                    <div className="mkt-card-actions">
+                      <button 
+                        className="mkt-btn-inquiry" 
+                        onClick={handleInquiryProtectionGuard}
+                        disabled={isOutOfStock}
+                      >
+                        Submit Inquiry
+                      </button>
+                      <button 
+                        className="mkt-btn-chat" 
+                        onClick={handleInquiryProtectionGuard}
+                        disabled={isOutOfStock}
+                      >
+                        Chat
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>

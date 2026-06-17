@@ -4,32 +4,23 @@ import {
   Lock, 
   ChevronLeft, 
   ChevronRight,
-  CreditCard,
   PackageCheck,
   ShieldCheck
 } from 'lucide-react';
 import './BuyerTransactions.css';
 import signImg from '../../assets/sign.png';
 import logoImg from '../../assets/logo.png';
+
+// ✅ IMPORT THE LIVE PAYMENTS COMPONENT WRITTEN BY YOUR COLLEAGUE
 import EscrowPayment from '../EscrowPayment';
 
 export default function BuyerTransactions() {
   // Mapped seamlessly from your transaction lifecycle workflow model
   const [transactions, setTransactions] = useState([
-    { id: 'TXN001', supplier: 'Lualaba cocoa farm Ltd', location: 'Abuja, Nigeria', date: 'May 24, 2026', amount: '$2,400.00', status: 'Awaiting Payment', commodity: 'Cocoa / 12 Tons' },
-    { id: 'TXN002', supplier: 'Ivory Gold cocoa warehouse', location: 'Lagos, Nigeria', date: 'Feb 22, 2026', amount: '$4,500.00', status: 'Escrow Active', commodity: 'Cocoa / 11 Tons' },
-    { id: 'TXN003', supplier: 'Helios Cashew', location: 'Lagos, Nigeria', date: 'Jan 18, 2026', amount: '$6,000.00', status: 'Completed', commodity: 'Cashew / 15 Tons' }
+    { id: 'TXN001', supplier: 'Lualaba cocoa farm Ltd', location: 'Abuja, Nigeria', date: 'May 24, 2026', amount: 2400.00, status: 'Awaiting Payment', commodity: 'Cocoa / 12 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'lualaba@supplier.com' },
+    { id: 'TXN002', supplier: 'Ivory Gold cocoa warehouse', location: 'Lagos, Nigeria', date: 'Feb 22, 2026', amount: 4500.00, status: 'Escrow Active', commodity: 'Cocoa / 11 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'ivorygold@supplier.com' },
+    { id: 'TXN003', supplier: 'Helios Cashew', location: 'Lagos, Nigeria', date: 'Jan 18, 2026', amount: 6000.00, status: 'Completed', commodity: 'Cashew / 15 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'helios@supplier.com' }
   ]);
-
-  // UI Action Intercepts (Will hook directly into your colleague's escrow API endpoints)
-  const handleDepositIntoEscrow = (txnId) => {
-    alert(`[API CALL TRIGGER]: Initializing secure payment vault token for ${txnId}.\nFunds will be securely locked inside the platform escrow contract.`);
-    
-    // Optimistic UI state transformation to mirror successful API callback flow
-    setTransactions(prev => prev.map(t => 
-      t.id === txnId ? { ...t, status: 'Escrow Active' } : t
-    ));
-  };
 
   const handleConfirmDeliveryReceipt = (txnId) => {
     const confirmation = window.confirm(`Are you sure you want to verify cargo delivery for transaction ${txnId}?\nThis alerts the admin to release held funds to the supplier.`);
@@ -82,7 +73,7 @@ export default function BuyerTransactions() {
                     </div>
                   </td>
                   <td>{txn.date}</td>
-                  <td className="byr-txn-bold-amount">{txn.amount}</td>
+                  <td className="byr-txn-bold-amount">R{txn.amount.toLocaleString()}</td>
                   <td>
                     <span className={`byr-txn-status-pill status-${txn.status.toLowerCase().replace(' ', '-')}`}>
                       {txn.status}
@@ -92,14 +83,15 @@ export default function BuyerTransactions() {
                   
                   {/* CONTEXT-AWARE DYNAMIC WORKFLOW BUTTON CONSOLE */}
                   <td style={{ textAlign: 'center' }}>
+                    
+                    {/* ✅ SWITCHED TO LIVE FLUTTERWAVE GATEWAY BUTTON COMPONENT */}
                     {txn.status === 'Awaiting Payment' && (
-                      <button 
-                        className="byr-escrow-action-btn deposit-btn"
-                        onClick={() => handleDepositIntoEscrow(txn.id)}
-                      >
-                        <CreditCard size={14} />
-                        <span>Deposit to Escrow</span>
-                      </button>
+                      <EscrowPayment 
+                        amount={txn.amount}
+                        buyerEmail={txn.buyerEmail}
+                        sellerEmail={txn.sellerEmail}
+                        txId={txn.id}
+                      />
                     )}
 
                     {txn.status === 'Escrow Active' && (
@@ -148,7 +140,7 @@ export default function BuyerTransactions() {
               <Lock size={18} color="#d97706" />
             </div>
           </div>
-          <h2 className="byr-txn-protected-value">$17,450</h2>
+          <h2 className="byr-txn-protected-value">R17,450</h2>
         </div>
 
         <div className="byr-txn-assurance-banner-card">
