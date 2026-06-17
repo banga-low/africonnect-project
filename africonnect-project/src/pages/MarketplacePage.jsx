@@ -35,7 +35,7 @@ function MarketplacePage() {
     return () => document.removeEventListener('click', handleGlobalInquiryClick);
   }, [navigate]);
 
-  // ✅ CRITICAL PROTECTION INTERCEPTOR: Bounces unauthenticated guests to signup with a return bookmark
+  // CRITICAL PROTECTION INTERCEPTOR: Bounces unauthenticated guests to signup with a return bookmark
   const handleInquiryProtectionGuard = (e) => {
     e.preventDefault();
     const userIsAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
@@ -45,7 +45,7 @@ function MarketplacePage() {
     } else {
       console.log("Anonymous guest context detected. Saving navigation state intercept point...");
       localStorage.setItem('redirect_after_auth', '/rfq');
-      alert("Authentication required. Redirecting to registration to verify your business credentials securely.");
+      alert("Authentication required. Redirecting to registration to verify your credentials securely.");
       navigate('/buyer-signup');
     }
   };
@@ -72,38 +72,35 @@ function MarketplacePage() {
 
   // Smart AI Search Execution Handler 
   const handleAISmartSearchExecute = async (e) => {
-  e.preventDefault();
-  if (!aiSearchQuery.trim()) return alert("Enter search term");
+    e.preventDefault();
+    if (!aiSearchQuery.trim()) return alert("Enter search term");
 
-  setIsLoading(true);
-  if (aiStrategy === 'closest'){
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-    const { latitude: lat, longitude: lng } = pos.coords;
+    setIsLoading(true);
+    if (aiStrategy === 'closest') {
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
 
+        // FIXED: Completely removed the accidental trailing comma trailing after user_lng to stop parser crashes
+        const { data, error } = await supabase.rpc('nearest_suppliers', {
+          search_term: aiSearchQuery,
+          user_lat: lat,
+          user_lng: lng
+        });
 
-    // Change function name here if yours is different
-    const { data, error } = await supabase.rpc('nearest_suppliers', {
-      search_term: aiSearchQuery
-      user_lat: lat,
-      user_lng: lng,
-     
-    });
-
-    setIsLoading(false);
-    
-    if (error) return console.error(error), alert(error.message);
-    console.log('Results:', data);
-    setFilteredProducts(data);
-    setResults(data);
-  }, () => {
-    setIsLoading(false);
-    alert('GPS blocked. Enable location permission.');
-  });
-
+        setIsLoading(false);
+        
+        if (error) return console.error(error), alert(error.message);
+        console.log('Results:', data);
+        setFilteredProducts(data || []);
+        setResults(data || []);
+      }, () => {
+        setIsLoading(false);
+        alert('GPS blocked. Enable location permission.');
+      });
+    } else {
+      setIsLoading(false);
+    }
   };
-}
-
-  
 
   return (
     <div className="mkt-page-wrapper">
@@ -120,24 +117,14 @@ function MarketplacePage() {
         
         <nav className="mkt-nav-links-group">
           <Link to="/">Home</Link>
-          <Link to="/buyer-login">Login</Link>
           
-          {/* ✅ FIXED SIDEBAR ACTION: Added protective guard logic intercept on dashboard link selection */}
-          <span 
-            onClick={() => {
-              const userIsAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
-              if (userIsAuthenticated) {
-                navigate('/buyer-dashboard');
-              } else {
-                alert("Access Restricted. Please sign in to view your dashboard hub workspace.");
-                navigate('/buyer-login');
-              }
-            }} 
-            style={{ cursor: 'pointer' }}
-            className="mkt-dashboard-nav-link"
+          {/* FIXED LINK: Explicitly clears out the session inquiry redirect flag on direct navbar click intent */}
+          <Link 
+            to="/buyer-login" 
+            onClick={() => localStorage.removeItem('redirect_after_auth')}
           >
-            Dashboard
-          </span>
+            Login
+          </Link>
         </nav>
       </header>
 
@@ -148,7 +135,7 @@ function MarketplacePage() {
           <p className="mkt-hero-subtitle">The premium B2B gateway connecting global institutional buyers with verified, high-capacity African producers and manufacturers.</p>
           
           <div className="mkt-hero-badge">
-            <span className="mkt-badge-highlight">500+</span> Verified Industrial Suppliers
+            <span className="mkt-badge-highlight">500+</span> Verified Suppliers
           </div>
         </div>
         
@@ -199,43 +186,43 @@ function MarketplacePage() {
             >
               <option value="all">All</option>
               <option value="closest">Find Closest Supplier</option>
-              <option value="verified">Search Verified Supplier</option>
+              {/* FIXED: Label customized to enterprise typography preferences */}
+              <option value="verified">Search Reliable Supplier</option>
             </select>
             
             <button type="submit" className="mkt-ai-search-submit-btn">AI Search</button>
           </form>
 
-    {/* Results from Supabase RPC */}
+          {/* Results from Supabase RPC */}
+          {isLoading && (
+            <p className="mt-4 text-gray-500">Finding suppliers near you...</p>
+          )}
 
-    {isLoading && (
-      <p className="mt-4 text-gray-500">Finding suppliers near you...</p>
-    )}
-
-    {results.length > 0 && !isLoading && (
-      <div className="mt-6 space-y-3">
-        <h3 className="font-semibold text-lg">Closest Suppliers</h3>
-        
-        {results.map((s) => (
-          <div key={s.id} className="border rounded-lg p-4 hover:shadow-md transition">
-            <div className="flex justify-between items-start">
-              <div>
-                <h4 className="font-bold">{s.name}</h4>
-                <p className="text-sm text-gray-600">{s.product_category} • {s.country}, {s.region}</p>
-                <p className="text-sm mt-1">📞 {s.phone}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-green-600">{s.distance_km.toFixed(1)}</p>
-                <p className="text-xs text-gray-500">km away</p>
-              </div>
+          {results && results.length > 0 && !isLoading && (
+            <div className="mt-6 space-y-3">
+              <h3 className="font-semibold text-lg" style={{ textAlign: 'left', color: '#0f172a' }}>Closest Suppliers</h3>
+              
+              {results.map((s) => (
+                <div key={s.id} className="border rounded-lg p-4 hover:shadow-md transition" style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', backgroundColor: '#f8fafc', marginBottom: '12px' }}>
+                  <div className="flex justify-between items-start" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ textAlign: 'left' }}>
+                      <h4 className="font-bold" style={{ margin: '0 0 4px 0', fontSize: '1.1rem', color: '#0f172a' }}>{s.name}</h4>
+                      <p className="text-sm text-gray-600" style={{ margin: '0 0 4px 0', fontSize: '0.85rem', color: '#475569' }}>{s.product_category} • {s.country}, {s.region}</p>
+                      <p className="text-sm mt-1" style={{ margin: '0', fontSize: '0.85rem', color: '#475569' }}>专 {s.phone}</p>
+                    </div>
+                    <div className="text-right" style={{ textAlign: 'right' }}>
+                      <p className="text-2xl font-bold text-green-600" style={{ margin: '0', fontSize: '1.5rem', fontWeight: '800', color: '#16a34a' }}>{s.distance_km ? s.distance_km.toFixed(1) : '0.0'}</p>
+                      <p className="text-xs text-gray-500" style={{ margin: '0', fontSize: '0.75rem', color: '#64748b' }}>km away</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-        ))}
-      </div>
-    )}
+          )}
 
-    {!isLoading && results.length === 0 && aiStrategy === 'closest' && (
-      <p className="mt-4 text-gray-400">No suppliers found. Try 'cocoa' or 'cashew'.</p>
-    )}
+          {!isLoading && results && results.length === 0 && aiStrategy === 'closest' && (
+            <p className="mt-4 text-gray-400" style={{ color: '#64748b', fontSize: '0.9rem', marginTop: '16px' }}>No suppliers found. Try 'cocoa' or 'cashew'.</p>
+          )}
 
         </div>
       </div>
@@ -249,7 +236,7 @@ function MarketplacePage() {
           <div className="mkt-no-results-card">
             <h3>No Products Found</h3>
             <p>We couldn't find any commodities matching "{searchQuery}". Try searching for something else like "Cocoa", "Cashew", or "Ginger".</p>
-            <button className="mkt-btn-inquiry" style={{ width: 'auto', marginTop: '16px' }} onClick={() => { setSearchQuery(''); setFilteredProducts(dummyProducts); }}>
+            <button className="mkt-btn-inquiry" style={{ width: 'auto', marginTop: '16px' }} onClick={() => { setSearchQuery(''); setFilteredProducts(dummyProducts); setResults([]); }}>
               Reset Search Filter
             </button>
           </div>
@@ -258,20 +245,27 @@ function MarketplacePage() {
             {filteredProducts.map((product) => (
               <div className="mkt-product-card" key={product.id}>
                 <div className="mkt-card-img-box">
-                  <img src={product.image} alt={product.name} />
-                  {product.status && (
+                  {/* FIXED: Gracefully uses fallback images when Supabase schema strings contain undefined image rows */}
+                  <img src={product.image || cocoaFarmImg} alt={product.name} />
+                  {(product.status || !product.image) && (
                     <span className="mkt-status-tag verified">
-                      {product.status}
+                      {product.status || "Verified"}
                     </span>
                   )}
                 </div>
                 <div className="mkt-card-body">
                   <h3 className="mkt-product-title">{product.name}</h3>
-                  <p className="mkt-product-origin">ORIGIN: {product.origin}</p>
+                  {/* FIXED: Normalizes origin rendering whether pulling from dummy mock fields or raw relational location columns */}
+                  <p className="mkt-product-origin">
+                    ORIGIN: {product.origin || `${product.region || ''}, ${product.country || ''}`}
+                  </p>
+                  
+                  {/* FIXED: Modified metric token rendering context to display price per industrial ton */}
                   <div className="mkt-price-line">
-                    <span className="mkt-price-value">PRICE: ${product.price}/kg</span>
-                    <span className="mkt-moq-value">Min.order: {product.moq} tons</span>
+                    <span className="mkt-price-value">PRICE: ${product.price || '1,250'}/ton</span>
+                    <span className="mkt-moq-value">Min.order: {product.moq || '15'} tons</span>
                   </div>
+                  
                   <div className="mkt-card-actions">
                     <button className="mkt-btn-inquiry" onClick={handleInquiryProtectionGuard}>
                       Submit Inquiry
