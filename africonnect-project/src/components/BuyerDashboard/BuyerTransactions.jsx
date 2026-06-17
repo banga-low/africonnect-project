@@ -1,31 +1,50 @@
 import React, { useState } from 'react';
 import { 
   Download, 
-  Search, 
   Lock, 
-  SlidersHorizontal, 
-  History, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  CreditCard,
+  PackageCheck,
+  ShieldCheck
 } from 'lucide-react';
 import './BuyerTransactions.css';
 import signImg from '../../assets/sign.png';
 import logoImg from '../../assets/logo.png';
 
-// Dummy Data mapped precisely from your Buyer Figma template screen
-const buyerDummyTransactions = [
-  { id: 'TXN001', supplier: 'Lualaba cocoa farm Ltd', location: 'Abuja, Nigeria', date: 'May 24, 2026', amount: '$2,400.00', status: 'Awaiting Payment', commodity: 'Cocoa / 12 Tons' },
-  { id: 'TXN002', supplier: 'Ivory Gold cocoa warehouse', location: 'Lagos, Nigeria', date: 'Feb 22, 2026', amount: '$4,500.00', status: 'Escrow Active', commodity: 'Cocoa / 11 Tons' },
-  { id: 'TXN003', supplier: 'Helios Cashew', location: 'Lagos, Nigeria', date: 'Jan 18, 2026', amount: '$6,000.00', status: 'Completed', commodity: 'Cashew / 15 Tons' }
-];
-
 export default function BuyerTransactions() {
-  const [searchTerm, setSearchTerm] = useState('');
+  // Mapped seamlessly from your transaction lifecycle workflow model
+  const [transactions, setTransactions] = useState([
+    { id: 'TXN001', supplier: 'Lualaba cocoa farm Ltd', location: 'Abuja, Nigeria', date: 'May 24, 2026', amount: '$2,400.00', status: 'Awaiting Payment', commodity: 'Cocoa / 12 Tons' },
+    { id: 'TXN002', supplier: 'Ivory Gold cocoa warehouse', location: 'Lagos, Nigeria', date: 'Feb 22, 2026', amount: '$4,500.00', status: 'Escrow Active', commodity: 'Cocoa / 11 Tons' },
+    { id: 'TXN003', supplier: 'Helios Cashew', location: 'Lagos, Nigeria', date: 'Jan 18, 2026', amount: '$6,000.00', status: 'Completed', commodity: 'Cashew / 15 Tons' }
+  ]);
+
+  // UI Action Intercepts (Will hook directly into your colleague's escrow API endpoints)
+  const handleDepositIntoEscrow = (txnId) => {
+    alert(`[API CALL TRIGGER]: Initializing secure payment vault token for ${txnId}.\nFunds will be securely locked inside the platform escrow contract.`);
+    
+    // Optimistic UI state transformation to mirror successful API callback flow
+    setTransactions(prev => prev.map(t => 
+      t.id === txnId ? { ...t, status: 'Escrow Active' } : t
+    ));
+  };
+
+  const handleConfirmDeliveryReceipt = (txnId) => {
+    const confirmation = window.confirm(`Are you sure you want to verify cargo delivery for transaction ${txnId}?\nThis alerts the admin to release held funds to the supplier.`);
+    if (!confirmation) return;
+
+    alert(`[API CALL TRIGGER]: Dispatched delivery verification receipt metadata to admin clearance queue.`);
+    
+    setTransactions(prev => prev.map(t => 
+      t.id === txnId ? { ...t, status: 'Completed' } : t
+    ));
+  };
 
   return (
     <div className="byr-txn-view-wrapper">
       
-      {/* TRANSACTION HEADER HEADER ROW */}
+      {/* TRANSACTION HEADER ROW */}
       <div className="byr-txn-board-header">
         <div className="byr-txn-header-left">
           <h2>Transaction History</h2>
@@ -48,10 +67,11 @@ export default function BuyerTransactions() {
                 <th>AMOUNT</th>
                 <th>STATUS</th>
                 <th>COMMODITY/ QTY</th>
+                <th style={{ textAlign: 'center' }}>ESCROW WORKFLOW</th>
               </tr>
             </thead>
             <tbody>
-              {buyerDummyTransactions.map((txn) => (
+              {transactions.map((txn) => (
                 <tr key={txn.id}>
                   <td className="byr-txn-bold-id">{txn.id}</td>
                   <td>
@@ -68,6 +88,36 @@ export default function BuyerTransactions() {
                     </span>
                   </td>
                   <td className="byr-txn-commodity-cell">{txn.commodity}</td>
+                  
+                  {/* CONTEXT-AWARE DYNAMIC WORKFLOW BUTTON CONSOLE */}
+                  <td style={{ textAlign: 'center' }}>
+                    {txn.status === 'Awaiting Payment' && (
+                      <button 
+                        className="byr-escrow-action-btn deposit-btn"
+                        onClick={() => handleDepositIntoEscrow(txn.id)}
+                      >
+                        <CreditCard size={14} />
+                        <span>Deposit to Escrow</span>
+                      </button>
+                    )}
+
+                    {txn.status === 'Escrow Active' && (
+                      <button 
+                        className="byr-escrow-action-btn confirm-btn"
+                        onClick={() => handleConfirmDeliveryReceipt(txn.id)}
+                      >
+                        <PackageCheck size={14} />
+                        <span>Confirm Delivery</span>
+                      </button>
+                    )}
+
+                    {txn.status === 'Completed' && (
+                      <div className="byr-escrow-secured-badge">
+                        <ShieldCheck size={14} className="icon-green" />
+                        <span className="text-green">Funds Released</span>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
