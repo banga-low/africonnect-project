@@ -11,6 +11,7 @@ import {
 import './SupplierTransactions.css';
 import signImg from '../../assets/sign.png';
 import logoImg from '../../assets/logo.png';
+import SellerEscrowPanel from './SellerEscrowPanel';
 
 const dummyTransactions = [
   { id: 'TXN001', buyer: 'TerraTrade Hub', commodity: 'Cashew', qty: '2 Tons', date: 'May 24, 2026', amount: '$2,400.00', paymentStatus: 'Protected', deliveryStatus: 'Awaiting Shipment' },
@@ -35,7 +36,19 @@ export default function SupplierTransactions() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
+        
+            <div className="supplier-transactions">
+              <h1>Your Transactions</h1>
+
+              {/*Add escrow panel here */}
+              <SellerEscrowPanel sellerEmail={"test-seller@email.com"} />
+
+              {/*Your existing transactions table */}
+              <table></table>
+            </div>
+
       </div>
+      );
 
       {/* METRIC HEADLINE: TOTAL REVENUE */}
       <div className="supp-txn-revenue-card">
