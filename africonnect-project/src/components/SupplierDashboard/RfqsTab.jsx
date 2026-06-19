@@ -4,7 +4,11 @@ import './RfqsTab.css';
 
 const RfqsTab = () => {
   const rfqDatabase = [
-    { id: "RFQ-08215", details: "Premium cocoa", buyer: "Swiss Trust Bank", volume: "25 KG", time: "2h ago", defaultStatus: "New Request", defaultClass: "rfq-new" },
+    // ✅ PRESENTATION DATA ROW: Format matched, time tweaked to 1 min ago, volume in Tons
+    { id: "RFQ-00001", details: "Raw Cashew Nuts", buyer: "TerraTrade Hub", volume: "2 Tons", time: "1 min ago", defaultStatus: "New Request", defaultClass: "rfq-new" },
+    
+    // ✅ OTHER ITEMS: Target volumes standardized to Tons (MT)
+    { id: "RFQ-08215", details: "Premium cocoa", buyer: "Swiss Trust Bank", volume: "25 MT", time: "2h ago", defaultStatus: "New Request", defaultClass: "rfq-new" },
     { id: "RFQ-08194", details: "Raw Cashew Nuts", buyer: "Global Foods Inc.", volume: "450 MT", time: "1h ago", defaultStatus: "New Request", defaultClass: "rfq-new" },
     { id: "RFQ-07992", details: "High-Grade Copper Ore", buyer: "Shenzhen Metals", volume: "2,000 MT", time: "3d ago", defaultStatus: "NEGOTIATING", defaultClass: "rfq-negotiating" }
   ];
@@ -14,7 +18,7 @@ const RfqsTab = () => {
   const [deliveryTime, setDeliveryTime] = useState('');
   const [notes, setNotes] = useState('');
   
-  // ✅ Tracks which RFQ IDs have received submitted quotes
+  // Tracks which RFQ IDs have received submitted quotes
   const [submittedRfqIds, setSubmittedRfqIds] = useState([]);
 
   const handleClearForm = () => {
@@ -31,7 +35,7 @@ const RfqsTab = () => {
       return;
     }
     
-    // ✅ Add the current RFQ ID to our tracked list of responses
+    // Add the current RFQ ID to our tracked list of responses
     setSubmittedRfqIds([...submittedRfqIds, selectedRfq.id]);
     
     alert(`Bid Proposal for ${selectedRfq.id} sent successfully to ${selectedRfq.buyer}!`);
@@ -71,7 +75,7 @@ const RfqsTab = () => {
           </thead>
           <tbody>
             {rfqDatabase.map((rfq) => {
-              // ✅ Check if this specific RFQ was responded to
+              // Check if this specific RFQ was responded to
               const hasResponded = submittedRfqIds.includes(rfq.id);
               
               return (
@@ -86,7 +90,7 @@ const RfqsTab = () => {
                     <td className="buyer-cell-txt">{rfq.buyer}</td>
                     <td className="volume-cell-txt">{rfq.volume}</td>
                     <td>
-                      {/* ✅ DYNAMIC STATUS PILL */}
+                      {/* DYNAMIC STATUS PILL */}
                       <span className={`rfq-status-pill ${hasResponded ? 'rfq-progress' : rfq.defaultClass}`}>
                         {hasResponded ? 'In Progress' : rfq.defaultStatus}
                       </span>
@@ -118,7 +122,7 @@ const RfqsTab = () => {
                               <label>Your Quote Price (USD) *</label>
                               <div className="input-with-icon">
                                 <DollarSign size={16} />
-                                <input type="text" placeholder="e.g. 7,900" value={quotePrice} onChange={(e) => setQuotePrice(e.target.value)} />
+                                <input type="text" placeholder="e.g. 2400" value={quotePrice} onChange={(e) => setQuotePrice(e.target.value)} />
                               </div>
                             </div>
 

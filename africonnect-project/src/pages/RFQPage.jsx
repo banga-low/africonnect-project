@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ Imported the navigation hook
+import { X } from 'lucide-react'; // ✅ Imported close icon for presentation layout navigation
 import './RFQPage.css';
 
 export default function RFQPage() {
@@ -32,6 +33,16 @@ export default function RFQPage() {
 
   return (
     <div className="rfq-container">
+      {/* ✅ INSTANT CLOSE NAVIGATION ANCHOR */}
+      <button 
+        type="button" 
+        className="rfq-close-button" 
+        onClick={() => navigate('/marketplace')}
+        aria-label="Close page"
+      >
+        <X size={20} />
+      </button>
+
       <div className="rfq-header">
         <h2>Request for Quotation</h2>
         <p>Connect directly with verified suppliers across the continent. Provide detailed specifications to receive accurate competitive pricing for your raw material requirements.</p>

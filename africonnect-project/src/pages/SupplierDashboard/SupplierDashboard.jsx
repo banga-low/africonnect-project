@@ -5,7 +5,7 @@ import {
   Box, 
   FileText, 
   MessageSquare, 
-  CreditCard, // ✅ Added for the Transactions list option
+  CreditCard, 
   User, 
   LogOut, 
   Search, 
@@ -23,7 +23,7 @@ import OverviewTab from '../../components/SupplierDashboard/OverviewTab';
 import MyProductsTab from '../../components/SupplierDashboard/MyProductsTab';
 import RfqsTab from '../../components/SupplierDashboard/RfqsTab';
 import MessagesTab from '../../components/SupplierDashboard/MessagesTab';
-import SupplierTransactions from '../../components/SupplierDashboard/SupplierTransactions'; // ✅ Imported Transactions tab
+import SupplierTransactions from '../../components/SupplierDashboard/SupplierTransactions'; 
 import ProfileTab from '../../components/SupplierDashboard/ProfileTab';
 import NewProductFormTab from '../../components/SupplierDashboard/NewProductFormTab';
 
@@ -33,7 +33,9 @@ const SupplierDashboard = () => {
 
   // States to dynamically track avatar and company title changes across tabs
   const [headerAvatar, setHeaderAvatar] = useState(supplierAvatar);
-  const [companyTitle, setCompanyTitle] = useState("Ghana Ecofarm Ltd.");
+  
+  // ✅ FIXED: Changed default value from "Ghana Ecofarm Ltd." to "Ecofarm Ltd."
+  const [companyTitle, setCompanyTitle] = useState("Lagos Cashew Nuts Ltd.");
 
   // Moving the products array into state so it updates dynamically!
   const [products, setProducts] = useState([
@@ -64,18 +66,18 @@ const SupplierDashboard = () => {
   // Function to append a new product from the form payload
   const handleAddProduct = (newProduct) => {
     const formattedProduct = {
-      id: Date.now(), // Generate a unique mock ID
+      id: Date.now(), 
       name: newProduct.name,
       category: newProduct.category,
       stock: newProduct.stock.endsWith('KG') ? newProduct.stock : `${newProduct.stock} KG`,
       moq: newProduct.moq.endsWith('KG') ? newProduct.moq : `${newProduct.moq} KG`,
       price: newProduct.price.includes('$') ? newProduct.price : `$${newProduct.price}`,
-      img: newProduct.imagePreview || cocoaImg, // Fallback to cocoa image if no file chosen
+      img: newProduct.imagePreview || cocoaImg, 
       status: "In Stock"
     };
 
     setProducts((prevProducts) => [formattedProduct, ...prevProducts]);
-    setActiveTab('products'); // Redirect directly to inventory list to see it!
+    setActiveTab('products'); 
   };
 
   const renderTabContent = () => {
@@ -85,14 +87,14 @@ const SupplierDashboard = () => {
           <OverviewTab 
             onTabSwitch={setActiveTab} 
             onNavigateToCreate={() => setActiveTab('new-product')} 
-            products={products.slice(0, 2)} // Pass top 2 preview items
+            products={products.slice(0, 2)} 
           />
         );
       case 'products':
         return (
           <MyProductsTab 
             onNavigateToCreate={() => setActiveTab('new-product')} 
-            products={products} // Pass down the live list
+            products={products} 
           />
         );
       case 'rfqu':
@@ -100,7 +102,7 @@ const SupplierDashboard = () => {
       case 'messages':
         return <MessagesTab />;
       case 'transactions':
-        return <SupplierTransactions />; // ✅ Render newly created Transactions layout component
+        return <SupplierTransactions />; 
       case 'profile':
         return <ProfileTab />;
       case 'new-product':
@@ -125,7 +127,6 @@ const SupplierDashboard = () => {
           <button className={`nav-item-link ${activeTab === 'rfqu' ? 'active' : ''}`} onClick={() => setActiveTab('rfqu')}><FileText size={18} /><span>RFQs</span></button>
           <button className={`nav-item-link ${activeTab === 'messages' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}><MessageSquare size={18} /><span>Messages</span></button>
           
-          {/* ✅ FIXED: Added Transactions sidebar anchor element matching Figma blueprint order */}
           <button className={`nav-item-link ${activeTab === 'transactions' ? 'active' : ''}`} onClick={() => setActiveTab('transactions')}><CreditCard size={18} /><span>Transactions</span></button>
           
           <button className={`nav-item-link ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}><User size={18} /><span>Profile</span></button>

@@ -16,10 +16,10 @@ import {
 } from 'lucide-react';
 import './BuyerDashboard.css';
 
-// Component Import
+// Component Import (Adjusted to correctly back out two folders up)
 import BuyerTransactions from '../../components/BuyerDashboard/BuyerTransactions';
 
-// Local Asset Imports
+// Local Asset Imports (✅ FIXED: Added extra '../' path handlers to match folder tree depth)
 import cottonImg from '../../assets/ProductListing/cotton.png';
 import gingerImg from '../../assets/ProductListing/ginger.jpg';
 import cashewImg from '../../assets/ProductListing/cashew.jpg';
@@ -106,14 +106,15 @@ const BuyerDashboard = () => {
     { id: 'RFQ-2026-004', commodity: 'Dried Split Ginger', quantity: '15 MT', destination: 'Port of Harare', bidsReceived: 5, dateCreated: '2026-05-01', closingDate: '2026-05-25', status: 'Under Review' }
   ];
 
+  // All Product Carousel Lists
   const allProducts = [
-    { id: 'prod-1', name: 'Premium Cotton', img: cottonImg },
-    { id: 'prod-2', name: 'Split Ginger', img: gingerImg },
-    { id: 'prod-3', name: 'Raw Cashew Nuts', img: cashewImg },
-    { id: 'prod-4', name: 'Sesame Seeds', img: sesameImg },
-    { id: 'prod-5', name: 'Premium Cocoa Beans', img: cocoaBeansImg },
-    { id: 'prod-6', name: 'Organic Shea Butter', img: sheaButterImg },
-    { id: 'prod-7', name: 'Pearl Millet', img: milletImg }
+    { id: 'prod-1', name: 'Premium Cotton', img: cottonImg, outOfStock: false },
+    { id: 'prod-2', name: 'Split Ginger', img: gingerImg, outOfStock: false },
+    { id: 'prod-3', name: 'Raw Cashew Nuts', img: cashewImg, outOfStock: false },
+    { id: 'prod-4', name: 'Sesame Seeds', img: sesameImg, outOfStock: false },
+    { id: 'prod-5', name: 'Premium Cocoa Beans', img: cocoaBeansImg, outOfStock: false },
+    { id: 'prod-6', name: 'Organic Shea Butter', img: sheaButterImg, outOfStock: false },
+    { id: 'prod-7', name: 'Pearl Millet', img: milletImg, outOfStock: true }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -196,7 +197,6 @@ const BuyerDashboard = () => {
               <span>Transactions</span>
             </button>
             
-            {/* ✅ FIXED: Safely cleans out browser token flags on application exit */}
             <button className="nav-btn logout" onClick={() => {
               localStorage.removeItem('isLoggedIn');
               navigate('/');
@@ -257,10 +257,19 @@ const BuyerDashboard = () => {
 
                 <div className="products-grid">
                   {visibleProducts.map((product, idx) => (
-                    <div className="product-card-wrapper" key={`${product.id}-${idx}`}>
+                    <div 
+                      className={`product-card-wrapper ${product.outOfStock ? 'db-card-out-of-stock' : ''}`} 
+                      key={`${product.id}-${idx}`}
+                      style={{ cursor: product.outOfStock ? 'not-allowed' : 'pointer' }}
+                    >
                       <img src={product.img} alt={product.name} />
                       <div className="carousel-caption">
                         <span>{product.name}</span>
+                        {product.outOfStock && (
+                          <span className="db-oos-corner-badge">
+                            Out Of Stock
+                          </span>
+                        )}
                       </div>
                     </div>
                   ))}

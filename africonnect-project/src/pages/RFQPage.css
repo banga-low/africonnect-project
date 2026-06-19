@@ -2,6 +2,33 @@
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
+  position: relative; /* ✅ CRITICAL: Absolute position anchor for close button */
+}
+
+/* ✅ NEW: ABSOLUTE POSITIONED CLOSE ACTION BUTTON STYLES */
+.rfq-close-button {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  color: #666666;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+
+.rfq-close-button:hover {
+  background: #fdf2f2;
+  color: #ef4444; /* Clean crimson crimson red on hover focus state strings */
+  border-color: #fca5a5;
+  transform: scale(1.05);
 }
 
 .rfq-header {

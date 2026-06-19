@@ -3,7 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Sparkles } from 'lucide-react'; 
 import { dummyProducts } from '../data/dummyProducts';
 import './MarketplacePage.css'; 
+
+// Local Fallback Asset Imports
 import cocoaFarmImg from '../assets/Marketplace/cocoa-farm.jpg';
+import cashewImg from '../assets/ProductListing/cashew.jpg'; 
 import logoImg from '../assets/LandingPage/logo.png';
 import { supabase } from '../supabase/supabaseClient';
 
@@ -192,7 +195,6 @@ function MarketplacePage() {
             <button type="submit" className="mkt-ai-search-submit-btn">AI Search</button>
           </form>
 
-          {/* Results from Supabase RPC */}
           {isLoading && (
             <p className="mt-4 text-gray-500">Finding suppliers near you...</p>
           )}
@@ -209,7 +211,7 @@ function MarketplacePage() {
                       <h4 className="font-bold" style={{ margin: '0 0 4px 0', fontSize: '1.1rem', color: '#0f172a' }}>
                         {s.name} <span style={{ fontSize: '0.72rem', color: '#16a34a', backgroundColor: '#dcfce7', padding: '2px 8px', borderRadius: '10px', marginLeft: '6px', fontWeight: '700', whiteSpace: 'nowrap' }}>Verified Supplier</span>
                       </h4>
-                      <p className="text-sm text-gray-600" style={{ margin: '0 0 4px 0', fontSize: '0.85rem', color: '#475569' }}>{s.product_category} • {s.country}, {s.region}</p>
+                      <p className="text-sm text-gray-600" style={{ margin: '0 0 4px 0', fontSize: '0.85rem', color: '#475569' }}>{s.product_category || s.category} • {s.country}, {s.region}</p>
                       
                       <p className="text-sm mt-1" style={{ margin: '0', fontSize: '0.85rem', color: '#ef4444', fontWeight: '700' }}>
                         Min.order: 1 ton
@@ -249,23 +251,30 @@ function MarketplacePage() {
           <div className="mkt-products-grid">
             {filteredProducts.map((product) => {
               const isOutOfStock = product.status?.toLowerCase() === 'out of stock';
+              
+              // Dynamic Picture Fallback Selector Engine
+              const isCashewSearch = 
+                product.name?.toLowerCase().includes('cashew') || 
+                product.product_category?.toLowerCase().includes('cashew') ||
+                product.category?.toLowerCase().includes('cashew');
+
+              const fallbackResolvedImg = isCashewSearch ? cashewImg : cocoaFarmImg;
 
               return (
                 <div className={`mkt-product-card ${isOutOfStock ? 'mkt-card-out-of-stock' : ''}`} key={product.id}>
                   
                   <div className="mkt-card-img-box">
-                    {/* ✅ Image takes grayscale filter layer strictly on out of stock states */}
+                    {/* ✅ Removed dynamic class assignment that adds filters, keeping image fully clear */}
                     <img 
-                      src={product.image || cocoaFarmImg} 
+                      src={product.image || fallbackResolvedImg} 
                       alt={product.name} 
-                      className={isOutOfStock ? 'mkt-img-grayed-blur' : ''} 
                     />
                     
-                    {/* ✅ Image top level canvas stamp architecture */}
+                    {/* ✅ Relocated Out Of Stock Badge to the bottom-left corner layout */}
                     {isOutOfStock ? (
-                      <div className="mkt-oos-image-stamp-wrapper">
-                        <div className="mkt-oos-stamp-badge">Out Of Stock</div>
-                      </div>
+                      <span className="mkt-status-tag mkt-out-of-stock-badge">
+                        Out Of Stock
+                      </span>
                     ) : (
                       (product.status || !product.image) && (
                         <span className="mkt-status-tag verified">

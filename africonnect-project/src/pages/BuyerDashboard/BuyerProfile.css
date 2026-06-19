@@ -1,27 +1,45 @@
-.profile-page {
+/* ==========================================================================
+   --- CENTRAL UNIFIED BUYER DASHBOARD LAYOUT ENGINE ---
+   ========================================================================== */
+.buyer-dashboard-scope {
   min-height: 100vh;
   background: #f5f5f5;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.profile-wrapper {
+.dashboard-wrapper {
   display: flex;
+  min-height: 100vh;
 }
 
-/* Reuse sidebar from dashboard */
+/* ==========================================================================
+   --- SIDEBAR NAVIGATION COMPONENTS ---
+   ========================================================================== */
 .sidebar {
   width: 220px;
   background: #ffffff;
   border-right: 1px solid #e5e5e5;
   padding: 20px 16px;
   min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar h3 {
+.sidebar-brand-block h3 {
   font-size: 16px;
-  color: #0a8f3f;
-  margin-bottom: 4px;
+  color: #036942; /* Harmonized Premium African Green */
+  margin: 0 0 4px 0;
   font-weight: 700;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .sidebar nav {
@@ -31,51 +49,335 @@
   margin-top: 24px;
 }
 
-.sidebar a {
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 10px 12px;
   font-size: 14px;
-  color: #555;
+  color: #555555;
+  background: transparent;
+  border: none;
   text-decoration: none;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.sidebar a.active {
-  background: #0a8f3f;
-  color: #ffffff;
+  width: 100%;
+  text-align: left;
   font-weight: 500;
+  transition: all 0.15s ease;
 }
 
-.sidebar a.logout {
+.nav-btn:hover {
+  background: #f8fafc;
+  color: #036942;
+}
+
+.nav-btn.active {
+  background: #036942;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-btn.logout {
   color: #d32f2f;
-  margin-top: 20px;
+  margin-top: auto; /* Push log out button to the bottom canvas slot */
 }
 
-/* Main */
-.profile-main {
+.nav-btn.logout:hover {
+  background: #fef2f2;
+  color: #d32f2f;
+}
+
+/* ==========================================================================
+   --- UNIVERSAL VIEWPORT MAIN DISPATCH CONSOLE ---
+   ========================================================================== */
+.dashboard-main {
   flex: 1;
   padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-x: hidden;
+}
+
+/* Universal Header Bar Strip */
+.viewport-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #ffffff;
+  padding: 14px 24px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 14px;
+  width: 320px;
+}
+
+.search-icon {
+  color: #94a3b8;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+  color: #334155;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bell-alert-btn {
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.bell-alert-btn:hover {
+  color: #036942;
+}
+
+.avatar-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #036942;
+}
+
+.avatar-pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dashboard Welcoming Block */
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #222222;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+.dashboard-header p {
+  font-size: 14px;
+  color: #777777;
+  margin: 0;
+  text-align: left;
+}
+
+/* Metric Statistics Grid Blocks */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.stat-card h2 {
+  font-size: 28px;
+  color: #0f172a;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+}
+
+.stat-card .badge {
+  font-size: 11px;
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.stat-card .subtext {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   --- TOP CAROUSEL PRODUCTS SECTION & UNCLICKABLE OOS FLOWS ---
+   ========================================================================== */
+.products-section {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 4px 0;
+  text-align: left;
+}
+
+.section-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  text-align: left;
+}
+
+.view-market-link {
+  font-size: 13px;
+  color: #036942;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.view-market-link:hover {
+  color: #024f31;
+  text-decoration: underline;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.product-card-wrapper {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 240px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.product-card-wrapper:hover:not(.db-card-out-of-stock) {
+  transform: translateY(-2px);
+  border-color: #036942;
+}
+
+.product-card-wrapper img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  padding: 12px 16px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.carousel-caption span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* ✅ PRESENTATION FLOW: Bottom-right inline red label (Zero Image Blur) */
+.db-card-out-of-stock {
+  border-color: #fee2e2 !important;
+  background: #fffcfc;
+}
+
+.db-card-out-of-stock img {
+  filter: grayscale(0%) brightness(1); /* Image stays 100% sharp and unblurred */
+}
+
+.db-oos-corner-badge {
+  color: #ef4444 !important; /* Crimson Red text alignment */
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px;
+  background-color: #fef2f2;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #fee2e2;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   --- PROFILE SETTINGS MANAGEMENT STYLES ---
+   ========================================================================== */
+.profile-view-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .profile-header h1 {
   font-size: 24px;
-  color: #222;
-  margin-bottom: 4px;
+  color: #222222;
+  margin: 0 0 4px 0;
   font-weight: 600;
+  text-align: left;
 }
 
 .profile-header p {
   font-size: 14px;
-  color: #777;
-  margin-bottom: 24px;
+  color: #777777;
+  margin: 0;
+  text-align: left;
 }
 
-/* Profile card */
 .profile-card {
   background: #ffffff;
-  border: 2px solid #0a8f3f;
+  border: 2px solid #036942; /* Unified brand green border line */
   border-radius: 8px;
   padding: 28px;
+  box-sizing: border-box;
 }
 
 .avatar-section {
@@ -87,25 +389,31 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-.avatar {
+.avatar-section img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #0a8f3f;
+  border: 3px solid #036942;
 }
 
 .change-photo {
   padding: 8px 14px;
-  border: 1px solid #0a8f3f;
-  background: #fff;
-  color: #0a8f3f;
+  border: 1px solid #036942;
+  background: #ffffff;
+  color: #036942;
   border-radius: 6px;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s;
 }
 
-/* Form */
+.change-photo:hover {
+  background: #f0fdf4;
+}
+
+/* Form Layout Architecture */
 .profile-form {
   display: flex;
   flex-direction: column;
@@ -122,6 +430,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  text-align: left;
 }
 
 .form-group.full {
@@ -130,7 +439,7 @@
 
 .form-group label {
   font-size: 13px;
-  color: #555;
+  color: #555555;
   font-weight: 500;
 }
 
@@ -141,14 +450,16 @@
   border-radius: 6px;
   font-size: 14px;
   outline: none;
+  background: #ffffff;
+  color: #334155;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #0a8f3f;
+  border-color: #036942;
 }
 
-/* Actions */
+/* Action Control Buttons */
 .form-actions {
   display: flex;
   gap: 12px;
@@ -159,32 +470,45 @@
 .btn-secondary {
   padding: 10px 20px;
   border: 1px solid #ddd;
-  background: #fff;
+  background: #ffffff;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  color: #555;
+  color: #555555;
+  font-weight: 500;
 }
 
 .btn-primary {
   padding: 10px 20px;
   border: none;
-  background: #0a8f3f;
-  color: #fff;
+  background: #036942;
+  color: #ffffff;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  transition: background-color 0.15s;
 }
 
+.btn-primary:hover {
+  background-color: #024f31;
+}
+
+/* ==========================================================================
+   --- RESPONSIVE MOBILE SCALING BREAKPOINTS ---
+   ========================================================================== */
 @media (max-width: 768px) {
   .sidebar {
     display: none;
   }
-  .profile-main {
+  .dashboard-main {
     padding: 16px;
   }
-  .form-row {
+  .form-row, .products-grid {
+    grid-template-columns: 1fr;
     flex-direction: column;
+  }
+  .search-bar {
+    width: 100%;
   }
 }

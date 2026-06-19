@@ -11,13 +11,15 @@ import './BuyerTransactions.css';
 import signImg from '../../assets/sign.png';
 import logoImg from '../../assets/logo.png';
 
-// ✅ IMPORT THE LIVE PAYMENTS COMPONENT WRITTEN BY YOUR COLLEAGUE
+// IMPORT THE LIVE PAYMENTS COMPONENT WRITTEN BY YOUR COLLEAGUE
 import EscrowPayment from '../EscrowPayment';
 
 export default function BuyerTransactions() {
   // Mapped seamlessly from your transaction lifecycle workflow model
   const [transactions, setTransactions] = useState([
-    { id: 'TXN001', supplier: 'Lualaba cocoa farm Ltd', location: 'Abuja, Nigeria', date: 'May 24, 2026', amount: 2400.00, status: 'Awaiting Payment', commodity: 'Cocoa / 12 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'lualaba@supplier.com' },
+    // ✅ PRESENTATION DATA ROW: Swapped date to today's presentation date (June 19, 2026)
+    { id: 'TXN001', supplier: 'Lagos Cashew Nuts Ltd', location: 'Lagos, Nigeria', date: 'June 19, 2026', amount: 2400.00, status: 'Awaiting Payment', commodity: 'Cashew / 2 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'lualaba@supplier.com' },
+    
     { id: 'TXN002', supplier: 'Ivory Gold cocoa warehouse', location: 'Lagos, Nigeria', date: 'Feb 22, 2026', amount: 4500.00, status: 'Escrow Active', commodity: 'Cocoa / 11 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'ivorygold@supplier.com' },
     { id: 'TXN003', supplier: 'Helios Cashew', location: 'Lagos, Nigeria', date: 'Jan 18, 2026', amount: 6000.00, status: 'Completed', commodity: 'Cashew / 15 Tons', buyerEmail: 'queen@africonnect.com', sellerEmail: 'helios@supplier.com' }
   ]);
@@ -73,7 +75,7 @@ export default function BuyerTransactions() {
                     </div>
                   </td>
                   <td>{txn.date}</td>
-                  <td className="byr-txn-bold-amount">R{txn.amount.toLocaleString()}</td>
+                  <td className="byr-txn-bold-amount">${txn.amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                   <td>
                     <span className={`byr-txn-status-pill status-${txn.status.toLowerCase().replace(' ', '-')}`}>
                       {txn.status}
@@ -84,7 +86,7 @@ export default function BuyerTransactions() {
                   {/* CONTEXT-AWARE DYNAMIC WORKFLOW BUTTON CONSOLE */}
                   <td style={{ textAlign: 'center' }}>
                     
-                    {/* ✅ SWITCHED TO LIVE FLUTTERWAVE GATEWAY BUTTON COMPONENT */}
+                    {/* SWITCHED TO LIVE FLUTTERWAVE GATEWAY BUTTON COMPONENT */}
                     {txn.status === 'Awaiting Payment' && (
                       <EscrowPayment 
                         amount={txn.amount}
@@ -119,7 +121,7 @@ export default function BuyerTransactions() {
 
         {/* PAGINATION DATA CONSTRAINTS CONTROL */}
         <div className="byr-txn-table-footer-pagination">
-          <span>Showing 1-3 of 10 transactions</span>
+          <span>Showing 1-3 of 3 transactions</span>
           <div className="byr-txn-pagination-arrows">
             <button className="byr-txn-arrow-btn"><ChevronLeft size={16} /></button>
             <button className="byr-txn-arrow-btn"><ChevronRight size={16} /></button>
@@ -140,7 +142,7 @@ export default function BuyerTransactions() {
               <Lock size={18} color="#d97706" />
             </div>
           </div>
-          <h2 className="byr-txn-protected-value">R17,450</h2>
+          <h2 className="byr-txn-protected-value">$2,400.00</h2>
         </div>
 
         <div className="byr-txn-assurance-banner-card">

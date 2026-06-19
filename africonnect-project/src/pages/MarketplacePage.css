@@ -369,11 +369,9 @@
   object-fit: cover;
 }
 
-/* Quality Tag Badges */
+/* Quality Tag Badges Base Setup */
 .mkt-status-tag {
   position: absolute;
-  top: 14px;
-  right: 14px;
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.7rem;
@@ -382,57 +380,30 @@
   z-index: 2;
 }
 
+/* Verified Anchor Status stays locked to top right corner */
 .mkt-status-tag.verified,
 .mkt-status-tag.verified-supplier {
+  top: 14px;
+  right: 14px;
   background-color: #10b981;
   color: #ffffff;
 }
 
 /* ==========================================================================
-   --- ✅ HIGH-FIDELITY IMAGE STAMP & SMOOTH GRAY-BLUR MOTOR ---
+   --- ✅ HIGH-FIDELITY LEFT-BOTTOM CORNER OUT OF STOCK BADGE ENGINE ---
    ========================================================================== */
-
-/* The Gray-out + Light Blur filter applied strictly to the image asset background */
-.mkt-img-grayed-blur {
-  filter: grayscale(85%) blur(1.5px) brightness(0.8);
-  -webkit-filter: grayscale(85%) blur(1.5px) brightness(0.8);
-  transition: all 0.2s ease-in-out;
-}
-
-/* Clear transparent overlay layer over the image block box frame */
-.mkt-oos-image-stamp-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  background-color: rgba(0, 0, 0, 0.03); 
-}
-
-/* Inspired directly by out-of-stock-rubber-stamp-vector-14724156.avif */
-.mkt-oos-stamp-badge {
-  color: #ef4444; /* Clean solid stamp crimson red */
-  border: 4px solid #ef4444;
-  font-size: 1.35rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  letter-spacing: 1.5px;
-  transform: rotate(-11deg); /* Diagonal angle tilt alignment */
-  background-color: #ffffff; /* Ultra clear crisp contrast layer background */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  user-select: none;
+.mkt-out-of-stock-badge {
+  bottom: 14px;
+  left: 14px;
+  background-color: #ef4444 !important; /* Solid Crimson Red matching brand style definitions */
+  color: #ffffff !important;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
 }
 
 /* Disables hover interactions and dims buttons cleanly when out of stock */
 .mkt-card-out-of-stock {
-  border-color: #cbd5e1 !important;
+  border-color: #e2e8f0 !important;
   box-shadow: none !important;
 }
 
